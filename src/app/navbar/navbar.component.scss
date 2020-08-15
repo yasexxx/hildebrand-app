@@ -1,0 +1,72 @@
+
+
+.main-logo {
+	font-size: 2rem;
+	line-height: 1;
+	font-family: 'Righteous', cursive;
+	}
+
+
+.search-a-bar {
+	margin-left: 8vw;
+	margin-right: auto;}
+
+
+.header-item-holder{
+	font-size: 1.1rem;
+  margin: 1rem 1rem 0 0;
+  color: black;
+
+  }
+
+.no-outline-a {
+  outline: none;
+}
+
+
+.header-item-holder a:hover {
+  color: #867a7a;
+}
+
+.hide-a-header {
+  display: none;
+}
+
+
+// Media breakpoints
+
+@media (min-width: 992px){
+  .nav-a-font {
+    font-size: large;
+  }
+}
+
+
+@media (max-width: 992px) {
+	.search-a-bar{
+	margin-left: 0;}
+
+	.header-item-holder{
+	display: flex;
+  margin: auto;}
+  }
+
+@media (max-width: 767px) {
+  .hide-a-header{
+    display: inline-block;
+    text-align: left;
+  }
+
+  .top-nav{
+    list-style-type: none;
+  }
+
+}
+
+@media (max-width: 1130px){
+  .search-a-bar {
+    margin-left: 1rem;
+  }
+}
+
+

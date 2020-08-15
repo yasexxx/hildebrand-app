@@ -1,0 +1,153 @@
+
+<div class="carousel slide" id="carouselExampleCaptions" data-ride="carousel">
+	  <ol class="carousel-indicators">
+		<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+		<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+		<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+	  </ol>
+	  <div class="carousel-inner">
+
+		<div class="carousel-item active carousel-a-bar">
+		  <img src="assets/images/img1.jpg" class="d-block w-100" alt="image1">
+
+		  <div class="carousel-caption d-none d-md-block">
+			<button type="button" class="btn btn-warning btn-a-pos">Shop now</button>
+			<h5>First slide label</h5>
+			<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+		  </div>
+		</div>
+	  <div class="carousel-item carousel-a-bar">
+		  <img src="assets/images/img2.jpg" class="d-block w-100" alt="...">
+		  <div class="carousel-caption d-none d-md-block">
+        <button type="button" class="btn btn-warning btn-a-pos">Shop now</button>
+      <h5>Second slide label</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		  </div>
+		</div>
+		<div class="carousel-item carousel-a-bar">
+		  <img src="assets/images/img3.jpg" class="d-block w-100" alt="...">
+		  <div class="carousel-caption d-none d-md-block">
+        <button type="button" class="btn btn-warning btn-a-pos">Shop now</button>
+        <h5>Third slide label</h5>
+			<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+		  </div>
+		</div>
+	  </div>
+	  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	  </a>
+	  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	  </a>
+</div>
+
+
+
+<div class="bg-a-color">
+
+<h2>Featured Products</h2>
+
+<div *ngIf="product_data" class="container-img">
+    <div *ngFor="let image of product_data" class="img-adjust card">
+        <a [href]="image.id">
+          <img class="img-a-display" [src]="image.src" alt="image-1">
+          </a>
+      <br><p >{{image.name}}</p>
+      <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther">${{image.price.old}}</p>
+          <ng-template #theOther><p>&nbsp;</p></ng-template>
+      <p class="text-a-align">${{image.price.new}}</p>
+      <a [href]="image.id" class="text-a-align">
+      <button class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
+        </a>
+      </div>
+    </div>
+
+
+<div class="col-12">
+    <hr>
+</div>
+
+
+<h2>Latest Products</h2>
+
+<div *ngIf="product_latest" class="container-img">
+  <div *ngFor="let image of product_latest" class="img-adjust card">
+          <a [href]="image.id">
+            <img class="img-a-display" [src]="image.src" alt="image-1">
+            </a>
+        <br><p >{{image.name}}</p>
+        <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther">${{image.price.old}}</p>
+            <ng-template #theOther><p>&nbsp;</p></ng-template>
+        <p class="text-a-align">${{image.price.new}}</p>
+        <a [href]="image.id" class="text-a-align">
+        <button class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
+          </a>
+        </div>
+  </div>
+
+
+
+<div class="col-12">
+    <hr>
+</div>
+
+
+<h2>Top Products</h2>
+
+<div *ngIf="top_product" class="container-img">
+  <div *ngFor="let image of top_product" class="img-adjust card">
+          <a [href]="image.id">
+            <img class="img-a-display" [src]="image.src" alt="image-1">
+            </a>
+        <br><p>{{image.name}}</p>
+        <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther">${{image.price.old}}</p>
+            <ng-template #theOther><p>&nbsp;</p></ng-template>
+        <p class="text-a-align">${{image.price.new}}</p>
+        <a [href]="image.id" class="text-a-align">
+        <button class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
+          </a>
+        </div>
+  </div>
+
+
+ <br/>
+ <br/>
+ <br/>
+
+</div>
+<!-- top-footer -->
+
+
+<div class="col bg-light d-sm-block d-none">
+    <div class="row a-top-footer">
+        <div class="large-holder">
+                <div class="large-icon">
+                    <fa-icon [icon]="moneyBill"></fa-icon>
+                </div>
+                <div class="large-text">
+                    Best Price
+            </div>
+        </div>
+        <div class="large-holder">
+                <div class="large-icon">
+                    <i class="fa fa-truck"></i>
+                </div>
+                <div class="large-text">
+                    Fast Delivery
+                </div>
+        </div>
+        <div class="large-holder">
+                <div class="large-icon">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="large-text">
+                    Genuine Products
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Main Content -->

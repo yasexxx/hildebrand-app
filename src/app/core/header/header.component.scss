@@ -1,0 +1,44 @@
+
+
+
+a {
+    transition: color .2s linear 0s;
+}
+
+.top-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.top-nav li {
+    display: inline;
+    padding: .1rem .5rem;
+    border-right: 1px solid #fff;
+}
+
+.top-nav li:last-of-type {
+    border-right: 0;
+}
+
+.top-nav li a {
+    color:white;
+    text-decoration: none;
+}
+
+.top-nav li a:hover, .top-nav li a:focus {
+    color: wheat;
+}
+
+
+
+
+@media (max-width: 1100px){
+  .header-a-user {
+    display: flex;
+    margin-left: 3em;
+  }
+}

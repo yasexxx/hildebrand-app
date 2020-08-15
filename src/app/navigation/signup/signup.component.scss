@@ -1,0 +1,23 @@
+
+.bg-a-signup {
+  background: url(./../../../assets/images/bg/_signup.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.signup-a-resize {
+  margin: 5rem auto;
+  width: 35em;
+
+}
+
+.form-a-adjust {
+  margin: 2em 2em;
+}
+
+@media (max-width: 570px) {
+  .signup-a-resize {
+    margin: 3em auto;
+    width: 90%;
+  }
+}

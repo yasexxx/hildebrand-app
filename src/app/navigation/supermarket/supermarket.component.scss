@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
+  background: #a8a7a7;
 }
 
 .bg-a-img {
@@ -21,10 +22,35 @@
 
 }
 
+li.h1 {
+  font-size: 1.5rem;
+  
+}
+
+li.h2 {
+  font-size: 1.5rem;
+  
+}
+
+li.h1 a {
+  color: white;
+  
+}
+
+li.h2 a{
+  color:black;
+}
+
+
+li.h1 a:hover {
+  color: black;
+}
+
 .img-supermarket {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  
 }
 
 .img-sup {
@@ -41,10 +67,16 @@
   box-shadow: #7c7b7b 0 0 10px 1px;
 }
 
-.card > .iconic-btn {
+.icon-container-1 {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2vw 4vw;
+}
+
+.card > .icon-container-1 {
   visibility: hidden;
 }
-.card:hover > .iconic-btn{
+.card:hover > .icon-container-1{
   visibility: visible;
 }
 
@@ -52,8 +84,12 @@
   transform:scale(1.2,1.2) translate3d(0,0,0);
 }
 
+.iconic-btn2:hover {
+  transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
 .tab-of-product {
-  margin: 1rem 5rem;
+  margin: 4rem 5rem 1rem;
 }
 
 .products-of-market {
@@ -63,4 +99,3 @@
 .pagination-a-market {
   margin: 3rem auto;
 }
-

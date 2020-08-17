@@ -23,7 +23,7 @@
                                 </a>
                                 <a href="cart.html" class="header-item mr-2">
                                     <i class="fa fa-shopping-cart mr-2"></i><span id="header-qty" class="mr-3">2</span>
-                                    <i class="fa fa-usd mr-2"></i><span id="header-price">4,000</span>
+                                    <fa-icon [icon]="moneyBillWaveAlt"></fa-icon>&nbsp;<span id="header-price">4,000</span>
                                 </a>
                             </div>
                         </div>
@@ -35,24 +35,24 @@
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse" id="mainNav">
-                                    <ul class="nav navbar-nav mx-auto mt-2 mt-lg-0 nav-a-font" tabindex="1">
+                                    <ul class="nav navbar-nav mx-auto mt-2 mt-lg-0 nav-a-font no-outline-a" tabindex="1">
                                         <li class="nav-item active">
-                                            <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
+                                            <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Supermarket</a>
+                                            <a class="nav-link" routerLink="/supermarket">Supermarket</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#" id="fashion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurant</a>
+                                            <a class="nav-link" routerLink="/restaurant">Restaurant</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="books" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Department Store</a>
-                                            <div class="dropdown-menu nav-a-font" aria-labelledby="books">
-                                                <a class="dropdown-item" href="category.html">Books</a>
-                                                <a class="dropdown-item" href="category.html">School Supplies</a>
-                                                <a class="dropdown-item" href="category.html">Laptop & Mobiles</a>
-                                                <a class="dropdown-item" href="category.html">T-shirt</a>
-                                                <a class="dropdown-item" href="category.html">Shoes</a>
+                                            <div ngbDropdown class="d-inline-block">
+                                              <a class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Department Store</a>
+                                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                <button ngbDropdownItem>Action - 1</button>
+                                                <button ngbDropdownItem>Another Action</button>
+                                                <button ngbDropdownItem>Something else is here</button>
+                                              </div>
                                             </div>
                                         </li>
                                     </ul>

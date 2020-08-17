@@ -33,6 +33,9 @@ import { ListingCategoriesComponent } from './admin/listing-categories/listing-c
 import { CategoryInHomeComponent } from './core/category-in-home/category-in-home.component';
 import { SearchBarComponent } from './shared/search-bar/search-bar.component';
 import { LogoComponent } from './shared/logo/logo.component';
+import { SupermarketComponent } from './navigation/supermarket/supermarket.component';
+import { RestaurantComponent } from './navigation/restaurant/restaurant.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { LogoComponent } from './shared/logo/logo.component';
 	ListingCategoriesComponent,
 	CategoryInHomeComponent,
 	SearchBarComponent,
-	LogoComponent
+	LogoComponent,
+	SupermarketComponent,
+	RestaurantComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,7 @@ import { LogoComponent } from './shared/logo/logo.component';
 	FlexLayoutModule,
 	MatButtonModule,
 	MatIconModule,
+	NgbModule,
   ],
   providers: [CustomBreakPointsProvider,],
   bootstrap: [AppComponent]

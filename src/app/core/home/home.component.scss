@@ -5,7 +5,8 @@ $size1 : 200vw;
 
 
 .carousel-a-bar {
-  max-height: 500px;
+  width: 100%;
+  height: 500px;
 }
 
 .bg-a-color {
@@ -13,7 +14,21 @@ $size1 : 200vw;
   padding: 20px 0;
 }
 
+.btn1 {
+  position: absolute;
+  margin: -15rem -30rem ;
+  height: 50px;
+}
 
+.btn2 {
+  display:none;
+}
+
+.btn3 {
+  position: absolute;
+  margin: -15rem 20rem ;
+  height: 60px;
+}
 
 .container-img {
   display: grid;

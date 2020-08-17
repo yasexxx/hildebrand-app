@@ -11,6 +11,9 @@ export class HomeComponent implements OnInit {
   product_data:any = [];
   product_latest:any = [];
   top_product:any = [];
+  paused = false;
+  unpauseOnArrow = false;
+  pauseOnHover = true;
 
   moneyBill = faMoneyBill;
   moneyBillWave = faMoneyBillWaveAlt;
@@ -60,6 +63,7 @@ export class HomeComponent implements OnInit {
   typeOf(value:any) {
     return typeof value;
   };
+
 
   ngOnInit(): void {
 

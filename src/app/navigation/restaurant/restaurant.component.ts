@@ -1,4 +1,7 @@
+import { ProductLocalService } from './../../services/product-local.service';
 import { Component, OnInit } from '@angular/core';
+
+
 @Component({
   selector: 'app-restaurant',
   templateUrl: './restaurant.component.html',
@@ -8,52 +11,28 @@ export class RestaurantComponent implements OnInit {
 
   page = 1;
   active = 1;
+  isLoaded$:boolean = false;
+  productRestaurant1:any[];
+  productRestaurant2:{}[];
+  productRestaurant3:{}[];
 
-  productSupermarket1 = [{id: 1, name: 'Pepper' , url: 'https://picsum.photos/204'},
-					{id: 2, name: 'Strawberry' , url: 'https://picsum.photos/200'},
-					{id: 3, name: 'Chili' , url: 'https://picsum.photos/201'},
-					{id: 4, name: 'Cabbage' , url: 'assets/images/featured/feature-4.jpg'},
-					{id: 5, name: 'Tomato' , url: 'assets/images/featured/feature-5.jpg'},
-					{id: 6, name: 'Brocholli' , url: 'https://picsum.photos/202'},
-					{id: 7, name: 'Carrots' , url: 'assets/images/featured/feature-7.jpg'},
-					{id: 8, name: 'Juice' , url: 'https://picsum.photos/203'},
-					{id: 9, name: 'Onion' , url: 'assets/images/featured/feature-1.jpg'},
-					{id: 10, name: 'Apple' , url: 'https://picsum.photos/205'},
-					{id: 11, name: 'Garlic' , url: 'assets/images/featured/feature-3.jpg'},
-					{id: 12, name: 'Chili Pepper' , url: 'https://picsum.photos/206'},
-          ];
 
-  productSupermarket2 = [{id: 1, name: 'Pepper' , url: 'assets/images/featured/feature-6.jpg'},
-					{id: 2, name: 'Strawberry' , url: 'assets/images/featured/feature-8.jpg'},
-					{id: 3, name: 'Chili' , url: 'assets/images/featured/feature-7.jpg'},
-					{id: 4, name: 'Cabbage' , url: 'assets/images/featured/feature-6.jpg'},
-					{id: 5, name: 'Tomato' , url: 'assets/images/featured/feature-5.jpg'},
-					{id: 6, name: 'Brocholli' , url: 'assets/images/featured/feature-4.jpg'},
-					{id: 7, name: 'Carrots' , url: 'assets/images/featured/feature-3.jpg'},
-					{id: 8, name: 'Juice' , url: 'assets/images/featured/feature-2.jpg'},
-					{id: 9, name: 'Onion' , url: 'assets/images/featured/feature-1.jpg'},
-					{id: 10, name: 'Apple' , url: 'assets/images/featured/feature-6.jpg'},
-					{id: 11, name: 'Garlic' , url: 'assets/images/featured/feature-8.jpg'},
-					{id: 12, name: 'Chili Pepper' , url: 'assets/images/featured/feature-2.jpg'},
-          ];
+  constructor(private productService : ProductLocalService) { }
 
-  productSupermarket3 = [{id: 1, name: 'Pepper' , url: 'assets/images/featured/feature-4.jpg'},
-					{id: 2, name: 'Strawberry' , url: 'assets/images/featured/feature-5.jpg'},
-					{id: 3, name: 'Chili' , url: 'assets/images/featured/feature-6.jpg'},
-					{id: 4, name: 'Cabbage' , url: 'assets/images/featured/feature-7.jpg'},
-					{id: 5, name: 'Tomato' , url: 'assets/images/featured/feature-8.jpg'},
-					{id: 6, name: 'Brocholli' , url: 'assets/images/featured/feature-1.jpg'},
-					{id: 7, name: 'Carrots' , url: 'assets/images/featured/feature-2.jpg'},
-					{id: 8, name: 'Juice' , url: 'assets/images/featured/feature-3.jpg'},
-					{id: 9, name: 'Onion' , url: 'assets/images/featured/feature-4.jpg'},
-					{id: 10, name: 'Apple' , url: 'assets/images/featured/feature-5.jpg'},
-					{id: 11, name: 'Garlic' , url: 'assets/images/featured/feature-4.jpg'},
-					{id: 12, name: 'Chili Pepper' , url: 'assets/images/featured/feature-8.jpg'},
-          ];
+  imgLoadCheck(){
+    const logss = document.querySelectorAll('.card');
+    console.log(logss);
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
+    const initProductRestaurant = this.productService.restaurantDisplay();
+    this.productRestaurant1 = this.productService.pRestaurant1;
+    this.productRestaurant2 = this.productService.pRestaurant2;
+    this.productRestaurant3 = this.productService.pRestaurant3;
   }
+
+
+
 
 }

@@ -12,7 +12,14 @@
           <div class="img-supermarket">
             <div class="card" *ngFor="let img of productSupermarket1; index as i">
               <img [src]="img.url" [alt]="i" class="img-sup">
+              <h2 class="name-img">{{img.name}}</h2>
+              <div class="hide-price-hover">
+                ${{img.price}}
+              </div>
               <div class="icon-container-1">
+                <button mat-mini-fab class="iconic-btn2">
+                  <mat-icon>menu</mat-icon>
+                </button>
                 <button mat-mini-fab class="iconic-btn">
                   <i class="fa fa-shopping-cart"></i>
                 </button>
@@ -27,11 +34,18 @@
 
       <li [ngClass]="{'h2': active===2, 'h1':!(active===2)}" [ngbNavItem]="2">
         <a ngbNavLink>Vegetables</a>
-        <ng-template  ngbNavContent>
+        <ng-template ngbNavContent>
           <div class="img-supermarket">
             <div class="card" *ngFor="let img of productSupermarket2; index as i">
               <img [src]="img.url" [alt]="i" class="img-sup">
+              <h2 class="name-img">{{img.name}}</h2>
+              <div class="hide-price-hover">
+                ${{img.price}}
+              </div>
               <div class="icon-container-1">
+                <button mat-mini-fab class="iconic-btn2">
+                  <mat-icon>menu</mat-icon>
+                </button>
                 <button mat-mini-fab class="iconic-btn">
                   <i class="fa fa-shopping-cart"></i>
                 </button>
@@ -50,8 +64,15 @@
         <ng-template ngbNavContent>
           <div class="img-supermarket">
             <div class="card" *ngFor="let img of productSupermarket3; index as i">
-              <img [src]="img.url" [alt]="i" class="img-sup">
+              <img [src]="img.url" alt="image {{i}}" class="img-sup">
+              <h2 class="name-img">{{img.name}}</h2>
+              <div class="hide-price-hover">
+                ${{img.price}}
+              </div>
               <div class="icon-container-1">
+                <button mat-mini-fab class="iconic-btn2">
+                  <mat-icon>menu</mat-icon>
+                </button>
                 <button mat-mini-fab class="iconic-btn">
                   <i class="fa fa-shopping-cart"></i>
                 </button>

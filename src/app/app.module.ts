@@ -1,3 +1,5 @@
+import { ProductLocalService } from './services/product-local.service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -12,12 +14,13 @@ import { ProductComponent } from './navigation/product/product.component';
 import { LoginComponent } from './navigation/login/login.component';
 import { SignupComponent } from './navigation/signup/signup.component';
 
-import { CustomBreakPointsProvider } from './custom-breakpoints';
-import { CustomClassDirective } from './custom-flex-directives';
-import { CustomShowHideDirective } from './custom-showhide-directives';
-import { CustomStyleDirective } from './custom-style-directives';
-import { CustomLayoutDirective } from './custom-layout-directives';
+import { CustomBreakPointsProvider } from './directives/layout/custom-breakpoints';
+import { CustomClassDirective } from './directives/layout/custom-flex-directives';
+import { CustomShowHideDirective } from './directives/layout/custom-showhide-directives';
+import { CustomStyleDirective } from './directives/layout/custom-style-directives';
+import { CustomLayoutDirective } from './directives/layout/custom-layout-directives';
 import { DropOpenDirective } from './directives/custom-dropdown';
+import { LoadedDirective } from './directives/image/img.directives';
 
 
 import {MatButtonModule} from '@angular/material/button';
@@ -49,7 +52,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 	CustomClassDirective,
 	CustomStyleDirective,
 	CustomLayoutDirective,
-	DropOpenDirective,
+  DropOpenDirective,
+  LoadedDirective,
 	FooterComponent,
 	ShoppingCartComponent,
 	UserLinksComponent,
@@ -74,7 +78,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 	MatIconModule,
 	NgbModule,
   ],
-  providers: [CustomBreakPointsProvider,],
+  providers: [CustomBreakPointsProvider, ProductLocalService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

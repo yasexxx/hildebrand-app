@@ -1,5 +1,8 @@
 
-
+.bg-changee {
+  background: #62c799;
+}
+// #62c799
 .main-logo {
 	font-size: 2rem;
 	line-height: 1;
@@ -10,6 +13,14 @@
 .search-a-bar {
 	margin-left: 8vw;
 	margin-right: auto;}
+
+.nav-a-font a{
+    color:black;
+  }
+.nav-a-font a:hover{
+  color: #002447;
+}
+
 
 
 .header-item-holder{
@@ -24,8 +35,8 @@
 }
 
 
-.header-item-holder a:hover {
-  color: #867a7a;
+.header-item-holder a:hover{
+  color: #002447;
 }
 
 .hide-a-header {

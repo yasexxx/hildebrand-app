@@ -1,3 +1,4 @@
+import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.component';
 import { RestaurantComponent } from './navigation/restaurant/restaurant.component';
 import { SupermarketComponent } from './navigation/supermarket/supermarket.component';
 import { SignupComponent } from './navigation/signup/signup.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register',component: SignupComponent},
   { path: 'supermarket',component:SupermarketComponent },
   { path: 'restaurant',component: RestaurantComponent},
+  { path: 'cart', component: ShoppingCartComponent },
 
 
 	{ path: '**', redirectTo: '/' }

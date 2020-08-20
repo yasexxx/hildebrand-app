@@ -1,1 +1,28 @@
-<p>shopping-cart works!</p>
+<div class="bg-a-color">
+  <div class="shopping-header">
+    <h1>Shopping Cart</h1>
+  </div>
+  <div class="wrapper-content">
+      <div *ngIf="productCart" class="ml-2 product-list-content">
+        <hr/>
+        <div *ngFor="let product of productCart" class="wrapper-prod">
+          <div *ngIf="product" class="product-details">
+            <img  [src]="product.img" alt="" class="img-product"/>
+            <h2 class="my-auto">{{product.name}}</h2>
+            <p class="my-auto">{{product.price}}</p>
+            <div class="my-auto mx-auto mx-lg-0">
+              <p>Quantity:</p>
+              <ngx-number-spinner class="input-spin" [value]="0" [min]="0"></ngx-number-spinner>
+            </div>
+          </div>
+          <hr/>
+        </div>
+      </div>
+    <div class="card proceed-checkout">
+      <p class="font-weight-bold mt-4 mx-auto">Total Amount: $2000</p>
+      <button class="rounded proceed-btn mx-5">Proceed to Checkout</button>
+    </div>
+
+  </div>
+</div>
+

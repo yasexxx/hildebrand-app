@@ -7,12 +7,39 @@
       <app-card title="Card {{i}}"><div>Mini Card Content Here</div></app-card>
     </mat-grid-tile>
     <!--Charts-->
+
+    <!--Monthly Revenue-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
       [rowspan]="( cardLayout | async )?.chart.rows">
       <app-card title="Monthly Revenue">
         <app-annual-sales-chart></app-annual-sales-chart>
       </app-card>
     </mat-grid-tile>
+
+    <!--Product Sales-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
+      [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Monthly Revenue">
+        <app-annual-sales-chart></app-annual-sales-chart>
+      </app-card>
+    </mat-grid-tile>
+    <!--Sales by Traffic Source-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
+      [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Product Sales">
+        <app-annual-sales-chart></app-annual-sales-chart>
+      </app-card>
+    </mat-grid-tile>
+
+    <!--Online Store Session by Traffic Source-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
+      [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Monthly Revenue">
+        <app-annual-sales-chart></app-annual-sales-chart>
+      </app-card>
+    </mat-grid-tile>
+
+
     <!--Table-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" [rowspan]="( cardLayout | async )?.table.rows">
       <app-card title="Card 9"><div>Table Content Here</div></app-card>

@@ -1,8 +1,9 @@
 <div class="chartContainer" *ngIf="salesChartLabels">
   <canvas baseChart
     [datasets]="salesChartData"
-    [options]="radarChartOptions"
+    [options]="salesChartOptions"
     [labels]="salesChartLabels"
-    [chartType]="radarChartType">
+    [chartType]="salesChartType"
+    [colors]="salesColor">
   </canvas>
 </div>

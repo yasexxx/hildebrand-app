@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType, ChartColor } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 import { SalesService } from './../../../../services/sales.service';
 
 @Component({
@@ -15,13 +15,20 @@ export class AnnualSalesChartComponent implements OnInit {
   ];
 
   public salesChartLabels: Label[] = [];
-  public radarChartOptions: ChartOptions = {
+  public salesChartOptions: ChartOptions = {
     responsive: true,
   };
 
-  public radarChartType: ChartType = 'line';
+  public salesChartType: ChartType = 'line';
 
-  public salesColor: ChartColor = [];
+  public salesColor: Color[] = [{
+    backgroundColor: '#16c000',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  }];
   constructor(private salesService: SalesService) { }
 
   ngOnInit() {

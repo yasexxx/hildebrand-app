@@ -16,15 +16,21 @@ export class AdminNavigationComponent {
       shareReplay()
     );
 
-  headerAdmin = [];
+  headerAdmin:string = "Welcome to Admin Page";
 
   menuItems = ['dashboard', 'sales', 'orders', 'customers', 'products'];
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   navigateToMenu(name):void{
-    const getMenu = this.menuItems.filter( item$ => name===item$)
+    if (!name) return name;
+    const getMenu = this.titleCaseWord(name);
     this.headerAdmin = getMenu;
-    console.log(getMenu);
-    };
   }
+
+  titleCaseWord(word:string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+}

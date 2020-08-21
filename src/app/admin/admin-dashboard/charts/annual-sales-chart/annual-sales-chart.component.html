@@ -1,0 +1,8 @@
+<div class="chartContainer" *ngIf="salesChartLabels">
+  <canvas baseChart
+    [datasets]="salesChartData"
+    [options]="radarChartOptions"
+    [labels]="salesChartLabels"
+    [chartType]="radarChartType">
+  </canvas>
+</div>

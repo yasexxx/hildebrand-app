@@ -15,6 +15,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CardComponent } from './admin-dashboard/card/card.component';
+import { ProductSalesChartComponent } from './admin-dashboard/charts/product-sales-chart/product-sales-chart.component';
+import { SalesTrafficChartComponent } from './admin-dashboard/charts/sales-traffic-chart/sales-traffic-chart.component';
+import { AnnualSalesChartComponent } from './admin-dashboard/charts/annual-sales-chart/annual-sales-chart.component';
+import { StoreSessionsChartComponent } from './admin-dashboard/charts/store-sessions-chart/store-sessions-chart.component';
+import { SalesService } from '../services/sales.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +32,13 @@ import { MatListModule } from '@angular/material/list';
     AddOrEditCategoryComponent,
     AddOrEditProductComponent,
     ListingCategoriesComponent,
-    AdminNavigationComponent
+    AdminNavigationComponent,
+    AdminDashboardComponent,
+    CardComponent,
+    ProductSalesChartComponent,
+    SalesTrafficChartComponent,
+    AnnualSalesChartComponent,
+    StoreSessionsChartComponent
   ],
   imports: [
     CommonModule,
@@ -33,13 +49,24 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatGridListModule
   ],
   exports: [
     AdminComponent,
     AddOrEditCategoryComponent,
     AddOrEditProductComponent,
-    ListingCategoriesComponent
-  ]
+    ListingCategoriesComponent,
+    AdminNavigationComponent,
+    AdminDashboardComponent,
+    CardComponent,
+    AnnualSalesChartComponent,
+    ProductSalesChartComponent,
+    SalesTrafficChartComponent,
+    StoreSessionsChartComponent
+  ],
+  providers: [SalesService]
 })
 export class AdminModule { }

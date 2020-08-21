@@ -36,8 +36,7 @@ import { DropOpenDirective } from './directives/custom-dropdown';
 import { LoadedDirective } from './directives/image/img.directives';
 
 import { ProductLocalService } from './services/product-local.service';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -74,9 +73,10 @@ import { ProductLocalService } from './services/product-local.service';
   NgbModule,
   NgxNumberSpinnerModule,
   UsersModule,
-  AdminModule
+  AdminModule,
+  HttpClientModule
   ],
-  providers: [CustomBreakPointsProvider, ProductLocalService,],
+  providers: [CustomBreakPointsProvider, ProductLocalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

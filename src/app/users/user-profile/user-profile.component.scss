@@ -1,0 +1,56 @@
+
+
+.container-at-profile {
+  display: grid;
+  grid-template-columns: 1fr;
+
+}
+
+.bg-a-color {
+  height: 100px;
+  background: #002447;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.bg-a-color > h1 {
+  font-size: 2rem;
+  color: white;
+  margin-top: 30px;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+
+
+.img-n-fit {
+  max-width: 10rem;
+
+}
+
+.btn-1 {
+  width: 120px;
+  background: #002447;
+  color: white;
+}
+
+.btn-1:hover {
+  width: 120px;
+  background: white;
+  color: #002447;
+  box-shadow: 0 0 1px .5px #b8b3b3;
+
+}
+
+.profile-content span {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: x-large;
+}
+

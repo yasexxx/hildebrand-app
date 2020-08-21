@@ -1,6 +1,35 @@
 
 
 .container {
-  margin: 5rem auto ;
-  padding: 0 5rem;
+  margin: 1rem ;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 500px;
+}
+
+.btn1 {
+  width: 8rem;
+  margin: 1.5rem 0;
+}
+
+.img-n-fit {
+  max-width: 10rem;
+}
+
+.form-a-wrapper {
+  display: grid;
+  grid-auto-rows: 5rem;
+}
+
+.link-style- {
+  text-decoration: underline;
+  color: blue;
+}
+
+
+
+@media (max-width:532px) {
+  .container{
+    width: 90%;
+  }
 }

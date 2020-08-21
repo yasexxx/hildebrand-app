@@ -1,1 +1,14 @@
-<p>user-profile works!</p>
+<div class="container-at-profile">
+<div class="bg-a-color">
+  <h1>User Profile</h1>
+</div>
+<div *ngIf="user" class="profile-content mx-auto mt-3">
+
+  <img class="img-fluid rounded-circle img-n-fit" [src]="user.picture"/>
+  <span>Name: {{user.name}}</span>
+  <span>Email: {{user.email}}</span>
+  <span>Address: {{user.address}}</span>
+  <span>Contact Number: {{user.contact}}</span>
+  <button class="btn btn-1" type="button">Update</button>
+</div>
+</div>

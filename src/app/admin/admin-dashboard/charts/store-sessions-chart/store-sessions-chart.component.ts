@@ -1,3 +1,4 @@
+import { OnlineOrderService } from './../../../../services/online-order.service';
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
@@ -9,20 +10,29 @@ import { Label } from 'ng2-charts';
 })
 export class StoreSessionsChartComponent implements OnInit {
 
-  public radarChartOptions: ChartOptions = {
+  public orderChartOptions: ChartOptions = {
     responsive: true,
   };
-  public radarChartLabels: Label[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
+  public orderChartLabels: Label[] = [];
 
-  public radarChartData: ChartDataSets[] = [
-    { data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
-  ];
-  public radarChartType: ChartType = 'radar';
 
-  constructor() { }
+
+  public orderChartData: ChartDataSets[] = [{
+    data: [], label: 'Total Orders'
+  }];
+  public orderChartType: ChartType = 'bar';
+
+  constructor(private onlineOrderService:OnlineOrderService) { }
 
   ngOnInit() {
+    this.onlineOrderService.getOrder().subscribe({
+      next: orderItems => {
+        orderItems.forEach( li => {
+          this.orderChartData[0].data.push(li.orderTotal);
+          this.orderChartLabels.push(li.name)
+        })
+      }
+    })
   }
 
 }

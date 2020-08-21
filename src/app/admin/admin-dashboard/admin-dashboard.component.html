@@ -19,31 +19,33 @@
     <!--Product Sales-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
       [rowspan]="( cardLayout | async )?.chart.rows">
-      <app-card title="Monthly Revenue">
-        <app-annual-sales-chart></app-annual-sales-chart>
+      <app-card title="Online Order Traffic">
+        <app-store-sessions-chart></app-store-sessions-chart>
       </app-card>
     </mat-grid-tile>
     <!--Sales by Traffic Source-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
       [rowspan]="( cardLayout | async )?.chart.rows">
       <app-card title="Product Sales">
-        <app-annual-sales-chart></app-annual-sales-chart>
+        <app-product-sales-chart></app-product-sales-chart>
       </app-card>
     </mat-grid-tile>
 
     <!--Online Store Session by Traffic Source-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
       [rowspan]="( cardLayout | async )?.chart.rows">
-      <app-card title="Monthly Revenue">
-        <app-annual-sales-chart></app-annual-sales-chart>
+      <app-card title="Sales by Traffic Source">
+        <app-sales-traffic-chart></app-sales-traffic-chart>
       </app-card>
     </mat-grid-tile>
 
 
     <!--Table-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" [rowspan]="( cardLayout | async )?.table.rows">
-      <app-card title="Card 9"><div>Table Content Here</div></app-card>
-    </mat-grid-tile>
+      <app-card title="Latest Orders">
+        <app-orders-table></app-orders-table>
+      </app-card>
+   </mat-grid-tile>
   </mat-grid-list>
  </div>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-product-sales-chart',
@@ -19,6 +19,17 @@ export class ProductSalesChartComponent implements OnInit {
     { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
   ];
   public radarChartType: ChartType = 'radar';
+
+  public radarColor : Color[] = [
+    {
+      backgroundColor: '#002447',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ]
 
   constructor() { }
 

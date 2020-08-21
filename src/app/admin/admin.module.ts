@@ -1,3 +1,5 @@
+import { OrderService } from './../services/order.service';
+import { OnlineOrderService } from './../services/online-order.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
@@ -25,6 +27,10 @@ import { SalesTrafficChartComponent } from './admin-dashboard/charts/sales-traff
 import { AnnualSalesChartComponent } from './admin-dashboard/charts/annual-sales-chart/annual-sales-chart.component';
 import { StoreSessionsChartComponent } from './admin-dashboard/charts/store-sessions-chart/store-sessions-chart.component';
 import { SalesService } from '../services/sales.service';
+import { OrdersTableComponent } from './admin-dashboard/orders-table/orders-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,8 @@ import { SalesService } from '../services/sales.service';
     ProductSalesChartComponent,
     SalesTrafficChartComponent,
     AnnualSalesChartComponent,
-    StoreSessionsChartComponent
+    StoreSessionsChartComponent,
+    OrdersTableComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +59,10 @@ import { SalesService } from '../services/sales.service';
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     AdminComponent,
@@ -67,6 +77,6 @@ import { SalesService } from '../services/sales.service';
     SalesTrafficChartComponent,
     StoreSessionsChartComponent
   ],
-  providers: [SalesService]
+  providers: [SalesService,OnlineOrderService,OrderService]
 })
 export class AdminModule { }

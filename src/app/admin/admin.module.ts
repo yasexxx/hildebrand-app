@@ -27,12 +27,21 @@ import { SalesTrafficChartComponent } from './admin-dashboard/charts/sales-traff
 import { AnnualSalesChartComponent } from './admin-dashboard/charts/annual-sales-chart/annual-sales-chart.component';
 import { StoreSessionsChartComponent } from './admin-dashboard/charts/store-sessions-chart/store-sessions-chart.component';
 import { SalesService } from '../services/sales.service';
-import { OrdersTableComponent } from './admin-dashboard/orders-table/orders-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { AdminTableComponent } from './admin-dashboard/admin-table/admin-table.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { MiniCardComponent } from './admin-dashboard/mini-card/mini-card.component';
+import { StoreSummaryService } from '../services/store-summary.service';
+import { SalesComponent } from './admin-navigation/sales/sales.component';
+import { ProductsComponent } from './admin-navigation/products/products.component';
+import { CustomersComponent } from './admin-navigation/customers/customers.component';
+import { OrdersComponent } from './admin-navigation/orders/orders.component';
+import { ProductLocalService } from './../services/product-local.service';
+import { FeaturedProductComponent } from '../core/home/featured-product/featured-product.component';
+import { TopProductComponent } from '../core/home/top-product/top-product.component';
+import { LatestProductComponent } from '../core/home/latest-product/latest-product.component';
 
-@NgModule({
+  @NgModule({
   declarations: [
     AdminComponent,
     AddOrEditCategoryComponent,
@@ -45,7 +54,15 @@ import { MatSortModule } from '@angular/material/sort';
     SalesTrafficChartComponent,
     AnnualSalesChartComponent,
     StoreSessionsChartComponent,
-    OrdersTableComponent
+    AdminTableComponent,
+    MiniCardComponent,
+    SalesComponent,
+    ProductsComponent,
+    CustomersComponent,
+    OrdersComponent,
+    FeaturedProductComponent,
+	  TopProductComponent,
+	  LatestProductComponent
   ],
   imports: [
     CommonModule,
@@ -60,9 +77,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatCardModule,
     MatMenuModule,
     MatGridListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    NgbModule,
+    FormsModule
   ],
   exports: [
     AdminComponent,
@@ -75,8 +91,13 @@ import { MatSortModule } from '@angular/material/sort';
     AnnualSalesChartComponent,
     ProductSalesChartComponent,
     SalesTrafficChartComponent,
-    StoreSessionsChartComponent
+    StoreSessionsChartComponent,
+    AdminTableComponent,
+    FeaturedProductComponent,
+	  TopProductComponent,
+	  LatestProductComponent
   ],
-  providers: [SalesService,OnlineOrderService,OrderService]
+  providers: [ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
+
 })
 export class AdminModule { }

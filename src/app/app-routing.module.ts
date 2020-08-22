@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'supermarket',component:SupermarketComponent },
   { path: 'restaurant',component: RestaurantComponent},
   { path: 'cart', component: ShoppingCartComponent },
-  { path: 'dashboard', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 	{ path: '**', redirectTo: '/' }
 	];
 

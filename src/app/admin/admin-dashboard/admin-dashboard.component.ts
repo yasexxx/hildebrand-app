@@ -1,13 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { StoreSummaryService } from '../../services/store-summary.service';
+
+
+
+export interface StoreSummary {
+  title: string;
+  value: string;
+  isIncrease: boolean;
+  color: string;
+  percentValue: string;
+  icon: string;
+  isCurrency: boolean;
+}
+
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss']
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit{
   /** Based on the screen size, switch from standard to one column per row */
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -29,5 +43,20 @@ export class AdminDashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  miniCardData: StoreSummary[];
+
+
+  constructor(private breakpointObserver: BreakpointObserver,
+    private summaryService: StoreSummaryService) {}
+  
+  ngOnInit(){
+    this.summaryService.getStoreSummary().subscribe({
+      next: summaryData => {
+        this.miniCardData = summaryData;
+      }
+    });
+  }
+
 }
+
+

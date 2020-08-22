@@ -20,7 +20,7 @@ export class ProductSalesChartComponent implements OnInit {
   ];
   public radarChartType: ChartType = 'radar';
 
-  public radarColor : Color[] = [
+ public radarColor : Color[] = [
     {
       backgroundColor: '#002447',
       borderColor: 'rgba(148,159,177,1)',
@@ -29,11 +29,9 @@ export class ProductSalesChartComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
-  ]
-
+  ]  
   constructor() { }
 
   ngOnInit() {
   }
-
 }

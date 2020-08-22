@@ -60,7 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
 	SearchBarComponent,
 	LogoComponent,
 	SupermarketComponent,
-	RestaurantComponent
+	RestaurantComponent,
+	
   ],
   imports: [
     BrowserModule,

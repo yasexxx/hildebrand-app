@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Order } from './order';
+import { MonthlySales } from './monthly-sales'
 
 @Injectable({
   providedIn: 'any'

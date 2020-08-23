@@ -27,3 +27,28 @@
 }
 
 
+@media (max-width:575px){
+
+  .container-img {
+    display: block;
+    padding: 0 0;
+  }
+
+  .img-adjust {
+    margin: 20px auto;
+    width: 80%;
+  }
+
+
+}
+
+@media (max-width: 992px) and (min-width:576px){
+  .container-img {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding: 0 3rem;
+  }
+
+}
+

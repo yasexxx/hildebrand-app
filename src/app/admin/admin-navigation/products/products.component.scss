@@ -12,3 +12,33 @@
     margin: 1rem;
 }
 
+
+.btn-1 {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 0.5fr);
+    grid-auto-rows: 40px;
+    gap: 1.5rem;
+    margin: 2rem 5rem;
+}
+
+.opt-text {
+    padding: .2rem 0 0 14vw;
+}
+
+@media (max-width:705px){
+    .btn-1 {
+        margin: 0rem 1rem;
+    }
+    
+    .opt-text{
+        padding-left: 0vw;
+    }
+
+}
+
+@media (max-width:475px){
+    .btn-1 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap:.3rem;
+}}

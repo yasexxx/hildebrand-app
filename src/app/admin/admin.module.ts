@@ -40,6 +40,7 @@ import { ProductLocalService } from './../services/product-local.service';
 import { FeaturedProductComponent } from '../core/home/featured-product/featured-product.component';
 import { TopProductComponent } from '../core/home/top-product/top-product.component';
 import { LatestProductComponent } from '../core/home/latest-product/latest-product.component';
+import { RestaurantProductsComponent } from './../navigation/restaurant/restaurant-products/restaurant-products.component';
 
   @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LatestProductComponent } from '../core/home/latest-product/latest-produ
     OrdersComponent,
     FeaturedProductComponent,
 	  TopProductComponent,
-	  LatestProductComponent
+    LatestProductComponent,
+    RestaurantProductsComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +97,8 @@ import { LatestProductComponent } from '../core/home/latest-product/latest-produ
     AdminTableComponent,
     FeaturedProductComponent,
 	  TopProductComponent,
-	  LatestProductComponent
+    LatestProductComponent,
+    RestaurantProductsComponent
   ],
   providers: [ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
 

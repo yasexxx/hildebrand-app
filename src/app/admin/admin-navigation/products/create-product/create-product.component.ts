@@ -8,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateProductComponent implements OnInit {
 
-  constructor(private productsService: ProductLocalService) {
+  dummyPickFeature:any;
 
-    const
+  isCreate:boolean;
+
+  constructor(private productsService: ProductLocalService) {
   }
 
   ngOnInit(): void {
+  this.isCreate = true;
   }
+
+
 
 }

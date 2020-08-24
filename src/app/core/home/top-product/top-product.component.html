@@ -1,7 +1,7 @@
 <div *ngIf="top_product" class="container-img">
     <div *ngFor="let image of top_product" class="img-adjust card">
             <a [href]="image.id">
-              <img class="img-a-display" [src]="image.src" alt="image-1">
+              <img class="img-a-display" [src]="image.url" alt="image-1">
               </a>
           <br><p>{{image.name}}</p>
           <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther">${{image.price.old}}</p>

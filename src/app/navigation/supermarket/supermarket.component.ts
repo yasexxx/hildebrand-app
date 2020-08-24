@@ -20,11 +20,9 @@ export class SupermarketComponent implements OnInit {
 
   ngOnInit(): void {
 
-  const superMarketProd = this.productService.superMarketDisplay();
-  this.productSupermarket1 = this.productService.pSupermarket1;
-  this.productSupermarket2 = this.productService.pSupermarket2;
-  this.productSupermarket3 = this.productService.pSupermarket3;
-
+  this.productSupermarket1 = this.productService.getMarketAllProducts();
+  this.productSupermarket2 = this.productService.getMarketVegetables();
+  this.productSupermarket3 = this.productService.getMarketFruits();
   }
 
 

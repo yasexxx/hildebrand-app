@@ -1,33 +1,30 @@
 
-export interface ProductLocalHome {
+export interface ProductHome {
   id:number;
   name: string;
+  insert: string;
   type: string;
   price: {
     new:number;
     old: number | boolean;
   },
-  src:string;
-}
-
-export interface ProductLocalNewHome {
-  id?:number;
-  name?: string;
-  url?: string;
+  url:string;
 }
 
 export interface ProductDetail {
-  id?: number;
-  price?: number;
-  name?: string;
-  url?: string;
+  id: number;
+  price: number;
+  name: string;
+  insert: string;
+  type: string;
+  url: string;
 }
 
 
 export interface ProductContents {
-  id?:number;
-  title?:string;
-  content?:{}[];
+  id:number;
+  title:string;
+  content:{}[];
 }
 
 

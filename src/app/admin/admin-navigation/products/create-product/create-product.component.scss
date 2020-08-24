@@ -3,5 +3,18 @@
 .container-a-create {
   display: grid;
   grid-template-columns:  1fr;
+  max-width: 60%;
 
+}
+
+.upload-images {
+  display: grid;
+  grid-template-columns: .3fr 1fr;
+  margin: 1rem;
+}
+
+.form-formation {
+  display: grid;
+  grid-template-columns: .3fr 1fr;
+  margin: 1rem;
 }

@@ -26,10 +26,9 @@ export class RestaurantComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const initProductRestaurant = this.productService.restaurantDisplay();
-    this.productRestaurant1 = this.productService.pRestaurant1;
-    this.productRestaurant2 = this.productService.pRestaurant2;
-    this.productRestaurant3 = this.productService.pRestaurant3;
+    this.productRestaurant1 = this.productService.getRestaurantAll();
+    this.productRestaurant2 = this.productService.getRestaurantFoods();
+    this.productRestaurant3 = this.productService.getRestaurantDesserts();
   }
 
 

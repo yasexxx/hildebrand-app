@@ -1,8 +1,20 @@
-<div [ngClass]="{'container-a-create': true}">
-  <div>
-    Hello
-  </div>
-  <div>
-    Hi
-  </div>
+<div [class]="{'container-a-create': isCreate}">
+
+    <h2>Create Product:</h2>
+    <div class="upload-images">
+      <h3>Upload image:</h3>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    </div>
+
+      <form>
+        <div *ngFor="let i of [1,2,3,4,5]" [class]="{'form-formation': isCreate}">
+          <label [class.my-auto]="isCreate" for="inputEmail4">Name:</label>
+        <input type="email" class="form-control" id="inputEmail4">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+    
 </div>

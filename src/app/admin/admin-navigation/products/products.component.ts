@@ -1,20 +1,7 @@
-import { ProductContents, ProductLocalHome, ProductLocalNewHome, ProductDetail  } from './../../../services/product-local';
 import { Component, OnInit } from '@angular/core';
 import { ProductLocalService  } from '../../../services/product-local.service';
 
 
-
-interface ProductsHomeBundle {
-  productsFeatured:ProductLocalHome[];
-  productsLatest:ProductLocalHome[];
-  productsTop:ProductLocalHome[];
-}
-
-interface ProductsBundle {
-  products1:ProductDetail[];
-  products2:ProductDetail[];
-  products3:ProductDetail[];
-}
 
 @Component({
   selector: 'app-products',
@@ -23,26 +10,22 @@ interface ProductsBundle {
 })
 export class ProductsComponent implements OnInit {
 
-  productContents:ProductContents[];
+  productContents:{}[];
 
-  HomePageBundle:ProductsHomeBundle[];
-  SupermarketBundle:ProductsBundle[];
-  RestaurantBundle:ProductsBundle[];
+  HomePageBundle:{}[];
+  SupermarketBundle:{}[];
+  RestaurantBundle:{}[];
 
-  constructor(private localProductService: ProductLocalService) {
-    const initService = this.localProductService;
-    let initProductService = initService.homeProductDisplay();
-    const productFeatured = initService.pHome1;
-    const productLatest = initService.pHome2;
-    const topProduct = initService.pHome3;
-    initProductService = initService.restaurantDisplay();
-    const productRestaurant1 = initService.pRestaurant1;
-    const productRestaurant2 = initService.pRestaurant2;
-    const productRestaurant3 = initService.pRestaurant3;
-    initProductService = initService.superMarketDisplay();
-    const productSupermarket1 = initService.pSupermarket1;
-    const productSupermarket2 = initService.pSupermarket2;
-    const productSupermarket3 = initService.pSupermarket3;
+  constructor(private productService: ProductLocalService) {
+    const productFeatured = productService.getHomeFeature();
+    const productLatest = productService.getHomeLatest();
+    const topProduct = productService.getTopProducts();
+    const productRestaurant1 = productService.getRestaurantAll()
+    const productRestaurant2 = productService.getRestaurantFoods();
+    const productRestaurant3 = productService.getRestaurantDesserts();
+    const productSupermarket1 = productService.getMarketAllProducts();
+    const productSupermarket2 = productService.getMarketVegetables();
+    const productSupermarket3 = productService.getMarketFruits();
 
     this.HomePageBundle =[
       { productsFeatured: productFeatured,

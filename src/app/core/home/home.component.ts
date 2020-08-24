@@ -9,10 +9,10 @@ import { faMoneyBill, faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-ico
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  product_data:any = [];
-  product_latest:any = [];
-  top_product:any = [];
-  slide_images:any = [];
+  product_data:{}[] = [];
+  product_latest:{}[] = [];
+  top_product:{}[] = [];
+  slide_images: string[] = [];
   paused = false;
   unpauseOnArrow = false;
   pauseOnHover = true;
@@ -32,11 +32,10 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-      const initHomeProduct = this.homeProductService.homeProductDisplay();
-      this.product_data = this.homeProductService.pHome1;
-      this.product_latest = this.homeProductService.pHome2;
-      this.top_product = this.homeProductService.pHome3;
-      this.slide_images = this.homeProductService.bg_images;
+      this.product_data = this.homeProductService.getHomeFeature();
+      this.product_latest = this.homeProductService.getHomeLatest();
+      this.top_product = this.homeProductService.getTopProducts();
+      this.slide_images = this.homeProductService.getDisplayCarousel();
   }
 
 }

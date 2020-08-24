@@ -8,35 +8,31 @@
                 <div *ngIf="disp.title==='Homepage Product'">
                   <div *ngFor="let content of disp.content">
                     <h1>Featured Products</h1>
-                    <app-featured-product [product_data]="content.products1"></app-featured-product>
+                    <app-featured-product [product_data]="content.productsFeatured"></app-featured-product>
                     <br/>
                   <h1>Latest Products</h1>
-                  <app-latest-product [product_latest]="content.products2"></app-latest-product>
+                  <app-latest-product [product_latest]="content.productsLatest"></app-latest-product>
                   <br/>
                   <h1>Top Products</h1>
-                  <app-top-product [top_product]="content.products3"></app-top-product>
+                  <app-top-product [top_product]="content.productsTop"></app-top-product>
                   </div>
                 </div>
                 <!--Featured Product-->
                 <div *ngIf="disp.title==='Restaurant Product'">
                   <div *ngFor="let content of disp.content">
                    <app-restaurant-products [productRestaurant1]="content.products1"
-                   [productRestaurant2]="content.products2" 
+                   [productRestaurant2]="content.products2"
                    [productRestaurant3]="content.products3"
                    [page]="1" [active]="1"></app-restaurant-products>
                   </div>
                 </div>
                 <!--Featured Product-->
-                <div *ngIf="disp.title==='Supermarket Product'">
+                <div *ngIf="disp?.title==='Supermarket Product'">
                   <div *ngFor="let content of disp.content">
-                    <h1>Featured Products</h1>
-                    <app-featured-product [product_data]="content.products1"></app-featured-product>
-                    <br/>
-                  <h1>Latest Products</h1>
-                  <app-latest-product [product_latest]="content.products2"></app-latest-product>
-                  <br/>
-                  <h1>Top Products</h1>
-                  <app-top-product [top_product]="content.products3"></app-top-product>
+                    <app-supermarket-products [page]="1" [active]="1"
+                    [productSupermarket1]="content.products1"
+                    [productSupermarket2]="content.products2"
+                    [productSupermarket3]="content.products3"></app-supermarket-products>
                   </div>
                 </div>
               </div>
@@ -44,14 +40,16 @@
         </ngb-tab>
       </ngb-tabset>
 
-     
+
       <div [class.btn-1]="productContents">
         <h2 class="opt-text">Options:</h2>
-        <button class="btn btn-outline-success">Create</button>
-          <button class="btn btn-outline-primary">Edit</button>
-          <button class="btn btn-outline-warning">Delete</button>
-          <button class="btn btn-outline-dark">View</button>
-      </div>    
+        <a routerLink="../create">
+          <button class="btn btn-outline-success">Create Products</button>
+        </a>
+        <a routerLink="../edit">
+          <button class="btn btn-outline-primary">Edit Products</button>
+        </a>
+      </div>
 </div>
 
 

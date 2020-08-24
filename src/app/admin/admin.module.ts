@@ -7,9 +7,6 @@ import { ChartsModule } from 'ng2-charts';
 import { AdminRoutingModule } from './admin-routing.module';
 
 import { AdminComponent } from './../admin/admin.component';
-import { AddOrEditCategoryComponent } from './../admin/add-or-edit-category/add-or-edit-category.component';
-import { AddOrEditProductComponent } from './../admin/add-or-edit-product/add-or-edit-product.component';
-import { ListingCategoriesComponent } from './../admin/listing-categories/listing-categories.component';
 import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -41,13 +38,14 @@ import { FeaturedProductComponent } from '../core/home/featured-product/featured
 import { TopProductComponent } from '../core/home/top-product/top-product.component';
 import { LatestProductComponent } from '../core/home/latest-product/latest-product.component';
 import { RestaurantProductsComponent } from './../navigation/restaurant/restaurant-products/restaurant-products.component';
+import { SupermarketProductsComponent } from './../navigation/supermarket/supermarket-products/supermarket-products.component';
+import { CreateProductComponent } from './admin-navigation/products/create-product/create-product.component';
+import { UpdateProductComponent } from './admin-navigation/products/update-product/update-product.component';
+
 
   @NgModule({
   declarations: [
     AdminComponent,
-    AddOrEditCategoryComponent,
-    AddOrEditProductComponent,
-    ListingCategoriesComponent,
     AdminNavigationComponent,
     AdminDashboardComponent,
     CardComponent,
@@ -64,7 +62,10 @@ import { RestaurantProductsComponent } from './../navigation/restaurant/restaura
     FeaturedProductComponent,
 	  TopProductComponent,
     LatestProductComponent,
-    RestaurantProductsComponent
+    RestaurantProductsComponent,
+    SupermarketProductsComponent,
+    CreateProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,
@@ -84,9 +85,6 @@ import { RestaurantProductsComponent } from './../navigation/restaurant/restaura
   ],
   exports: [
     AdminComponent,
-    AddOrEditCategoryComponent,
-    AddOrEditProductComponent,
-    ListingCategoriesComponent,
     AdminNavigationComponent,
     AdminDashboardComponent,
     CardComponent,
@@ -98,7 +96,10 @@ import { RestaurantProductsComponent } from './../navigation/restaurant/restaura
     FeaturedProductComponent,
 	  TopProductComponent,
     LatestProductComponent,
-    RestaurantProductsComponent
+    RestaurantProductsComponent,
+    SupermarketProductsComponent,
+    CreateProductComponent,
+    UpdateProductComponent
   ],
   providers: [ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
 

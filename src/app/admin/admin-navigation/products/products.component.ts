@@ -1,17 +1,19 @@
+import { ProductContents, ProductLocalHome, ProductLocalNewHome, ProductDetail  } from './../../../services/product-local';
 import { Component, OnInit } from '@angular/core';
-import { ProductLocalService } from '../../../services/product-local.service';
+import { ProductLocalService  } from '../../../services/product-local.service';
 
 
-interface ProductContents {
-  id:number;
-  title:string;
-  content:{}[];
+
+interface ProductsHomeBundle {
+  productsFeatured:ProductLocalHome[];
+  productsLatest:ProductLocalHome[];
+  productsTop:ProductLocalHome[];
 }
 
 interface ProductsBundle {
-  products1:{}[]; 
-  products2:{}[];
-  products3:{}[];
+  products1:ProductDetail[];
+  products2:ProductDetail[];
+  products3:ProductDetail[];
 }
 
 @Component({
@@ -23,10 +25,10 @@ export class ProductsComponent implements OnInit {
 
   productContents:ProductContents[];
 
-  HomePageBundle:ProductsBundle[];
+  HomePageBundle:ProductsHomeBundle[];
   SupermarketBundle:ProductsBundle[];
   RestaurantBundle:ProductsBundle[];
-  
+
   constructor(private localProductService: ProductLocalService) {
     const initService = this.localProductService;
     let initProductService = initService.homeProductDisplay();
@@ -42,14 +44,14 @@ export class ProductsComponent implements OnInit {
     const productSupermarket2 = initService.pSupermarket2;
     const productSupermarket3 = initService.pSupermarket3;
 
-    this.HomePageBundle =[ 
-      { products1: productFeatured,
-        products2: productLatest,
-        products3:topProduct} 
+    this.HomePageBundle =[
+      { productsFeatured: productFeatured,
+        productsLatest: productLatest,
+        productsTop:topProduct}
     ]
 
     this.SupermarketBundle = [
-      { products1:productSupermarket1, 
+      { products1:productSupermarket1,
         products2:productSupermarket2,
         products3:productSupermarket3
       }
@@ -63,11 +65,11 @@ export class ProductsComponent implements OnInit {
     ]
 
     this.productContents = [
-      {id:1 , title:"Homepage Product", 
+      {id:1 , title:"Homepage Product",
       content:this.HomePageBundle},
-      {id:2 , title:"Restaurant Product", 
+      {id:2 , title:"Restaurant Product",
       content:this.RestaurantBundle},
-      {id:3 , title:"Supermarket Product", 
+      {id:3 , title:"Supermarket Product",
       content:this.SupermarketBundle}
     ];
    }

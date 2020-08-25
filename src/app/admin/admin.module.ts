@@ -1,7 +1,7 @@
 import { OrderService } from './../services/order.service';
 import { OnlineOrderService } from './../services/online-order.service';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 
 import { AdminRoutingModule } from './admin-routing.module';
@@ -26,7 +26,7 @@ import { StoreSessionsChartComponent } from './admin-dashboard/charts/store-sess
 import { SalesService } from '../services/sales.service';
 import { AdminTableComponent } from './admin-dashboard/admin-table/admin-table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MiniCardComponent } from './admin-dashboard/mini-card/mini-card.component';
 import { StoreSummaryService } from '../services/store-summary.service';
 import { SalesComponent } from './admin-navigation/sales/sales.component';
@@ -41,6 +41,8 @@ import { RestaurantProductsComponent } from './../navigation/restaurant/restaura
 import { SupermarketProductsComponent } from './../navigation/supermarket/supermarket-products/supermarket-products.component';
 import { CreateProductComponent } from './admin-navigation/products/create-product/create-product.component';
 import { UpdateProductComponent } from './admin-navigation/products/update-product/update-product.component';
+import { ProductService } from '../services/product.service';
+import { NgbdSortableHeader } from '../directives/sortable.directives';
 
 
   @NgModule({
@@ -65,7 +67,8 @@ import { UpdateProductComponent } from './admin-navigation/products/update-produ
     RestaurantProductsComponent,
     SupermarketProductsComponent,
     CreateProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    NgbdSortableHeader,
   ],
   imports: [
     CommonModule,
@@ -81,7 +84,8 @@ import { UpdateProductComponent } from './admin-navigation/products/update-produ
     MatMenuModule,
     MatGridListModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AdminComponent,
@@ -99,9 +103,10 @@ import { UpdateProductComponent } from './admin-navigation/products/update-produ
     RestaurantProductsComponent,
     SupermarketProductsComponent,
     CreateProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    NgbdSortableHeader
   ],
-  providers: [ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
+  providers: [ DecimalPipe ,ProductService ,ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
 
 })
 export class AdminModule { }

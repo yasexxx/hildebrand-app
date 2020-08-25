@@ -1,8 +1,9 @@
-import { map, catchError } from 'rxjs/operators';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Observable, from } from 'rxjs';
+import { ProductDetail } from './../../../../services/product-local';
+import { NgbdSortableHeader, SortEvent } from '../../../../directives/sortable.directives';
+import { ProductService } from '../../../../services/product.service';
 
-import { Component, OnInit } from '@angular/core';
-import { ajax } from 'rxjs/ajax';
-import { of, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-update-product',
@@ -11,29 +12,31 @@ import { of, pipe } from 'rxjs';
 })
 export class UpdateProductComponent implements OnInit {
 
-  num = [1,2,3];
-  hello:any[];
-  constructor() { }
+  products$ : Observable<ProductDetail[]>;
+  total$ : Observable<number>;
 
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+
+  constructor(public service: ProductService) {
+    this.products$ = service.products$;
+    this.total$ = service.total$;
+   }
+
+   onSort({column, direction}: SortEvent) {
+     //resetting other headers
+     this.headers.forEach( header => {
+       if(header.sortable ! == column) {
+         header.direction = '';
+       }
+     });
+     this.service.sortColumn = column;
+     this.service.sortDirection = direction;
+   }
+
+   
   ngOnInit(): void {
   }
 
-  example() {
-    const obs$ = ajax.getJSON(`https://api.github.com/users?per_page=5`).pipe(
-  map(userResponse => console.log(userResponse)),
-  catchError(error => {
-    console.log('error: ', error);
-    return of(error);
-  })
-);
-  return obs$;
-  }
-
-  getHttp(name){
-    name.subscribe(
-      x => console.log(x)
-    )
-  }
 
 
 }

@@ -1,0 +1,22 @@
+
+.container-a-update {
+    display: grid;
+    margin: 1rem;
+}
+
+
+th[sortable] {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.btn-action {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.btn-action > button {
+    width: 90px;
+}

@@ -1,176 +1,262 @@
 import { Component, OnInit } from '@angular/core';
 
 
-interface Country {
+interface UserOrders {
   id?: number;
-  name: string;
-  flag: string;
-  area: number;
-  population: number;
+  user: string;
+  product: string;
+  price: number;
+  quantity: number;
+  paymentOption: string;
+  totalAmount: number;
+  date: string;
 }
 
-const COUNTRIES: Country[] = [
+const ORDERS: UserOrders[] = [
   {
-    name: 'Russia',
-    flag: 'f/f3/Flag_of_Russia.svg',
-    area: 17075200,
-    population: 146989754
+    user: 'Michael',
+    product: 'Orange',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'France',
-    flag: 'c/c3/Flag_of_France.svg',
-    area: 640679,
-    population: 64979548
+    user: 'John',
+    product: 'Meat',
+    quantity: 1,
+    price: 1234,
+    paymentOption: 'paypal',
+    totalAmount: 900,
+    date: '09/20/22'
   },
   {
-    name: 'Germany',
-    flag: 'b/ba/Flag_of_Germany.svg',
-    area: 357114,
-    population: 82114224
+    user: 'Lina',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 3000,
+    date: '09/20/21'
   },
   {
-    name: 'Portugal',
-    flag: '5/5c/Flag_of_Portugal.svg',
-    area: 92090,
-    population: 10329506
+    user: 'Miael',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Canada',
-    flag: 'c/cf/Flag_of_Canada.svg',
-    area: 9976140,
-    population: 36624199
+    user: 'Achael',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Vietnam',
-    flag: '2/21/Flag_of_Vietnam.svg',
-    area: 331212,
-    population: 95540800
+    user: 'Haele',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Brazil',
-    flag: '0/05/Flag_of_Brazil.svg',
-    area: 8515767,
-    population: 209288278
+    user: 'Micel',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Mexico',
-    flag: 'f/fc/Flag_of_Mexico.svg',
-    area: 1964375,
-    population: 129163276
+    user: 'Mihael',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'United States',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-    area: 9629091,
-    population: 324459463
+    user: 'Kochael',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'India',
-    flag: '4/41/Flag_of_India.svg',
-    area: 3287263,
-    population: 1324171354
+    user: 'Rochael',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Indonesia',
-    flag: '9/9f/Flag_of_Indonesia.svg',
-    area: 1910931,
-    population: 263991379
+    user: 'Micsel',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Tuvalu',
-    flag: '3/38/Flag_of_Tuvalu.svg',
-    area: 26,
-    population: 11097
+    user: 'Misael',
+    product: 'Banana',
+    price: 234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Mikhael',
+    product: 'Banana',
+    price: 324,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'Philippines',
-    flag: 'thumb/9/99/Flag_of_the_Philippines.svg/800px-Flag_of_the_Philippines.svg.png',
-    area: 9596960,
-    population: 1409517397
+    user: 'Rehael',
+    product: 'Banana',
+    price: 124,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Mashael',
+    product: 'Banana',
+    price: 415,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Marshall',
+    product: 'Banana',
+    price: 144,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
-  }, 
-  {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Mdopwl',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Asdichael',
+    product: 'Banana',
+    price: 1234,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Lopahael',
+    product: 'Banana',
+    price: 104,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 5000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Minasichael',
+    product: 'Banana',
+    price: 501,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 700,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Horal',
+    product: 'Banana',
+    price: 405,
+    quantity: 1,
+    paymentOption: 'cod',
+    totalAmount: 20,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Mendael',
+    product: 'Banana',
+    price: 410,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 5000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Michael',
+    product: 'Banana',
+    price: 402,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 400,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Michael',
+    product: 'Banana',
+    price: 502,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   },
   {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
-  }, {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
+    user: 'Michael',
+    product: 'Banana',
+    price: 401,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
+  },
+  {
+    user: 'Michael',
+    product: 'Banana',
+    price: 902,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
+  },
+  {
+    user: 'Michael',
+    product: 'Banana',
+    price: 402,
+    quantity: 2,
+    paymentOption: 'cod',
+    totalAmount: 1000,
+    date: '09/20/24'
   }
+  
 ];
 
 
@@ -183,15 +269,15 @@ export class AdminTableComponent implements OnInit {
 
   page = 1;
   pageSize = 13;
-  collectionSize = COUNTRIES.length;
-  countries: Country[];
+  collectionSize = ORDERS.length;
+  countries: UserOrders[];
 
   constructor() {
     this.refreshCountries();
   }
 
   refreshCountries() {
-    this.countries = COUNTRIES
+    this.countries = ORDERS
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }

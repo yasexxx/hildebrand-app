@@ -1,12 +1,129 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Order } from './order';
+import { Injectable, PipeTransform } from '@angular/core';
+import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
+import { Order, ListOfOrders } from './order';
+import { SortDirection, SortColumnForOrder } from '../directives/sortable.directives';
+import { DecimalPipe } from '@angular/common';
+import { tap, debounceTime, switchMap, delay } from 'rxjs/operators';
+import { OrdersDetails } from './orders-details';
+
+
+
+interface SearchOrderResult {
+  orders: ListOfOrders[];
+  total:number;
+
+}
+
+interface State {
+  page:number;
+  pageSize: number;
+  searchTerm: string;
+  sortColumn: SortColumnForOrder;
+  sortDirection: SortDirection;
+}
+
+const compare = ( v1: string | number, v2: string| number) => (
+    v1 < v2 ? -1 : v1 > v2 ? 1: 0 )
+
+
+function sort(orders: ListOfOrders[], column:SortColumnForOrder, direction: string ) {
+  if (direction ==='' || column === '') {
+    return orders;
+  } else {
+    return [...orders].sort((a,b) => {
+      const res = compare(a[column], b[column]);
+      return direction === 'asc' ? res : -res;
+    });
+  }
+
+}
+
+function matches (order: ListOfOrders, term: string, pipe: PipeTransform){
+  return order.userName.toLowerCase().includes(term.toLowerCase())
+  || pipe.transform(order.fullName).includes(term)
+  || pipe.transform(order.totalOrder).includes(term)
+  || pipe.transform(order.location).includes(term)
+  || pipe.transform(order.productOrder).includes(term);
+}
 
 @Injectable({
   providedIn: 'any'
 })
 
 export class OrderService {
+
+  private _loading$ = new BehaviorSubject<boolean>(true);
+  private _search$ = new Subject<void>();
+  private _orders$ = new BehaviorSubject<ListOfOrders[]>([]);
+  private _total$ = new BehaviorSubject<number>(0);
+
+  private _state : State = {
+    page: 1,
+    pageSize: 10,
+    searchTerm: '',
+    sortColumn: '',
+    sortDirection: ''
+  };
+
+  constructor(private pipe: DecimalPipe) {
+    this._search$.pipe(
+      tap(()=> this._loading$.next(true)),
+      debounceTime(200),
+      switchMap(()=> this._search()),
+      delay(200),
+      tap(()=> this._loading$.next(false)))
+      .subscribe( result => {
+          this._orders$.next(result.orders);
+          this._total$.next(result.total);
+      } );
+  this._search$.next();
+  }
+
+  get orders$() {return this._orders$.asObservable();}
+
+    get total$() { return this._total$.asObservable();}
+
+    get loading$() { return this._loading$.asObservable();}
+
+    get page() {return this._state.page; }
+
+    get pageSize() { return this._state.pageSize; }
+
+    get searchTerm() { 
+        return this._state.searchTerm; }
+
+    set page(page: number) { this._set({page});}
+
+    set pageSize(pageSize: number) { this._set({pageSize});}
+
+    set searchTerm(searchTerm: string) { this._set({searchTerm});}
+
+    set sortColumn(sortColumn: SortColumnForOrder) {this._set({sortColumn});}
+
+    set sortDirection(sortDirection: SortDirection) { this._set({sortDirection});}
+
+    private _set(patch: Partial<State>) {
+        Object.assign(this._state, patch);
+        this._search$.next();
+    }
+
+    private _search(): Observable<SearchOrderResult> {
+        const { sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
+
+        let orders= sort(OrdersDetails, sortColumn, sortDirection);
+
+        orders = orders.filter( product => matches(product, searchTerm, this.pipe));
+        const total = orders.length;
+
+        //paginate
+        orders = orders.slice((page-1)*pageSize, (page - 1)* pageSize+pageSize);
+        return of({orders, total});
+    }
+
+
+
+
+
 
   getOrder(): Observable<Order[]> {
     return of([
@@ -31,9 +148,6 @@ export class OrderService {
       {"id": 984,"date": "2020-06-19","name": "Paula Patel","status": "shipped","orderTotal": 892,"paymentMode": "cash"},
       {"id": 284,"date": "2020-06-20","name": "Carla Sanchex","status": "pending","orderTotal": 382,"paymentMode": "card"}
   ]);
-  }
-
-  constructor() {
   }
 }
 

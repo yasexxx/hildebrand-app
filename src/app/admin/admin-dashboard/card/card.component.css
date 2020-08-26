@@ -25,7 +25,4 @@
    align-items: stretch;
 }
 
-mat-card {
-   display: flex;
-   flex-direction: column;
-}
+   

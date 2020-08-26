@@ -35,7 +35,7 @@
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols"
       [rowspan]="( cardLayout | async )?.chart.rows">
       <app-card title="Sales by Traffic Source">
-        <app-sales-traffic-chart></app-sales-traffic-chart>
+        <app-sales-traffic-chart class="chart-adjust"></app-sales-traffic-chart>
       </app-card>
     </mat-grid-tile>
 
@@ -43,7 +43,7 @@
     <!--Table-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" [rowspan]="( cardLayout | async )?.table.rows">
       <app-card title="Latest Orders">
-        <app-admin-table class="tb-content"></app-admin-table>
+        <app-admin-table class="table-responsive table-modify"></app-admin-table>
       </app-card>
    </mat-grid-tile>
   </mat-grid-list>

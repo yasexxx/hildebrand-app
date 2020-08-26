@@ -17,11 +17,11 @@
             
           </tr>
           </thead>
-          <tbody>
+          <tbody class="table-body-1">
           <tr *ngFor="let product of products$ | async">
             <th scope="row">{{ product.id }}</th>
             <td>
-              <img [src]="product.url"  class="mr-2" style="width: 100px">
+              <img [src]="product.url"  class="mr-2 img-table">
             </td>
             <td><ngb-highlight class="my-auto" [result]="product.name" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight class="my-auto" [result]="product.price | number" [term]="service.searchTerm"></ngb-highlight></td>
@@ -37,13 +37,13 @@
           </tbody>
         </table>
       
-        <div class="d-flex justify-content-between p-2">
+        <div class="page-nation">
           <ngb-pagination
           [collectionSize]="(total$ | async)!" [(page)]="service.page"
           [pageSize]="service.pageSize">
           </ngb-pagination>
       
-          <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+          <select class="custom-select" name="pageSize" [(ngModel)]="service.pageSize">
             <option [ngValue]="5">5 items per page</option>
             <option [ngValue]="10">10 items per page</option>
             <option [ngValue]="15">15 items per page</option>
@@ -53,4 +53,9 @@
         </div>
       
       </form>
+
+      <div class="btn-save">
+        <button class="btn btn-outline-success">Save</button>
+        <button class="btn btn-outline-dark">Cancel</button>
+      </div>
 </div>

@@ -1,0 +1,37 @@
+import { ListOfOrders } from "./order";
+
+
+export const OrdersDetails: ListOfOrders[] = [
+    { id:1, userName: 'nafel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:2, userName: 'anfel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:3, userName: 'anael', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:4, userName: 'aafel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogsdfaod', status:'pending', action:'active'},
+    { id:5, userName: 'ansadfael', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sosfagod', status:'pending', action:'active'},
+    { id:6, userName: 'anaasdffel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sofgod', status:'pending', action:'active'},
+    { id:7, userName: 'anasadffel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sodgod', status:'pending', action:'active'},
+    { id:8, userName: 'anasdfafel', fullName: 'Ghdfost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogsod', status:'pending', action:'active'},
+    { id:9, userName: 'anaafdafel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:10, userName: 'adsfanafel', fullName: 'Gsdfhost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:11, userName: 'anafafel', fullName: 'Ghsdfost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:12, userName: 'anafel', fullName: 'Ghoafst reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:13, userName: 'anaaffel', fullName: 'Gasdfhost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:14, userName: 'anafsafel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:15, userName: 'anafdsfel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'},
+    { id:16, userName: 'anafsdfel', fullName: 'Ghost reider', productOrder: 'banana,soap,ampalaya', 
+    totalOrder: 3 , location:'Sogod', status:'pending', action:'active'}
+]

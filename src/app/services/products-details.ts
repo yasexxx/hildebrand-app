@@ -18,7 +18,7 @@ export const NewProductsDetails: ProductHome[] = [
 
 
 export const ProductsDetails: ProductDetail[] = [
-      {id: 1, price:40, name: 'Pepper' ,insert:"supermarket",type:"all", url: 'assets/images/featured/feature-1.jpg'},
+      {id: 1, price:40, name: 'Yase' ,insert:"supermarket",type:"all", url: 'assets/images/featured/feature-1.jpg'},
 			{id: 2, price:40,name: 'Strawberry' , insert:"supermarket",type:"all",url: 'assets/images/featured/feature-2.jpg'},
 			{id: 3, price:60,name: 'Chili' ,insert:"supermarket",type:"all", url: 'assets/images/featured/feature-3.jpg'},
 			{id: 4, price:70,name: 'Cabbage' ,insert:"supermarket",type:"all", url: 'assets/images/featured/feature-4.jpg'},

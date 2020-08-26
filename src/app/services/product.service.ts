@@ -25,7 +25,7 @@ interface State {
 const compare = ( v1: string |number, v2: string | number) => (
     v1 < v2 ? -1 : v1 > v2 ? 1 : 0 )
 
-function sort(products: ProductDetail[], column: SortColumn, direction: string){
+export function sort(products: ProductDetail[], column: SortColumn, direction: string){
     if (direction === '' || column === '') {
         return products;
     } else {

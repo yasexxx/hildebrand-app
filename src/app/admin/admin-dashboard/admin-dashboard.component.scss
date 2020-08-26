@@ -16,10 +16,15 @@
   right: 10px;
 }
 
-.dashboard-card-content {
-  text-align: center;
-}
-
 .tb-content {
   margin: -70rem 0;
+}
+
+@media (max-width:780px) {
+  .table-modify {
+      max-height: 44rem;
+
+  }
+
+  
 }

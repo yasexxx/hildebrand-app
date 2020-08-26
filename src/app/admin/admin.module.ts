@@ -42,7 +42,7 @@ import { SupermarketProductsComponent } from './../navigation/supermarket/superm
 import { CreateProductComponent } from './admin-navigation/products/create-product/create-product.component';
 import { UpdateProductComponent } from './admin-navigation/products/update-product/update-product.component';
 import { ProductService } from '../services/product.service';
-import { NgbdSortableHeader } from '../directives/sortable.directives';
+import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.directives';
 
 
   @NgModule({
@@ -69,6 +69,7 @@ import { NgbdSortableHeader } from '../directives/sortable.directives';
     CreateProductComponent,
     UpdateProductComponent,
     NgbdSortableHeader,
+    NgbdSortableHeader2
   ],
   imports: [
     CommonModule,
@@ -104,7 +105,8 @@ import { NgbdSortableHeader } from '../directives/sortable.directives';
     SupermarketProductsComponent,
     CreateProductComponent,
     UpdateProductComponent,
-    NgbdSortableHeader
+    NgbdSortableHeader,
+    NgbdSortableHeader2
   ],
   providers: [ DecimalPipe ,ProductService ,ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
 

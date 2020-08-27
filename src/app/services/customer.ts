@@ -8,5 +8,4 @@ export class CustomerList {
   order: string;
   purchase: string | number;
   age: number;
-  comment? : string;
 }

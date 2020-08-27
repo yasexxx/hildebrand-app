@@ -23,5 +23,7 @@ export class SalesService {
   private handleError(err: HttpErrorResponse){
     return throwError(`An error occurred: ${err}`);
   }
+
+  
 }
 

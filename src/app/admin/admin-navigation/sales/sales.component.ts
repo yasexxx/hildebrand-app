@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { MonthlySales } from '../../../services/monthly-sales';
+import { Observable } from 'rxjs';
+import { NgbdSortableHeader4, SortEventForSales } from '../../../directives/sortable.directives';
+import { SalesService } from '../../../services/product-sales.service';
 
 @Component({
   selector: 'app-sales',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesComponent implements OnInit {
 
-  constructor() { }
+  sales$ : Observable<MonthlySales[]>;
+  total$ : Observable<number>;
+
+  @ViewChildren(NgbdSortableHeader4) headers: QueryList<NgbdSortableHeader4>;
+
+  constructor(public service: SalesService) {
+    this.sales$ = service.sales$;
+    this.total$ = service.total$;
+   }
+
+  onSort({column, direction}: SortEventForSales) {
+    //resetting other headers
+    this.headers.forEach( header => {
+      if(header.sortable4 ! == column) {
+        header.direction4 = '';
+      }
+    });
+    this.service.sortColumn = column;
+    this.service.sortDirection = direction;
+  }
 
   ngOnInit(): void {
   }
+
+
 
 }

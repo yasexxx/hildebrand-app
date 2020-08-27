@@ -1,4 +1,4 @@
-import { NgbdSortableHeader3 } from './../directives/sortable.directives';
+import { NgbdSortableHeader3, NgbdSortableHeader4 } from './../directives/sortable.directives';
 import { OrderService } from './../services/order.service';
 import { OnlineOrderService } from './../services/online-order.service';
 import { NgModule } from '@angular/core';
@@ -24,7 +24,6 @@ import { ProductSalesChartComponent } from './admin-dashboard/charts/product-sal
 import { SalesTrafficChartComponent } from './admin-dashboard/charts/sales-traffic-chart/sales-traffic-chart.component';
 import { AnnualSalesChartComponent } from './admin-dashboard/charts/annual-sales-chart/annual-sales-chart.component';
 import { StoreSessionsChartComponent } from './admin-dashboard/charts/store-sessions-chart/store-sessions-chart.component';
-import { SalesService } from '../services/sales.service';
 import { AdminTableComponent } from './admin-dashboard/admin-table/admin-table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,6 +43,9 @@ import { CreateProductComponent } from './admin-navigation/products/create-produ
 import { UpdateProductComponent } from './admin-navigation/products/update-product/update-product.component';
 import { ProductService } from '../services/product.service';
 import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.directives';
+import { CustomerService } from '../services/customer.service';
+import { SalesService } from '../services/product-sales.service';
+
 
 
   @NgModule({
@@ -71,7 +73,8 @@ import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.
     UpdateProductComponent,
     NgbdSortableHeader,
     NgbdSortableHeader2,
-    NgbdSortableHeader3
+    NgbdSortableHeader3,
+    NgbdSortableHeader4
   ],
   imports: [
     CommonModule,
@@ -109,9 +112,10 @@ import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.
     UpdateProductComponent,
     NgbdSortableHeader,
     NgbdSortableHeader2,
-    NgbdSortableHeader3
+    NgbdSortableHeader3,
+    NgbdSortableHeader4
   ],
-  providers: [ DecimalPipe ,ProductService ,ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
+  providers: [ SalesService,CustomerService ,DecimalPipe ,ProductService ,ProductLocalService,OnlineOrderService,OrderService,StoreSummaryService]
 
 })
 export class AdminModule { }

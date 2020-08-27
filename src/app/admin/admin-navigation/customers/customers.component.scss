@@ -4,7 +4,57 @@
 
 }
 
+
+th[sortable3] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-action {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.btn-action > button {
+  width: 90px;
+}
+
+.page-nation {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+}
+
+.page-nation > ngb-pagination {
+  display:flex;
+  justify-content: center;
+}
+
+select.custom-select {
+  width: auto;
+}
+
+
+
 .chart-resize {
   margin: 1rem auto;
   width: 70%;
+}
+
+@media (max-width:570px) {
+
+  .chart-resize {
+    width: 96%;
+
+
+}
+}
+
+@media (max-width:330px) {
+  .chart-resize {
+    width: 99%;
+
+
+}
 }

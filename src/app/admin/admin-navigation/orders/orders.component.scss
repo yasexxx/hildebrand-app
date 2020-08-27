@@ -2,7 +2,6 @@
 .container-a-order {
     display: grid;
     padding: 1rem;
-    background: #b8c4ca;
     grid-template-columns: 1fr;
 }
 
@@ -38,16 +37,10 @@ select.custom-select {
 }
 
 
-
 .order-chart-1 {
   width: 60%;
   height: 100%;
   margin: 1rem auto;
-}
-
-.table-resize {
-  display:flex;
-  flex-wrap: wrap;
 }
 
 @media (max-width:570px) {

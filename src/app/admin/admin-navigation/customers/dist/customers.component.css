@@ -1,9 +1,0 @@
-.customer-container {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.chart-resize {
-  margin: 1rem auto;
-  width: 70%;
-}

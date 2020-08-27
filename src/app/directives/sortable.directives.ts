@@ -2,6 +2,7 @@ import { CustomerList } from './../services/customer';
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
 import { ProductDetail } from './../services/product-local';
 import { ListOfOrders } from '../services/order';
+import { MonthlySales } from '../services/monthly-sales';
 
 export type SortColumn = keyof ProductDetail | '';
 export type SortDirection = 'asc' | 'desc' | '';
@@ -12,6 +13,10 @@ export type SortColumnForOrder = keyof ListOfOrders | '';
 
 //for customers
 export type SortColumnForCustomer = keyof CustomerList | '';
+
+
+//for sales
+export type SortColumnForSales = keyof MonthlySales | '';
 
 
 
@@ -31,6 +36,13 @@ export interface SortEventForOrder {
 // for customers
 export interface SortEventForCustomer {
   column: SortColumnForCustomer;
+  direction: SortDirection;
+}
+
+// for sales
+
+export interface SortEventForSales {
+    column: SortColumnForSales;
   direction: SortDirection;
 }
 
@@ -107,3 +119,31 @@ export class NgbdSortableHeader3 {
       this.sort2.emit({ column: this.sortable3, direction: this.direction3});
   }
 }
+
+
+
+
+//-------------------
+// for sales
+@Directive({
+    selector: 'th[sortable4]',
+    host: {
+        '[class.asc]': 'direction === "asc"',
+        '[class.desc]': 'direction === "desc"',
+        '(click)': 'rotate()'
+    }
+  })
+  
+  
+export class NgbdSortableHeader4 {
+  
+    @Input() sortable4: SortColumnForCustomer = '';
+    @Input() direction4: SortDirection = '';
+    @Output() sort2 = new EventEmitter<SortEventForCustomer>();
+  
+    rotate() {
+        this.direction4 = rotate[this.direction4];
+        this.sort2.emit({ column: this.sortable4, direction: this.direction4});
+    }
+  }
+  

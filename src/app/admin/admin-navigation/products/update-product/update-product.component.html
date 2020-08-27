@@ -5,7 +5,7 @@
             Products Info: <input class="form-control ml-2" placeholder="Search products here..." type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
             <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
         </div>
-      
+
         <table class="table table-striped">
           <thead>
           <tr>
@@ -14,7 +14,7 @@
             <th scope="col" sortable="name" (sort)="onSort($event)">Product Name</th>
             <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
             <th scope="col">Actions</th>
-            
+
           </tr>
           </thead>
           <tbody class="table-body-1">
@@ -31,18 +31,18 @@
                 <button class="btn btn-primary">View</button>
                 <button class="btn btn-warning">Delete</button>
                 </div>
-                
+
             </td>
         </tr>
           </tbody>
         </table>
-      
+
         <div class="page-nation">
           <ngb-pagination
           [collectionSize]="(total$ | async)!" [(page)]="service.page"
           [pageSize]="service.pageSize">
           </ngb-pagination>
-      
+
           <select class="custom-select" name="pageSize" [(ngModel)]="service.pageSize">
             <option [ngValue]="5">5 items per page</option>
             <option [ngValue]="10">10 items per page</option>
@@ -51,7 +51,7 @@
             <option [ngValue]="25">25 items per page</option>
           </select>
         </div>
-      
+
       </form>
 
       <div class="btn-save">

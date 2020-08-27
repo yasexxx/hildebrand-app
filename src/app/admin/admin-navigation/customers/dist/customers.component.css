@@ -1,7 +1,6 @@
 .customer-container {
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr;
-
 }
 
 .chart-resize {

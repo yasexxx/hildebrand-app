@@ -1,40 +1,30 @@
-
-.container-a-sales{
-    display: grid;
-    grid-template-columns: 1fr;
+.container-a-sales {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-.container-a-sales h1{
-    margin:1rem;
+.container-a-sales h1 {
+  margin: 1rem;
 }
-
 
 .sales-1 {
-    width: 60%;
-    height: 100%;
-    margin: 1rem auto;
+  width: 60%;
+  height: 100%;
+  margin: 1rem auto;
 }
-
-
-
-
 
 @media (max-width: 730px) {
   .sales-1 {
     width: 80%;
   }
 }
-
 @media (max-width: 530px) {
   .sales-1 {
     width: 90%;
   }
 }
-
-
 @media (max-width: 420px) {
   .sales-1 {
     width: 98%;
   }
 }
-

@@ -8,6 +8,7 @@ import { OrdersDetails } from './orders-details';
 
 
 
+
 interface SearchOrderResult {
   orders: ListOfOrders[];
   total:number;
@@ -21,6 +22,7 @@ interface State {
   sortColumn: SortColumnForOrder;
   sortDirection: SortDirection;
 }
+
 
 const compare = ( v1: string | number, v2: string| number) => (
     v1 < v2 ? -1 : v1 > v2 ? 1: 0 )
@@ -38,18 +40,21 @@ function sort(orders: ListOfOrders[], column:SortColumnForOrder, direction: stri
 
 }
 
-function matches (order: ListOfOrders, term: string, pipe: PipeTransform){
+
+function matches (order: ListOfOrders, term: string, pipe: PipeTransform ){
   return order.userName.toLowerCase().includes(term.toLowerCase())
-  || pipe.transform(order.fullName).includes(term)
-  || pipe.transform(order.totalOrder).includes(term)
-  || pipe.transform(order.location).includes(term)
-  || pipe.transform(order.productOrder).includes(term);
+        || order.fullName.toLowerCase().includes(term.toLowerCase())
+        || order.location.toLowerCase().includes(term.toLowerCase())
+        || order.status.toLowerCase().includes(term.toLowerCase())
+        || order.productOrder.toLowerCase().includes(term.toLowerCase())
+        || pipe.transform(order.totalOrder).includes(term)
+        || pipe.transform(order.id).includes(term);
+
 }
 
 @Injectable({
   providedIn: 'any'
 })
-
 export class OrderService {
 
   private _loading$ = new BehaviorSubject<boolean>(true);
@@ -89,7 +94,7 @@ export class OrderService {
 
     get pageSize() { return this._state.pageSize; }
 
-    get searchTerm() { 
+    get searchTerm() {
         return this._state.searchTerm; }
 
     set page(page: number) { this._set({page});}
@@ -112,7 +117,9 @@ export class OrderService {
 
         let orders= sort(OrdersDetails, sortColumn, sortDirection);
 
-        orders = orders.filter( product => matches(product, searchTerm, this.pipe));
+        orders = orders.filter( order => matches(order, searchTerm , this.pipe));
+
+
         const total = orders.length;
 
         //paginate

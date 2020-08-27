@@ -1,55 +1,57 @@
 <div class="container-a-order">
     <h1>Record of Orders</h1>
-    <form>
+    <form class="table-resize table-responsive">
         <div class="form-group form-inline">
             Search Order: <input class="form-control ml-2" placeholder="Search products here..." type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
             <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
         </div>
-      
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th scope="col" sortable2="id" (sort2)="onSort($event)">Order #</th>
-            <th scope="col" sortable2="userName" (sort2)="onSort($event)">Username</th>
-            <th scope="col" sortable2="fullName" (sort2)="onSort($event)">Full Name</th>
-            <th scope="col" sortable2="productOrder" (sort2)="onSort($event)">Product Order</th>
-            <th scope="col" sortable2="totalOrder" (sort2)="onSort($event)">Total Order</th>
-            <th scope="col" sortable2="location" (sort2)="onSort($event)">Location</th>
-            <th scope="col" sortable2="status" (sort2)="onSort($event)">Status</th>
-            <th scope="col" sortable2="action" (sort2)="onSort($event)">Action</th>
-            
-            
+
+        <div>
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col" sortable2="id" (sort2)="onSort($event)">Order #</th>
+              <th scope="col" sortable2="userName" (sort2)="onSort($event)">Username</th>
+              <th scope="col" sortable2="fullName" (sort2)="onSort($event)">Full Name</th>
+              <th scope="col" sortable2="productOrder" (sort2)="onSort($event)">Product Order</th>
+              <th scope="col" sortable2="totalOrder" (sort2)="onSort($event)">Total Order</th>
+              <th scope="col" sortable2="location" (sort2)="onSort($event)">Location</th>
+              <th scope="col" sortable2="status" (sort2)="onSort($event)">Status</th>
+              <th scope="col">Action</th>
+
+
+            </tr>
+            </thead>
+            <tbody class="table-body-1">
+            <tr *ngFor="let order of orders$ | async">
+              <td><ngb-highlight class="my-auto" [result]="order.id | number" [term]="service.searchTerm"></ngb-highlight></td>
+              <td>
+                <ngb-highlight class="my-auto" [result]="order.userName" [term]="service.searchTerm"></ngb-highlight>
+              </td>
+              <td><ngb-highlight class="my-auto" [result]="order.fullName" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight class="my-auto" [result]="order.productOrder" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight class="my-auto" [result]="order.totalOrder | number" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight class="my-auto" [result]="order.location" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight class="my-auto" [result]="order.status" [term]="service.searchTerm"></ngb-highlight></td>
+              <td style="width:250px;">
+                  <div class="btn-action">
+                  <button class="btn btn-primary">View Order</button>
+                  <button class="btn btn-warning">Delete</button>
+                  </div>
+
+              </td>
           </tr>
-          </thead>
-          <tbody class="table-body-1">
-          <tr *ngFor="let order of orders$ | async">
-            <th scope="row">{{ order.id }}</th>
-            <td>
-              <ngb-highlight class="my-auto" [result]="order.userName" [term]="service.searchTerm"></ngb-highlight>
-            </td>
-            <td><ngb-highlight class="my-auto" [result]="order.fullName" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight class="my-auto" [result]="order.productOrder" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight class="my-auto" [result]="order.totalOrder | number" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight class="my-auto" [result]="order.location" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight class="my-auto" [result]="order.status" [term]="service.searchTerm"></ngb-highlight></td>
-            <td style="width:250px;">
-                <div class="btn-action">
-                <button class="btn btn-success">Edit</button>
-                <button class="btn btn-primary">View</button>
-                <button class="btn btn-warning">Delete</button>
-                </div>
-                
-            </td>
-        </tr>
-          </tbody>
-        </table>
-      
+            </tbody>
+          </table>
+        </div>
+
+
         <div class="page-nation">
           <ngb-pagination
           [collectionSize]="(total$ | async)!" [(page)]="service.page"
           [pageSize]="service.pageSize">
           </ngb-pagination>
-      
+
           <select class="custom-select" name="pageSize" [(ngModel)]="service.pageSize">
             <option [ngValue]="5">5 items per page</option>
             <option [ngValue]="10">10 items per page</option>
@@ -58,6 +60,14 @@
             <option [ngValue]="25">25 items per page</option>
           </select>
         </div>
-      
+
       </form>
+
+      <div>
+        <hr>
+      </div>
+      <div class="order-chart-1">
+        <app-store-sessions-chart></app-store-sessions-chart>
+      </div>
+
 </div>

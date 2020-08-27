@@ -1,3 +1,4 @@
+import { NgbdSortableHeader3 } from './../directives/sortable.directives';
 import { OrderService } from './../services/order.service';
 import { OnlineOrderService } from './../services/online-order.service';
 import { NgModule } from '@angular/core';
@@ -69,7 +70,8 @@ import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.
     CreateProductComponent,
     UpdateProductComponent,
     NgbdSortableHeader,
-    NgbdSortableHeader2
+    NgbdSortableHeader2,
+    NgbdSortableHeader3
   ],
   imports: [
     CommonModule,
@@ -106,7 +108,8 @@ import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.
     CreateProductComponent,
     UpdateProductComponent,
     NgbdSortableHeader,
-    NgbdSortableHeader2
+    NgbdSortableHeader2,
+    NgbdSortableHeader3
   ],
   providers: [ DecimalPipe ,ProductService ,ProductLocalService, SalesService,OnlineOrderService,OrderService,StoreSummaryService]
 

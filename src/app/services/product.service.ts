@@ -82,7 +82,7 @@ export class ProductService {
 
     get pageSize() { return this._state.pageSize; }
 
-    get searchTerm() { 
+    get searchTerm() {
         return this._state.searchTerm; }
 
     set page(page: number) { this._set({page});}
@@ -106,6 +106,8 @@ export class ProductService {
         let products = sort(ProductsDetails, sortColumn, sortDirection);
 
         products = products.filter( product => matches(product, searchTerm, this.pipe));
+
+
         const total = products.length;
 
         //paginate

@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   SupermarketBundle:{}[];
   RestaurantBundle:{}[];
 
+
   constructor(private productService: ProductLocalService) {
     const productFeatured = productService.getHomeFeature();
     const productLatest = productService.getHomeLatest();

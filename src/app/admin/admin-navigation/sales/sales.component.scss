@@ -2,16 +2,18 @@
 .container-a-sales{
     display: grid;
     grid-template-columns: 1fr;
+    margin: 1rem;
 }
 
-.container-a-sales h1{
-    margin:1rem;
-}
 
 .btn-action {
-  display: grid;
-  margin: 0 1rem;
-  gap:1rem;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.btn-action > button {
+  width: 90px;
 }
 
 .sales-1 {
@@ -20,6 +22,21 @@
     margin: 1rem auto;
 }
 
+
+.page-nation {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+  margin-top: 2rem;
+}
+
+.page-nation > ngb-pagination {
+  display:flex;
+  justify-content: center;
+}
+
+select.custom-select {
+  width: auto;
+}
 
 
 

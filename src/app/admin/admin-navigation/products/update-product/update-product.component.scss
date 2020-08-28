@@ -2,7 +2,6 @@
 .container-a-update {
     display: grid;
     padding: 1rem;
-    background: #a8d0e6;
 }
 
 
@@ -14,7 +13,7 @@ th[sortable] {
 
 .btn-action {
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: 0.6rem;
 }
 

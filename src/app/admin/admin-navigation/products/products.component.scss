@@ -18,11 +18,21 @@
     grid-template-columns: 1fr repeat(4, 0.5fr);
     height: 0.5rem;
     gap: 1.5rem;
-    margin: 3rem 4rem;
+    margin: 1rem 4rem;
 }
 
 .opt-text {
     padding: .2rem 0 0 14vw;
+}
+
+.restaurant-style {
+    margin: -3rem 0 0 -3rem;
+    width: 105%;
+}
+
+.supermarket-style {
+    margin: -3rem 0 0 -3rem;
+    width: 105%;
 }
 
 
@@ -35,6 +45,18 @@
     .opt-text{
         padding-left: 0vw;
     }
+
+    .restaurant-style {
+        margin: -3rem 0 0 0rem;
+        width: 101%;
+    }
+
+    .supermarket-style {
+        margin: -3rem 0 0 0rem;
+        width: 101%;
+    }
+
+
 
 }
 

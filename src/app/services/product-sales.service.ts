@@ -56,6 +56,8 @@ export class SalesService {
   private _total$ = new BehaviorSubject<number>(0);
 
   private _containerArray: MonthlySales[] = [];
+
+
   private _state : State = {
     page: 1,
     pageSize: 10,
@@ -113,8 +115,8 @@ export class SalesService {
 
     private _search(): Observable<SearchResultForSales> {
         const { sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
-    
-    
+
+
     let sales = sort(this._containerArray, sortColumn, sortDirection);
 
     sales = sales.filter( product => matches(product, searchTerm, this.pipe));

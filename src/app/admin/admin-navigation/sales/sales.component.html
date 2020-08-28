@@ -22,8 +22,8 @@
             </tr>
             </thead>
             <tbody class="table-body-1">
-            <tr *ngFor="let sale of sales$ | async ; index as i">
-              <td>{{i+1 | number}}</td>
+            <tr *ngFor="let sale of sales$ | async">
+              <td>hello</td>
               <td>
                 <ngb-highlight class="my-auto" [result]="sale.month" [term]="service.searchTerm"></ngb-highlight>
               </td>

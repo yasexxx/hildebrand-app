@@ -133,17 +133,16 @@ export class NgbdSortableHeader3 {
         '(click)': 'rotate()'
     }
   })
-  
-  
+
+
 export class NgbdSortableHeader4 {
-  
+
     @Input() sortable4: SortColumnForCustomer = '';
     @Input() direction4: SortDirection = '';
-    @Output() sort2 = new EventEmitter<SortEventForCustomer>();
-  
+    @Output() sort4 = new EventEmitter<SortEventForCustomer>();
+
     rotate() {
         this.direction4 = rotate[this.direction4];
-        this.sort2.emit({ column: this.sortable4, direction: this.direction4});
+        this.sort4.emit({ column: this.sortable4, direction: this.direction4});
     }
   }
-  

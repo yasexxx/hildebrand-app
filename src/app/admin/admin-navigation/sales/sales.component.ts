@@ -4,15 +4,26 @@ import { Observable } from 'rxjs';
 import { NgbdSortableHeader4, SortEventForSales } from '../../../directives/sortable.directives';
 import { SalesService } from '../../../services/product-sales.service';
 
+
+interface ModifySales {
+  id: number;
+  month: string;
+  revenue: number;
+}
+
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.component.html',
   styleUrls: ['./sales.component.scss']
 })
+
+
 export class SalesComponent implements OnInit {
 
   sales$ : Observable<MonthlySales[]>;
   total$ : Observable<number>;
+
+  modifySalesArray;
 
   @ViewChildren(NgbdSortableHeader4) headers: QueryList<NgbdSortableHeader4>;
 
@@ -36,5 +47,6 @@ export class SalesComponent implements OnInit {
   }
 
 
-
 }
+
+

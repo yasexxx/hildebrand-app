@@ -39,7 +39,8 @@ export function sort(sales: MonthlySales[], column: SortColumnForSales, directio
 
 function matches (sales: MonthlySales, term: string, pipe: PipeTransform){
   return sales.month.toLowerCase().includes(term.toLowerCase())
-  || pipe.transform(sales.revenue).includes(term);
+  || pipe.transform(sales.revenue).includes(term)
+  || pipe.transform(sales.id).includes(term);
 }
 
 
@@ -72,6 +73,8 @@ export class SalesService {
 
     this.getSalesData(); //get data of sales
 
+    console.log(this._containerArray);
+    
     this._search$.pipe(
     tap(()=> this._loading$.next(true)),
     debounceTime(200),
@@ -136,7 +139,8 @@ export class SalesService {
   getSalesData() {
     this.getSalesByMonth().subscribe( {
       next: sales => {
-        sales.forEach( salesArray => {
+        sales.forEach( (salesArray,i) => {
+          const newArray = salesArray.id= i+1;
           this._containerArray.push(salesArray);
         })
       }

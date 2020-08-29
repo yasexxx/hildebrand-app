@@ -39,9 +39,24 @@
   color: #002447;
 }
 
+
 .hide-a-header {
   display: none;
 }
+
+
+.header-a-user2 a{
+  color: black;
+}
+
+.drop-profile >button {
+  font-size: 0.8rem;;
+}
+.drop-profile >button:hover {
+  color:white;
+  background: #002447;
+}
+
 
 
 // Media breakpoints

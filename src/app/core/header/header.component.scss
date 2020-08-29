@@ -38,6 +38,27 @@ a {
 }
 
 
+.header-a-user2 {
+  color: white;
+  height: 1rem;
+  margin-top: -0.4rem;
+}
+
+.header-a-user2:hover {
+  color: wheat;
+}
+
+.drop-profile {
+  margin: -0.4rem 0 0 0.5rem;
+}
+
+.drop-profile >button {
+  font-size: 0.8rem;;
+}
+.drop-profile >button:hover {
+  color:white;
+  background: #002447;
+}
 
 
 @media (max-width: 1100px){

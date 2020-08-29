@@ -7,11 +7,17 @@ import { faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons/';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-	title= "SL MALL";
+	title= "dei joseeli";
   moneyBillWaveAlt = faMoneyBillWaveAlt;
-  collapsed = true;
+  collapsed: boolean = true;
 
-  isHover = false;
+  isHover:boolean = false;
+
+  isHover2: boolean = false;
+
+  isNotLogin: boolean = true;
+
+  userName: string = 'joey'
 
   constructor() { }
 
@@ -24,6 +30,18 @@ export class NavbarComponent implements OnInit {
   mouseOut() {
     if (this.isHover === true){
       this.isHover = false;
+    }
+  }
+
+  mouseOver2() {
+    if (this.isHover2 === false){
+      this.isHover2 = true;
+  }
+  }
+
+  mouseOut2() {
+    if (this.isHover2 === true){
+      this.isHover2 = false;
     }
   }
 

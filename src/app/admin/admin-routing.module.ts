@@ -7,17 +7,21 @@ import { SalesComponent } from './admin-navigation/sales/sales.component'
 import { ProductsComponent } from './admin-navigation/products/products.component'
 import { OrdersComponent } from './admin-navigation/orders/orders.component';
 import { CustomersComponent } from './admin-navigation/customers/customers.component';
+import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
 
 
 const routes: Routes = [
-  { path:'',component: AdminDashboardComponent},
-  { path:'sales',component: SalesComponent },
-  { path:'products',component: ProductsComponent},
-  { path:'create',component:CreateProductComponent },
-  { path:'edit', component:UpdateProductComponent},
-  { path: 'orders', component: OrdersComponent },
-  { path: 'customers', component:CustomersComponent},
-  { path: 'dashboard' ,redirectTo:'' , pathMatch:'full' }
+  { path:'',component: AdminNavigationComponent,
+    children: [
+      { path:'dashboard', component:AdminDashboardComponent},
+      { path:'sales',component: SalesComponent },
+      { path:'products',component: ProductsComponent},
+      { path:'create',component:CreateProductComponent },
+      { path:'edit', component:UpdateProductComponent},
+      { path: 'orders', component: OrdersComponent },
+      { path: 'customers', component:CustomersComponent},
+      { path: '' ,redirectTo:'dashboard' , pathMatch:'full' }
+    ]}
 ];
 
 @NgModule({

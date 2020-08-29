@@ -37,6 +37,7 @@ import { LoadedDirective } from './directives/image/img.directives';
 
 import { ProductLocalService } from './services/product-local.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterComponent } from './router/router.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { HttpClientModule } from '@angular/common/http';
 	SearchBarComponent,
 	LogoComponent,
 	SupermarketComponent,
-	RestaurantComponent
+	RestaurantComponent,
+	RouterComponent
 
   ],
   imports: [

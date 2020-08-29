@@ -38,7 +38,8 @@ import { LoadedDirective } from './directives/image/img.directives';
 import { ProductLocalService } from './services/product-local.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterComponent } from './router/router.component';
-
+import {MatBadgeModule} from '@angular/material/badge';
+import { WishlistComponent } from './core/wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -48,22 +49,23 @@ import { RouterComponent } from './router/router.component';
     ProductComponent,
     LoginComponent,
     SignupComponent,
-	CustomShowHideDirective,
-	CustomClassDirective,
-	CustomStyleDirective,
-	CustomLayoutDirective,
-  DropOpenDirective,
-  LoadedDirective,
-	FooterComponent,
-	ShoppingCartComponent,
-	UserLinksComponent,
-	HeaderComponent,
-	CategoryInHomeComponent,
-	SearchBarComponent,
-	LogoComponent,
-	SupermarketComponent,
-	RestaurantComponent,
-	RouterComponent
+    CustomShowHideDirective,
+    CustomClassDirective,
+    CustomStyleDirective,
+    CustomLayoutDirective,
+    DropOpenDirective,
+    LoadedDirective,
+    FooterComponent,
+    ShoppingCartComponent,
+    UserLinksComponent,
+    HeaderComponent,
+    CategoryInHomeComponent,
+    SearchBarComponent,
+    LogoComponent,
+    SupermarketComponent,
+    RestaurantComponent,
+    RouterComponent,
+    WishlistComponent
 
   ],
   imports: [
@@ -71,14 +73,15 @@ import { RouterComponent } from './router/router.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-	FlexLayoutModule,
-	MatButtonModule,
-	MatIconModule,
-  NgbModule,
-  NgxNumberSpinnerModule,
-  UsersModule,
-  AdminModule,
-  HttpClientModule
+    FlexLayoutModule,
+    MatButtonModule,
+    MatIconModule,
+    NgbModule,
+    NgxNumberSpinnerModule,
+    UsersModule,
+    AdminModule,
+    HttpClientModule,
+    MatBadgeModule
   ],
   providers: [CustomBreakPointsProvider, ProductLocalService],
   bootstrap: [AppComponent]

@@ -19,6 +19,12 @@ export class NavbarComponent implements OnInit {
 
   userName: string = 'joey'
 
+  badgeNumber: number = 10;
+
+  totalInCart:number = 10000;
+
+  hideBadge: boolean = true;
+
   constructor() { }
 
   mouseOver() {

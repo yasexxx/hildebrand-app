@@ -66,4 +66,14 @@ a {
     display: flex;
     margin-left: 3em;
   }
+
+  .header-a-user2 {
+    margin-left: 10rem;
+  }
+}
+
+@media (max-width: 830px){
+  .header-a-user2{
+  margin-left: 5rem;
+}
 }

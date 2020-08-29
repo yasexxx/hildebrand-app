@@ -18,12 +18,12 @@
                                 </form>
                             </div>
                             <div class="row text-center text-lg-left header-item-holder">
-                                <a href="#" class="header-item mr-2">
+                                <a routerLink="wishlist" class="header-item mr-2">
                                     <i class="fa fa-heart mr-2"></i><span id="header-favorite">0</span>
                                 </a>
                                 <a routerLink="/cart" class="header-item mr-2">
-                                    <i class="fa fa-shopping-cart mr-2"></i><span id="header-qty" class="mr-3">2</span>
-                                    <fa-icon [icon]="moneyBillWaveAlt"></fa-icon>&nbsp;<span id="header-price">4,000</span>
+                                    <i [matBadge]="badgeNumber" [matBadgeHidden]="hideBadge" matBadgeColor="warn" matBadgeSize="medium" matBadgeOverlap="false" class="fa fa-shopping-cart mr-2"></i><span id="header-qty" class="mr-3"></span>
+                                    <fa-icon [icon]="moneyBillWaveAlt"></fa-icon>&nbsp;<span id="header-price">{{totalInCart}}</span>
                                 </a>
                             </div>
                         </div>

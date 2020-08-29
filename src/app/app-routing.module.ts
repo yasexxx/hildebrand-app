@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './core/home/home.component'
 import { RouterComponent } from "./router/router.component";
+import { WishlistComponent } from './core/wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', component: RouterComponent,
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'supermarket',component:SupermarketComponent },
       { path: 'restaurant',component: RestaurantComponent},
       { path: 'cart', component: ShoppingCartComponent },
+      { path: 'wishlist', component: WishlistComponent},
       { path: '' , redirectTo: 'home', pathMatch: 'full', }
               ]
   },

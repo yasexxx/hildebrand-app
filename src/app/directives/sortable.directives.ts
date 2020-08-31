@@ -5,6 +5,7 @@ import { ListOfOrders } from '../services/order';
 import { MonthlySales } from '../services/monthly-sales';
 
 export type SortColumn = keyof ProductDetail | '';
+
 export type SortDirection = 'asc' | 'desc' | '';
 
 
@@ -112,11 +113,11 @@ export class NgbdSortableHeader3 {
 
   @Input() sortable3: SortColumnForCustomer = '';
   @Input() direction3: SortDirection = '';
-  @Output() sort2 = new EventEmitter<SortEventForCustomer>();
+  @Output() sort3 = new EventEmitter<SortEventForCustomer>();
 
   rotate() {
       this.direction3 = rotate[this.direction3];
-      this.sort2.emit({ column: this.sortable3, direction: this.direction3});
+      this.sort3.emit({ column: this.sortable3, direction: this.direction3});
   }
 }
 

@@ -137,14 +137,12 @@ export class SalesService {
   //------------------------------->>>
 
   getSalesData() {
-    this.getSalesByMonth().subscribe( {
-      next: sales => {
-        sales.forEach( (salesArray,i) => {
-          const newArray = salesArray.id= i+1;
+    this.getSalesByMonth().subscribe( sales  => 
+        sales.forEach( (salesArray,i) => { salesArray.id= i+1;
           this._containerArray.push(salesArray);
-        })
-      }
-    })
+        }),
+        err => console.log("Error! something wrong: ", err)
+    );
   }
 
   getSalesByMonth(): Observable<MonthlySales[]>{

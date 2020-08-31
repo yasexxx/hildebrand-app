@@ -13,11 +13,19 @@ export class RestaurantProductsComponent implements OnInit {
   @Input() page:number;
   @Input() active:number;
 
+  @Output() outputShow = new EventEmitter<number>();
 
-  constructor() {}
-    
+
+  constructor() { 
+    this.outputShow.emit(this.active);
+    console.log(this.active);
+  }
+
   ngOnInit(): void {
   }
 
+  getEvent(event) {
+    console.log(event);
+  }
 
 }

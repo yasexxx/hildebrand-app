@@ -4,9 +4,9 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
 
-    <mat-toolbar>Administrator</mat-toolbar>
+    <mat-toolbar><a (click)="changeTextName()" routerLink="/admin">Administrator</a></mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let item of menuItems" (click)="navigateToMenu(item)" [routerLink]="'admin/'+item" mat-list-item >{{item | titlecase}}</a>
+      <a *ngFor="let item of menuItems" (click)="navigateToMenu(item)" [routerLink]="'./'+item" mat-list-item >{{item | titlecase}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

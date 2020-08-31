@@ -7,17 +7,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './core/home/home.component'
-import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-
+import { RouterComponent } from "./router/router.component";
+import { WishlistComponent } from './core/wishlist/wishlist.component';
 
 const routes: Routes = [
-	{ path: 'home' , redirectTo: '', pathMatch: 'full', },
-  { path: '', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register',component: SignupComponent},
-  { path: 'supermarket',component:SupermarketComponent },
-  { path: 'restaurant',component: RestaurantComponent},
-  { path: 'cart', component: ShoppingCartComponent },
+  { path: '', component: RouterComponent,
+    children: [
+      { path: 'home', component: HomeComponent},
+      { path: 'login', component: LoginComponent},
+      { path: 'register',component: SignupComponent},
+      { path: 'supermarket',component:SupermarketComponent },
+      { path: 'restaurant',component: RestaurantComponent},
+      { path: 'cart', component: ShoppingCartComponent },
+      { path: 'wishlist', component: WishlistComponent},
+      { path: '' , redirectTo: 'home', pathMatch: 'full', }
+              ]
+  },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 	{ path: '**', redirectTo: '/' }
 	];

@@ -1,10 +1,9 @@
 
+<!-- Carousel Home -->
 <ngb-carousel class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
   <ng-template ngbSlide *ngFor="let img of slide_images; index as i">
     <div class="carousel-caption">
       <h3>My slide {{i + 1}} title</h3>
-      <button type="button"
-      [ngClass]="{'btn1':i===0 , 'btn2':i===1, 'btn3':i===2}" class="btn btn-warning btn-n-carousel">Shop Now!</button>
     </div>
     <a href="#{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
       <div class="picsum-img-wrapper">
@@ -15,6 +14,8 @@
   </ng-template>
 </ngb-carousel>
 
+
+<!-- Home Product Layout -->
 
 <div class="bg-a-color">
   
@@ -35,14 +36,15 @@
 
 <h2>Top Products</h2>
 <app-top-product [top_product]="top_product"></app-top-product>
-
- <br/>
+ 
+<br/>
  <br/>
  <br/>
 
 </div>
-<!-- top-footer -->
 
+
+<!-- Top of footer Display -->
 
 <div class="col bg-light d-sm-block d-none">
     <div class="row a-top-footer">
@@ -73,5 +75,3 @@
     </div>
 </div>
 
-
-<!-- Main Content -->

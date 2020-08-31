@@ -1,7 +1,7 @@
 <div class="tab-of-product">
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngClass]="{'h2': active===1, 'h1':!(active===1)}" [ngbNavItem]="1">
-      <a ngbNavLink>All</a>
+      <a ngbNavLink class="styling-link">All</a>
       <ng-template ngbNavContent>
         <div class="img-supermarket">
           <div class="card" *ngFor="let img of productSupermarket1; index as i">
@@ -27,7 +27,7 @@
     </li>
 
     <li [ngClass]="{'h2': active===2, 'h1':!(active===2)}" [ngbNavItem]="2">
-      <a ngbNavLink>Vegetables</a>
+      <a ngbNavLink class="styling-link">Vegetables</a>
       <ng-template ngbNavContent>
         <div class="img-supermarket">
           <div class="card" *ngFor="let img of productSupermarket2; index as i">
@@ -54,7 +54,7 @@
 
 
     <li [ngClass]="{'h2': active===3, 'h1':!(active===3)}" [ngbNavItem]="3">
-      <a ngbNavLink>Fruits</a>
+      <a ngbNavLink class="styling-link">Fruits</a>
       <ng-template ngbNavContent>
         <div class="img-supermarket">
           <div class="card" *ngFor="let img of productSupermarket3; index as i">

@@ -2,7 +2,7 @@
                         <div class="row">
                             <div class="col-lg-auto">
                                 <div class="main-logo font-weight-bold text-center text-lg-left">
-                                    <a style="color: black;" routerLink="/">DEI-ORGANIKA</a>
+                                    <a style="color: black;" routerLink="/">{{title | uppercase}}</a>
                                 </div>
                             </div>
                             <div class="col-lg-5 mt-4 mt-lg-0 search-a-bar">
@@ -18,12 +18,12 @@
                                 </form>
                             </div>
                             <div class="row text-center text-lg-left header-item-holder">
-                                <a href="#" class="header-item mr-2">
+                                <a routerLink="wishlist" class="header-item mr-2">
                                     <i class="fa fa-heart mr-2"></i><span id="header-favorite">0</span>
                                 </a>
                                 <a routerLink="/cart" class="header-item mr-2">
-                                    <i class="fa fa-shopping-cart mr-2"></i><span id="header-qty" class="mr-3">2</span>
-                                    <fa-icon [icon]="moneyBillWaveAlt"></fa-icon>&nbsp;<span id="header-price">4,000</span>
+                                    <i [matBadge]="badgeNumber" [matBadgeHidden]="hideBadge" matBadgeColor="warn" matBadgeSize="medium" matBadgeOverlap="false" class="fa fa-shopping-cart mr-2"></i><span id="header-qty" class="mr-3"></span>
+                                    <fa-icon [icon]="moneyBillWaveAlt"></fa-icon>&nbsp;<span id="header-price">{{totalInCart}}</span>
                                 </a>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                         <li class="nav-item dropdown">
                                             <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block">
                                               <a href="#" class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Department Store</a>
-                                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [ngClass]="{'drop-profile':!collapsed}">
                                                 <button ngbDropdownItem>Action - 1</button>
                                                 <button ngbDropdownItem>Another Action</button>
                                                 <button ngbDropdownItem>Something else is here</button>
@@ -65,11 +65,26 @@
                                                <li class="nav-item my-2">
                                         <a href="mailto:mailingme@workshop.com"><i class="fa fa-envelope mr-2"></i>mailingme@workshop.com</a>
                                               </li>
-                                              <li class="nav-item my-2">
-                                                  <a routerLink="/register"><i class="fa fa-user-plus mr-2"></i>Register</a>
-                                              </li>
-                                              <li class="nav-item my-2">
-                                                  <a routerLink="/login"><i class="fa fa-sign-in mr-2"></i>Login</a>
+                                              <div *ngIf="(isNotLogin)">
+                                                <li class="nav-item my-2">
+                                                    <a routerLink="/register"><i class="fa fa-user-plus mr-2"></i>Register</a>
+                                                </li>
+                                                <li class="nav-item my-2">
+                                                    <a routerLink="/login"><i class="fa fa-sign-in mr-2"></i>Login</a>
+                                                </li>
+                                              </div>
+                                              <li>
+                                                <div *ngIf="!(isNotLogin)" class="header-a-user2">
+                                                  <div ngbDropdown (mouseover)="mouseOver2()" (mouseout)="mouseOut2()" [open]="isHover2" class="d-inline-block"> 
+                                                      <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false" role="button"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{{userName |titlecase}}</a>
+                                                      <div ngbDropdownMenu aria-labelledby="dropdownUser" class="drop-profile">
+                                                        <button ngbDropdownItem>Profile</button>
+                                                        <button ngbDropdownItem>Order</button>
+                                                        <button ngbDropdownItem>Cart</button>
+                                                        <button ngbDropdownItem>Logout</button>
+                                                      </div>
+                                                    </div>
+                                               </div>
                                               </li>
                                           </ul>
                                     </div>

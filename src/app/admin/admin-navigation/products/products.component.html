@@ -18,7 +18,7 @@
                   </div>
                 </div>
                 <!--Featured Product-->
-                <div *ngIf="disp.title==='Restaurant Product'">
+                <div class="restaurant-style" *ngIf="disp.title==='Restaurant Product'">
                   <div *ngFor="let content of disp.content">
                    <app-restaurant-products [productRestaurant1]="content.products1"
                    [productRestaurant2]="content.products2"
@@ -27,7 +27,7 @@
                   </div>
                 </div>
                 <!--Featured Product-->
-                <div *ngIf="disp?.title==='Supermarket Product'">
+                <div class="supermarket-style" *ngIf="disp?.title==='Supermarket Product'">
                   <div *ngFor="let content of disp.content">
                     <app-supermarket-products [page]="1" [active]="1"
                     [productSupermarket1]="content.products1"

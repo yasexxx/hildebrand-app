@@ -4,8 +4,10 @@
     grid-template-columns: 1fr;
 }
 
-.container-a-sales h1{
-    margin:1rem;
+th[sortable4] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .btn-action {
@@ -20,6 +22,20 @@
     margin: 1rem auto;
 }
 
+
+.page-nation {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+}
+
+.page-nation > ngb-pagination {
+  display:flex;
+  justify-content: center;
+}
+
+select.custom-select {
+  width: auto;
+}
 
 
 

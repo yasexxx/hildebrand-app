@@ -1,6 +1,6 @@
 <div class="tab-of-product">
     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngClass]="{'h2': active===1, 'h1':!(active===1)}" [ngbNavItem]="1">
+      <li [ngClass]="{'h2': active===1, 'h1':!(active===1)}" [ngbNavItem]="1" (click)="getEvent($event)">
         <a ngbNavLink>All</a>
         <ng-template ngbNavContent>
           <div class="img-supermarket">

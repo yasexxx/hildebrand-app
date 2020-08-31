@@ -1,12 +1,12 @@
 
-<div class="container-a-sales">
+<div class="container-a-sales mx-3">
     <h1>Manage Product Sales Page</h1>
 
 
     <form class="table-resize table-responsive">
         <div class="form-group form-inline">
             Search Sales: <input class="form-control ml-2" placeholder="Search products here..." type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
-            <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+            <span class="ml-3" *ngIf="service.loading$ | async"><mat-spinner [diameter]="30"></mat-spinner></span>
         </div>
 
         <div>
@@ -30,8 +30,9 @@
               <td><ngb-highlight class="my-auto" [result]="sale.revenue | number" [term]="service.searchTerm"></ngb-highlight></td>
               <td style="width:250px;">
                   <div class="btn-action">
-                  <button class="btn btn-primary">View Order</button>
+                  <button class="btn btn-primary">View Details</button>
                   <button class="btn btn-warning">Delete</button>
+
                   </div>
 
               </td>

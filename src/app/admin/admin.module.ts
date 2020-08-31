@@ -46,6 +46,7 @@ import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.
 import { CustomerService } from '../services/customer.service';
 import { SalesService } from '../services/product-sales.service';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
   @NgModule({
@@ -91,7 +92,8 @@ import { SalesService } from '../services/product-sales.service';
     MatGridListModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     AdminComponent,

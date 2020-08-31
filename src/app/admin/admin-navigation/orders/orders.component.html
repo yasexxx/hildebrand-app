@@ -3,7 +3,7 @@
     <form class="table-resize table-responsive">
         <div class="form-group form-inline">
             Search Order: <input class="form-control ml-2" placeholder="Search products here..." type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
-            <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+            <span class="ml-3" *ngIf="service.loading$ | async"><mat-spinner [diameter]="30"></mat-spinner></span>
         </div>
 
         <div>

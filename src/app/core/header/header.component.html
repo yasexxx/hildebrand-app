@@ -11,7 +11,7 @@
                 </li>
             </ul>
         </div>
-        <div *ngIf="!isNotLogin" class="col offset-4 header-a-user">
+        <div *ngIf="isNotLogin" class="col offset-4 header-a-user">
             <ul class="row top-nav">
                 <li>
                     <a routerLink="/register"><i class="fa fa-user-plus mr-2"></i>Register</a>
@@ -21,7 +21,7 @@
                 </li>
             </ul>
          </div> 
-         <div *ngIf="isNotLogin" class="col offset-4 header-a-user2">
+         <div *ngIf="!(isNotLogin)" class="col offset-4 header-a-user2">
             <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block"> 
                 <a class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false" role="button">Hi&nbsp;&nbsp;<i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{{userName |titlecase}}</a>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="drop-profile">

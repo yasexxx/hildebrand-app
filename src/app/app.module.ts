@@ -2,7 +2,6 @@ import { AdminModule } from './admin/admin.module';
 import { UsersModule } from './users/users.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,24 +20,18 @@ import { FooterComponent } from './core/footer/footer.component';
 import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.component';
 import { UserLinksComponent } from './core/user-links/user-links.component';
 import { HeaderComponent } from './core/header/header.component';
-import { CategoryInHomeComponent } from './core/category-in-home/category-in-home.component';
 import { SearchBarComponent } from './shared/search-bar/search-bar.component';
 import { LogoComponent } from './shared/logo/logo.component';
 import { SupermarketComponent } from './navigation/supermarket/supermarket.component';
 import { RestaurantComponent } from './navigation/restaurant/restaurant.component';
 
-import { CustomBreakPointsProvider } from './directives/layout/custom-breakpoints';
-import { CustomClassDirective } from './directives/layout/custom-flex-directives';
-import { CustomShowHideDirective } from './directives/layout/custom-showhide-directives';
-import { CustomStyleDirective } from './directives/layout/custom-style-directives';
-import { CustomLayoutDirective } from './directives/layout/custom-layout-directives';
 import { DropOpenDirective } from './directives/custom-dropdown';
 import { LoadedDirective } from './directives/image/img.directives';
 
 import { ProductLocalService } from './services/product-local.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterComponent } from './router/router.component';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 
 @NgModule({
@@ -49,17 +42,12 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     ProductComponent,
     LoginComponent,
     SignupComponent,
-    CustomShowHideDirective,
-    CustomClassDirective,
-    CustomStyleDirective,
-    CustomLayoutDirective,
     DropOpenDirective,
     LoadedDirective,
     FooterComponent,
     ShoppingCartComponent,
     UserLinksComponent,
     HeaderComponent,
-    CategoryInHomeComponent,
     SearchBarComponent,
     LogoComponent,
     SupermarketComponent,
@@ -73,7 +61,6 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    FlexLayoutModule,
     MatButtonModule,
     MatIconModule,
     NgbModule,
@@ -83,7 +70,7 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     HttpClientModule,
     MatBadgeModule
   ],
-  providers: [CustomBreakPointsProvider, ProductLocalService],
+  providers: [ProductLocalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

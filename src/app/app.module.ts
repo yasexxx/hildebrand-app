@@ -1,3 +1,5 @@
+import { ProductComponent } from './product/product.component';
+import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { UsersModule } from './users/users.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,15 +15,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './core/home/home.component';
-import { ProductComponent } from './navigation/product/product.component';
 import { LoginComponent } from './navigation/login/login.component';
 import { SignupComponent } from './navigation/signup/signup.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.component';
 import { UserLinksComponent } from './core/user-links/user-links.component';
 import { HeaderComponent } from './core/header/header.component';
-import { SearchBarComponent } from './shared/search-bar/search-bar.component';
-import { LogoComponent } from './shared/logo/logo.component';
 import { SupermarketComponent } from './navigation/supermarket/supermarket.component';
 import { RestaurantComponent } from './navigation/restaurant/restaurant.component';
 
@@ -39,7 +38,6 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ProductComponent,
     LoginComponent,
     SignupComponent,
     DropOpenDirective,
@@ -48,18 +46,17 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     ShoppingCartComponent,
     UserLinksComponent,
     HeaderComponent,
-    SearchBarComponent,
-    LogoComponent,
     SupermarketComponent,
     RestaurantComponent,
     RouterComponent,
-    WishlistComponent
+    WishlistComponent,
+    ProductComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,  
     FontAwesomeModule,
     MatButtonModule,
     MatIconModule,
@@ -70,7 +67,13 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     HttpClientModule,
     MatBadgeModule
   ],
-  providers: [ProductLocalService],
+  providers: [
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+    ProductLocalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function getBaseUrl(){
+  return environment.API_URL;
+}

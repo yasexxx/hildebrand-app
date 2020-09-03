@@ -5,7 +5,8 @@
 .wrapper-products {
     display: grid;
     grid-template-columns: 1fr;
-    margin-top: .5rem;;
+    padding: .5rem 0;
+    background: #c7c3c3;
 }
 
 .product-contents {
@@ -18,7 +19,7 @@
     grid-template-columns: 1fr repeat(4, 0.5fr);
     height: 0.5rem;
     gap: 1.5rem;
-    margin: 1rem 4rem;
+    padding: 0 4rem;
 }
 
 .opt-text {

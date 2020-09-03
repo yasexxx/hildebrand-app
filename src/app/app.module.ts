@@ -33,6 +33,10 @@ import { RouterComponent } from './router/router.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 
+import {MatSelectModule} from '@angular/material/select';
+
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +69,9 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
     UsersModule,
     AdminModule,
     HttpClientModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSelectModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

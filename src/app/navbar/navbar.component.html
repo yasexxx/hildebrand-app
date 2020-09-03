@@ -47,11 +47,10 @@
                                         </li>
                                         <li class="nav-item dropdown">
                                             <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block">
-                                              <a href="#" class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Department Store</a>
-                                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [ngClass]="{'drop-profile':!collapsed}">
-                                                <button ngbDropdownItem>Action - 1</button>
-                                                <button ngbDropdownItem>Another Action</button>
-                                                <button ngbDropdownItem>Something else is here</button>
+                                              <a role="button" class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Products</a>
+                                              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [ngClass]="{'drop-profile':!collapsed , 'in-profile':collapsed}">
+                                                <a routerLink="/product"><button ngbDropdownItem>Single Product</button></a>
+                                                <a routerLink="/product"><button ngbDropdownItem>Product List</button></a>
                                               </div>
                                             </div>
                                         </li>

@@ -1,4 +1,7 @@
 <div class="container-product">
+    <div class="product-header">
+        <h1>Single Product</h1>
+      </div>
     <div class="wrapper-product">
         <div class="img-1">
             <img class="img-inside" src="https://picsum.photos/400" alt="camaties">
@@ -13,18 +16,25 @@
             <div>
                 $120.00
             </div>
-            <div class="description-1">
+            <div class="p-1-0">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium hic magnam quos accusantium possimus repellendus cumque quasi mollitia minima expedita.
             </div>
             
             <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Small</button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button ngbDropdownItem>Large</button>
-                  <button ngbDropdownItem>Another Action</button>
-                  <button ngbDropdownItem>Something else is here</button>
+                <button class="btn btn-outline-success btn-select" id="dropdownBasic1" ngbDropdownToggle>{{buttonName}}</button>
+                <div class="btn-select" *ngIf="productSize" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button *ngFor="let size of productSize" (click)="changeBtnName(size)" ngbDropdownItem>{{size}}</button>
                 </div>
             </div>
+
+            <div class="spinner-1">
+                <ngx-number-spinner class="input-spin" [value]="0" [min]="0"></ngx-number-spinner>
+
+            </div>
+
+            <p class="p-1-0">600 kg available</p>
+
+            <button class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
         </div>
     </div>
 </div>

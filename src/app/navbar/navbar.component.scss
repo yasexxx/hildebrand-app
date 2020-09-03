@@ -49,10 +49,15 @@
   color: black;
 }
 
-.drop-profile >button {
+.drop-profile > a {
   font-size: 0.8rem;;
 }
-.drop-profile >button:hover {
+.drop-profile > a > button:hover {
+  color:white;
+  background: #002447;
+}
+
+.in-profile > a > button:hover {
   color:white;
   background: #002447;
 }

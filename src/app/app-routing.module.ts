@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'restaurant',component: RestaurantComponent },
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'wishlist', component: WishlistComponent },
-      { path: 'product', component: ProductComponent },
+      { path: 'product/:id', component: ProductComponent },
 
       
       { path: '' , redirectTo: 'home', pathMatch: 'full', }

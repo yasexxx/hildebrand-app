@@ -23,8 +23,12 @@ export class CreateProductComponent implements OnInit {
     this.formatForCreate = [
       { title: "name", type:"text", id: "nameOf", order:1},
       { title: "price", type:"number", id: "priceOf", order:2},
-      { title: "type",type:"text",  id: "typeOf", order:3},
-      { title: "card",type:"text",  id: "hello", order:4},
+      { title: "available product",type:"text",  id: "available", order:3},
+      { title: "description",type:"text",  id: "description", order:4},
+      { title: "category", type:"text", id: "category", order:5},
+      { title: "publish", type:"text", id: "publish", order:6},
+      
+
     ];
   }
 
@@ -34,8 +38,8 @@ export class CreateProductComponent implements OnInit {
 
 
   sortCreateTitle(title: any[]) {
-    const arrange = title.sort( (a, b) => a.order - b.order ? 1: -1);
-    return arrange;
+    const ascendOrder = title.sort( (a, b) => a.order - b.order ? 1: -1);
+    return ascendOrder;
   }
 
 

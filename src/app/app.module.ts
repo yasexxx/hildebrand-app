@@ -36,6 +36,9 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
 import {MatSelectModule} from '@angular/material/select';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { AuthGuard } from './shared/auth.guard';
+import { NavService } from './shared/nav.service';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,11 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
-    ProductLocalService],
+    ProductLocalService,
+    AuthGuard,
+    NavService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

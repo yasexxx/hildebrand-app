@@ -9,7 +9,7 @@ export class ProductServiceOperation {
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
-        this.baseUrl = baseUrl;
+        this.baseUrl = baseUrl+'/product';
     }
 
     getAll(): Observable<any> {

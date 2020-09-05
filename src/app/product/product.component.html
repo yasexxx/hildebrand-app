@@ -2,12 +2,12 @@
     <div class="product-header">
         <h1>Single Product</h1>
       </div>
-    <div class="wrapper-product">
+    <div *ngIf="productFormat as prod"  class="wrapper-product">
         <div class="img-1">
             <img class="img-inside" src="https://picsum.photos/400" alt="camaties">
         </div>
         <div class="details">
-            <h1>Product Name</h1>
+            <h1>Banana</h1>
             <div class="rating-1">
                 <ngb-rating max="5"></ngb-rating>
                 <span>100 rating</span>

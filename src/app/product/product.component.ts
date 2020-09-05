@@ -1,3 +1,4 @@
+import { ProductServiceOperation } from './../_services/product.services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
@@ -19,25 +20,30 @@ export class ProductComponent implements OnInit, OnDestroy {
     id: NaN,
     name: null,
     description: '',
-    size: 'small',
+    price: 0,
+    size: '',
+    available: 0,
     rate: 0,
   }
+
+  currentProduct = null;
+
+  
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private toastService: NotificationsService,
-              private titleService: Title
+              private titleService: Title,
+              private productService: ProductServiceOperation
                       ) { 
 
   }
 
   ngOnInit(): void { 
   this.productSize = ['Small', 'Medium', 'Large', 'Extra Large'];
-  this.route.queryParams.subscribe( params => {
-    this.name = params['name'];
-    console.log("OY: ",this.name);
-  })
-   }
+  const total = this.route.snapshot.paramMap.get('id');
+  console.log(total);
+  };
 
   changeBtnName(name:string){
     if(!name){

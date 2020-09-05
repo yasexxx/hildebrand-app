@@ -1,3 +1,4 @@
+import { ProductServiceOperation } from './_services/product.services';
 import { ProductComponent } from './product/product.component';
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
@@ -81,7 +82,8 @@ import { UserService } from './shared/user.service';
     ProductLocalService,
     AuthGuard,
     NavService,
-    UserService
+    UserService,
+    ProductServiceOperation
   ],
   bootstrap: [AppComponent]
 })

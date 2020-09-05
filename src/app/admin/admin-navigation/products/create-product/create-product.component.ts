@@ -14,26 +14,31 @@ export class CreateProductComponent implements OnInit {
 
   formatForCreate : {}[] ;
 
-  uploadTitle;
+  product = {
+    name: '',
+    description: '',
+    category: '',
+    price: '',
+    availableProduct:'',
+    imageUrl: '',
+    published: false,
+
+  }
+
+  published = 'unPublish';
+
+  chooseFile = 'Choose file'
+
 
 
   constructor(private productsService: ProductLocalService) {
-
+    console.log(this.product);
+    
     this.isCreate = true;
-    this.formatForCreate = [
-      { title: "name", type:"text", id: "nameOf", order:1},
-      { title: "price", type:"number", id: "priceOf", order:2},
-      { title: "available product",type:"text",  id: "available", order:3},
-      { title: "description",type:"text",  id: "description", order:4},
-      { title: "category", type:"text", id: "category", order:5},
-      { title: "publish", type:"text", id: "publish", order:6},
-      
-
-    ];
   }
 
   ngOnInit(): void {
-
+    
   }
 
 
@@ -42,12 +47,35 @@ export class CreateProductComponent implements OnInit {
     return ascendOrder;
   }
 
+  publishCheck(publish:boolean) : void {
+    if (!publish === true){
+      this.product.published = true;
+      this.published =  'Publish';
+    } else {
+      this.product.published = false;
+      this.published = 'unPublish';
+    }
+  }
 
+  onFileChanged(event) {
+    const file = event.target.files[0];
+    const img = /image/gi;
+    if (file?.name !== undefined && (file.type).search(img) !== -1){
+      this.product.imageUrl = file;
+      this.chooseFile = file.name;
+    } else {
+      this.product.imageUrl = '';
+      this.chooseFile = 'Choose file';
+    }
 
+    
+  }
 
-
-
-
+  checkBtn(){
+    console.log(this.product);
+    
+  }
 
 
 }
+

@@ -45,4 +45,8 @@ export class ProductServiceOperation {
       findByTitle(title):Observable<any> {
         return this.http.get(`${this.baseUrl}?title=${title}`);
       }
+
+      uploadImage(data): Observable<any> {
+        return this.http.post(`${this.baseUrl}/?upload`,data);
+      }
 }

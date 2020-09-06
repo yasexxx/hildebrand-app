@@ -1,4 +1,4 @@
-import { ProductLocalService } from './../../../../services/product-local.service';
+import { ProductServiceOperation } from './../../../../_services/product.services';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,25 +15,22 @@ export class CreateProductComponent implements OnInit {
   formatForCreate : {}[] ;
 
   product = {
-    name: '',
+    productName: '',
     description: '',
     category: '',
-    price: '',
-    availableProduct:'',
+    price: 0,
+    availableProduct:0,
     imageUrl: '',
-    published: false,
+    isPublished: false,
 
   }
 
   published = 'unPublish';
+  chooseFile = 'Choose file';
 
-  chooseFile = 'Choose file'
+  isSubmitted = false;
 
-
-
-  constructor(private productsService: ProductLocalService) {
-    console.log(this.product);
-    
+  constructor(private productsService: ProductServiceOperation) {   
     this.isCreate = true;
   }
 
@@ -41,18 +38,36 @@ export class CreateProductComponent implements OnInit {
     
   }
 
+  createProduct(): void {
+    if (this.product.productName !== '') {
+      this.productsService.create(this.product)
+      .subscribe( response => {
+        console.log(response);
+        this.isSubmitted = true;
+      },
+      err => {
+        console.log(err);
+      });
 
-  sortCreateTitle(title: any[]) {
-    const ascendOrder = title.sort( (a, b) => a.order - b.order ? 1: -1);
-    return ascendOrder;
+      setTimeout( ()=> {
+        this.isSubmitted = false;
+      }, 4000 );
+    }
+
+    console.log("product: ",this.product);
+    
   }
+
+
+
+
 
   publishCheck(publish:boolean) : void {
     if (!publish === true){
-      this.product.published = true;
+      this.product.isPublished = true;
       this.published =  'Publish';
     } else {
-      this.product.published = false;
+      this.product.isPublished = false;
       this.published = 'unPublish';
     }
   }
@@ -64,7 +79,7 @@ export class CreateProductComponent implements OnInit {
       this.product.imageUrl = file;
       this.chooseFile = file.name;
     } else {
-      this.product.imageUrl = '';
+      this.product.imageUrl = 'asd';
       this.chooseFile = 'Choose file';
     }
 

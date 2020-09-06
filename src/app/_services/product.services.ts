@@ -1,15 +1,20 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class ProductServiceOperation {
     baseUrl: string;
 
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
-        this.baseUrl = baseUrl+'/product';
+        this.baseUrl = baseUrl+'/api/product';
     }
 
     getAll(): Observable<any> {

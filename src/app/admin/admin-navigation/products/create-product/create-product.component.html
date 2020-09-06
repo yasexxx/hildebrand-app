@@ -13,7 +13,7 @@
       <form>
         <div [ngClass]="{'create-a-form': isCreate}">
           <label class="'my-auto font-weight-bold" for="name">Name:</label>
-          <input type="text" class="form-control" id="name" required [(ngModel)]="product.name" name="name">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="product.productName" name="name">
           <label class="'my-auto font-weight-bold" for="description">Description:</label>
           <textarea class="form-control" name="description" [(ngModel)]="product.description" required rows="5" style="resize:none;"></textarea>
           <label class="'my-auto font-weight-bold" for="price">Price:</label>
@@ -23,18 +23,22 @@
           <label class="'my-auto font-weight-bold" for="availableProduct">Available Product:</label>
           <input type="number" class="form-control" id="availableProduct" required [(ngModel)]="product.availableProduct" name="availableProduct">
           <label class="'my-auto font-weight-bold" for="publish">Status:</label>
-          <input type="button" class="btn btn-primary" id="publish" [value]="published" (click)="publishCheck(product.published)">
+          <input type="button" class="btn btn-primary" id="publish" [value]="published" (click)="publishCheck(product.isPublished)">
       </div>
       
 
       <div class="btn-1">
-      <button type="submit" class="btn btn-success" (click)="checkBtn()">Create</button>
+      <button type="submit" class="btn btn-success" (click)="createProduct()">Create</button>
       <a routerLink="../products">
         <button type="submit" class="btn btn-dark">Cancel</button>
       </a>
       </div>
 
       </form>
+
+      <div *ngIf="isSubmitted">
+        <h3>The product was successfully submitted!</h3>
+      </div>
 
 
 

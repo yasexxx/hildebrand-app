@@ -20,7 +20,7 @@ export class CreateProductComponent implements OnInit {
     category: '',
     price: 0,
     availableProduct:0,
-    imageUrl: '',
+    imageUrl: null,
     isPublished: false,
 
   }
@@ -76,10 +76,16 @@ export class CreateProductComponent implements OnInit {
     const file = event.target.files[0];
     const img = /image/gi;
     if (file?.name !== undefined && (file.type).search(img) !== -1){
-      this.product.imageUrl = file;
+      const uploadData = new FormData();
+      console.log(file);
+      
+      uploadData.append('myFile', file, file.name);
+      console.log(uploadData);
+      
+      this.product.imageUrl = uploadData;
       this.chooseFile = file.name;
     } else {
-      this.product.imageUrl = 'asd';
+      this.product.imageUrl = null;
       this.chooseFile = 'Choose file';
     }
 

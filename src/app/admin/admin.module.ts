@@ -1,12 +1,10 @@
-import { NgbdSortableHeader3, NgbdSortableHeader4 } from './../directives/sortable.directives';
+
 import { OrderService } from './../services/order.service';
 import { OnlineOrderService } from './../services/online-order.service';
 import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
-
 import { AdminRoutingModule } from './admin-routing.module';
-
 import { AdminComponent } from './../admin/admin.component';
 import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -42,12 +40,13 @@ import { SupermarketProductsComponent } from './../navigation/supermarket/superm
 import { CreateProductComponent } from './admin-navigation/products/create-product/create-product.component';
 import { UpdateProductComponent } from './admin-navigation/products/update-product/update-product.component';
 import { ProductService } from '../services/product.service';
-import { NgbdSortableHeader, NgbdSortableHeader2 } from '../directives/sortable.directives';
+import { NgbdSortableHeader, NgbdSortableHeader2, NgbdSortableHeader3, NgbdSortableHeader4 } from '../directives/sortable.directives';
 import { CustomerService } from '../services/customer.service';
 import { SalesService } from '../services/product-sales.service';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+import { HttpClientModule } from '@angular/common/http';
 
   @NgModule({
   declarations: [
@@ -93,7 +92,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule
   ],
   exports: [
     AdminComponent,
@@ -117,7 +117,16 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgbdSortableHeader3,
     NgbdSortableHeader4
   ],
-  providers: [ SalesService,CustomerService ,DecimalPipe ,ProductService ,ProductLocalService,OnlineOrderService,OrderService,StoreSummaryService]
+  providers: [ 
+    SalesService,
+    CustomerService ,
+    DecimalPipe ,
+    ProductService ,
+    ProductLocalService,
+    OnlineOrderService,
+    OrderService,
+    StoreSummaryService
+  ]
 
 })
 export class AdminModule { }

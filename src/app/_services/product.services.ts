@@ -9,44 +9,42 @@ import { Observable } from 'rxjs';
   }
 )
 export class ProductServiceOperation {
-    baseUrl: string;
+    private baseUrl: string;
+    private uploadUrl: string;
 
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
         this.baseUrl = baseUrl+'/api/product';
+        this.uploadUrl = baseUrl+'/api/upload';
     }
 
     getAll(): Observable<any> {
         return this.http.get(this.baseUrl);
       }
     
-      get(id): Observable<any> {
+    get(id): Observable<any> {
         return this.http.get(`${this.baseUrl}/${id}`);
       } 
     
-      create(data): Observable<any> {
-        return this.http.post(this.baseUrl, data);
-      }
-    
-      update(id, data): Observable<any> {
+    update(id, data): Observable<any> {
         return this.http.put(`${this.baseUrl}/${id}`,data);
     
       }
     
-      delete(id): Observable<any> {
+    delete(id): Observable<any> {
         return this.http.delete(this.baseUrl);
       }
     
-      deleteAll(): Observable<any> {
+    deleteAll(): Observable<any> {
         return this.http.delete(this.baseUrl);
       }
     
-      findByTitle(title):Observable<any> {
+    findByTitle(title):Observable<any> {
         return this.http.get(`${this.baseUrl}?title=${title}`);
       }
 
-      uploadImage(data): Observable<any> {
-        return this.http.post(`${this.baseUrl}/?upload`,data);
+    create(data): Observable<any> {
+        return this.http.post<any>(this.uploadUrl+'/file', data);
       }
 }

@@ -1,41 +1,42 @@
 <div [ngClass]="{'container-a-create': isCreate}">
 
     <h2>Create Product:</h2>
-    <div  class="create-a-form">
-      <h3>Upload Image:</h3>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="input-files" (change)="onFileChanged($event)">
-        <label class="custom-file-label" for="input-files">{{chooseFile}}</label>
-      </div>
+    
+
+    <div [ngClass]="{'create-a-form': isCreate}">
+      <label class="'my-auto font-weight-bold" for="name">Name:</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="product.productName" name="name">
+
+      <label class="'my-auto font-weight-bold" for="description">Description:</label>
+      <textarea class="form-control" name="description" [(ngModel)]="product.description" required rows="5" style="resize:none;"></textarea>
+      
+      <label class="'my-auto font-weight-bold" for="price">Price:</label>
+      <input type="number" class="form-control" id="price" required [(ngModel)]="product.price" name="price">
+      
+      <label class="'my-auto font-weight-bold" for="category">Category:</label>
+      <input type="text" class="form-control" id="category" required [(ngModel)]="product.category" name="category">
+      
+      <label class="'my-auto font-weight-bold" for="availableProduct">Available Product:</label>
+      <input type="number" class="form-control" id="availableProduct" required [(ngModel)]="product.availableProduct" name="availableProduct">
+      
+      <label class="'my-auto font-weight-bold" for="publish">Status:</label>
+      <input type="button" class="btn btn-primary" id="publish" [value]="published" (click)="publishCheck(product.isPublished)">
     </div>
 
-
-      <form>
-        <div [ngClass]="{'create-a-form': isCreate}">
-          <label class="'my-auto font-weight-bold" for="name">Name:</label>
-          <input type="text" class="form-control" id="name" required [(ngModel)]="product.productName" name="name">
-          <label class="'my-auto font-weight-bold" for="description">Description:</label>
-          <textarea class="form-control" name="description" [(ngModel)]="product.description" required rows="5" style="resize:none;"></textarea>
-          <label class="'my-auto font-weight-bold" for="price">Price:</label>
-          <input type="number" class="form-control" id="price" required [(ngModel)]="product.price" name="price">
-          <label class="'my-auto font-weight-bold" for="category">Category:</label>
-          <input type="text" class="form-control" id="category" required [(ngModel)]="product.category" name="category">
-          <label class="'my-auto font-weight-bold" for="availableProduct">Available Product:</label>
-          <input type="number" class="form-control" id="availableProduct" required [(ngModel)]="product.availableProduct" name="availableProduct">
-          <label class="'my-auto font-weight-bold" for="publish">Status:</label>
-          <input type="button" class="btn btn-primary" id="publish" [value]="published" (click)="publishCheck(product.isPublished)">
-      </div>
-      
-
+      <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+        <div  class="create-a-form">
+          <h4>Upload Image:</h4>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="input-files" name="upload" (change)="onFileChanged($event)">
+            <label class="custom-file-label" for="input-files">{{chooseFile}}</label>
+          </div>
+        </div>
       <div class="btn-1">
-      <button type="submit" class="btn btn-success" (click)="createProduct()">Create</button>
-      <a routerLink="../products">
-        <button type="submit" class="btn btn-dark">Cancel</button>
-      </a>
+        <button type="submit" class="btn btn-success">Create</button>
+        <a routerLink="../products" type="button" class="btn btn-dark" role="button">Cancel</a>
       </div>
-
       </form>
-
+      
       <div *ngIf="isSubmitted">
         <h3>The product was successfully submitted!</h3>
       </div>

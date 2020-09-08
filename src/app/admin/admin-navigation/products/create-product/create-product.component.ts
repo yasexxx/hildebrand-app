@@ -70,14 +70,13 @@ export class CreateProductComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('upload').value);
-    formData.append('name', this.product.productName);
-    formData.append('description', this.product.productName);
+    formData.append('productName', this.product.productName);
+    formData.append('description', this.product.description);
     formData.append('category', this.product.category);
     formData.append('price', this.product.price.toString());
     formData.append('availableProduct', this.product.availableProduct.toString());
     formData.append('isPublished', this.product.price.toString());
 
-    
     if(formData){
       this.productsService.create(formData).subscribe(
         (res) => {console.log(res);
@@ -89,18 +88,6 @@ export class CreateProductComponent implements OnInit {
         (err) => console.log(err)
       );
       }
-    
-    if (this.product.productName !== '') {
-        this.productsService.create(this.product)
-        .subscribe( response => {
-          console.log(response);
-          this.isSubmitted = true;
-        },
-        err => {
-          console.log(err);
-        });
-      }
-    
 
     console.log("product: ",this.product);
     

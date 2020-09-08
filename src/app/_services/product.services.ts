@@ -15,8 +15,7 @@ export class ProductServiceOperation {
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
-        this.baseUrl = baseUrl+'/api/product';
-        this.uploadUrl = baseUrl+'/api/upload';
+        this.baseUrl = baseUrl+'/api/products';
     }
 
     getAll(): Observable<any> {
@@ -41,10 +40,10 @@ export class ProductServiceOperation {
       }
     
     findByTitle(title):Observable<any> {
-        return this.http.get(`${this.baseUrl}?title=${title}`);
+        return this.http.get(`${this.baseUrl}?product=${title}`);
       }
 
     create(data): Observable<any> {
-        return this.http.post<any>(this.uploadUrl+'/file', data);
+        return this.http.post<any>(this.baseUrl+'/upload', data);
       }
 }

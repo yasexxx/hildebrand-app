@@ -10,12 +10,11 @@ import { Observable } from 'rxjs';
 )
 export class ProductServiceOperation {
     private baseUrl: string;
-    private uploadUrl: string;
 
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
-        this.baseUrl = baseUrl+'/api/products';
+        this.baseUrl = baseUrl+'/api/products/authen/access-token/private/&leaked=primary';
     }
 
     getAll(): Observable<any> {
@@ -32,18 +31,18 @@ export class ProductServiceOperation {
       }
     
     delete(id): Observable<any> {
-        return this.http.delete(this.baseUrl);
+        return this.http.delete(this.baseUrl+id);
       }
     
     deleteAll(): Observable<any> {
         return this.http.delete(this.baseUrl);
       }
     
-    findByTitle(title):Observable<any> {
-        return this.http.get(`${this.baseUrl}?product=${title}`);
+    findByTitle(name):Observable<any> {
+        return this.http.get(`${this.baseUrl}?productName=${name}`);
       }
 
     create(data): Observable<any> {
-        return this.http.post<any>(this.baseUrl+'/upload', data);
+        return this.http.post<any>(this.baseUrl+'=&create', data);
       }
 }

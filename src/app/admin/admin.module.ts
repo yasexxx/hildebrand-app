@@ -39,7 +39,7 @@ import { RestaurantProductsComponent } from './../navigation/restaurant/restaura
 import { SupermarketProductsComponent } from './../navigation/supermarket/supermarket-products/supermarket-products.component';
 import { CreateProductComponent } from './admin-navigation/products/create-product/create-product.component';
 import { UpdateProductComponent } from './admin-navigation/products/update-product/update-product.component';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../_services/update-product.service';
 import { NgbdSortableHeader, NgbdSortableHeader2, NgbdSortableHeader3, NgbdSortableHeader4 } from '../directives/sortable.directives';
 import { CustomerService } from '../services/customer.service';
 import { SalesService } from '../services/product-sales.service';
@@ -47,6 +47,8 @@ import { SalesService } from '../services/product-sales.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ProductViewComponent } from './admin-navigation/product-view/product-view.component';
+import { ProductEditComponent } from './admin-navigation/product-edit/product-edit.component';
 
   @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { HttpClientModule } from '@angular/common/http';
     NgbdSortableHeader,
     NgbdSortableHeader2,
     NgbdSortableHeader3,
-    NgbdSortableHeader4
+    NgbdSortableHeader4,
+    ProductViewComponent,
+    ProductEditComponent
   ],
   imports: [
     CommonModule,

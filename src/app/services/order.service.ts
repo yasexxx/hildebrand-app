@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform } from '@angular/core';
-import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, of, BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { Order, ListOfOrders } from './order';
 import { SortDirection, SortColumnForOrder } from '../directives/sortable.directives';
 import { DecimalPipe } from '@angular/common';
@@ -55,7 +55,9 @@ function matches (order: ListOfOrders, term: string, pipe: PipeTransform ){
 @Injectable({
   providedIn: 'any'
 })
-export class OrderService {
+export class OrderService{
+
+  private _subscription$ : Subscription;
 
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
@@ -71,7 +73,7 @@ export class OrderService {
   };
 
   constructor(private pipe: DecimalPipe) {
-    this._search$.pipe(
+    this._subscription$ = this._search$.pipe(
       tap(()=> this._loading$.next(true)),
       debounceTime(200),
       switchMap(()=> this._search()),

@@ -1,10 +1,11 @@
 import { CustomerList } from './../services/customer';
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
-import { ProductDetail } from './../services/product-local';
 import { ListOfOrders } from '../services/order';
 import { MonthlySales } from '../services/monthly-sales';
+import { ProductInfo } from '../_services/update-product.service';
 
-export type SortColumn = keyof ProductDetail | '';
+
+export type SortColumn = keyof ProductInfo | '' | number;
 
 export type SortDirection = 'asc' | 'desc' | '';
 
@@ -51,8 +52,8 @@ export interface SortEventForSales {
 @Directive({
     selector: 'th[sortable]',
     host: {
-        '[class.asc]': 'direction === "asc"',
-        '[class.desc]': 'direction === "desc"',
+        '[class.asc]': "direction === 'asc'",
+        '[class.desc]': "direction === 'desc'",
         '(click)': 'rotate()'
     }
 })

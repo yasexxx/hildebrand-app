@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './core/home/home.component'
 import { RouterComponent } from "./router/router.component";
 import { WishlistComponent } from './core/wishlist/wishlist.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: RouterComponent,
@@ -28,7 +29,7 @@ const routes: Routes = [
               ]
   },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
-	{ path: '**', redirectTo: '/' }
+	{ path: '**', component: PageNotFoundComponent }
 	];
 
 

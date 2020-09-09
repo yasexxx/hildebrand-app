@@ -8,6 +8,9 @@ import { ProductsComponent } from './admin-navigation/products/products.componen
 import { OrdersComponent } from './admin-navigation/orders/orders.component';
 import { CustomersComponent } from './admin-navigation/customers/customers.component';
 import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
+import { ProductEditComponent } from './admin-navigation/product-edit/product-edit.component';
+import { ProductViewComponent } from './admin-navigation/product-view/product-view.component';
+
 
 
 const routes: Routes = [
@@ -18,9 +21,11 @@ const routes: Routes = [
       { path:'products',component: ProductsComponent},
       { path:'create',component:CreateProductComponent },
       { path:'edit', component:UpdateProductComponent},
+      { path: 'edit/:id', component: ProductEditComponent},
+      { path: 'edit/view/:id', component: ProductViewComponent},
       { path: 'orders', component: OrdersComponent },
       { path: 'customers', component:CustomersComponent},
-      { path: '' ,redirectTo:'dashboard' , pathMatch:'full' }
+      { path: '' , redirectTo:'dashboard' , pathMatch:'full' }
     ]}
 ];
 

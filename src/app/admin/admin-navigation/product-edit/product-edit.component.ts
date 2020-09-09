@@ -1,7 +1,8 @@
-import { ProductServiceOperation } from './../../../../_services/product.services';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { ProductServiceOperation } from '../../../_services/product.services';
+
 
 
 @Component({
@@ -21,7 +22,7 @@ import { Subscription } from 'rxjs';
   </div>`
 })
 
-export class ModalContent {
+export class ModalContentEdit {
   @Input() name;
   titleClass = 'color: green; font-size: 1rem;'
 
@@ -31,11 +32,11 @@ export class ModalContent {
 
 
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.scss'],
+  selector: 'app-product-edit',
+  templateUrl: './product-edit.component.html',
+  styleUrls: ['./product-edit.component.scss']
 })
-export class CreateProductComponent implements OnInit, OnDestroy {
+export class ProductEditComponent implements OnInit {
 
   _subscription$: Subscription;
   isCreate:boolean;
@@ -57,17 +58,17 @@ export class CreateProductComponent implements OnInit, OnDestroy {
 
   }
 
+
   constructor(private productsService: ProductServiceOperation,
-              private modalService: NgbModal) 
-  { 
-    this.isCreate = true;
-  }
+              private modalService: NgbModal) {
+                this.isCreate = true;
+               }
 
   ngOnInit(): void {
   }
 
   openModal() :void {
-    const modalRef = this.modalService.open(ModalContent, { centered: true});
+    const modalRef = this.modalService.open(ModalContentEdit, { centered: true});
     modalRef.componentInstance.name = this.messageModal;
   }
 
@@ -133,3 +134,6 @@ export class CreateProductComponent implements OnInit, OnDestroy {
 
 
 }
+
+
+

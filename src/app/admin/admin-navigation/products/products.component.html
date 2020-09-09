@@ -1,10 +1,41 @@
 
+
+
+<div class="wrapper-products">
+  Hello world;
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <div [class.wrapper-products]="productContents">
     <ngb-tabset type="pills">
         <ngb-tab *ngFor="let disp of productContents" [title]="disp.title">
           <ng-template ngbTabContent>
               <div [class.product-contents]="disp">
-                <!--HomePage-->
+
+                HomePage
                 <div *ngIf="disp.title==='Homepage Product'">
                   <div *ngFor="let content of disp.content">
                     <h1>Featured Products</h1>
@@ -17,7 +48,7 @@
                   <app-top-product [top_product]="content.productsTop"></app-top-product>
                   </div>
                 </div>
-                <!--Featured Product-->
+                Featured Product
                 <div class="restaurant-style" *ngIf="disp.title==='Restaurant Product'">
                   <div *ngFor="let content of disp.content">
                    <app-restaurant-products [productRestaurant1]="content.products1"
@@ -26,7 +57,7 @@
                    [page]="1" [active]="1"></app-restaurant-products>
                   </div>
                 </div>
-                <!--Featured Product-->
+                Top product
                 <div class="supermarket-style" *ngIf="disp?.title==='Supermarket Product'">
                   <div *ngFor="let content of disp.content">
                     <app-supermarket-products [page]="1" [active]="1"
@@ -54,4 +85,4 @@
     <br/>
 </div>
 
-
+ -->

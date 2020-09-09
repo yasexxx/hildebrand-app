@@ -1,0 +1,23 @@
+
+
+.container-of-404 {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: blueviolet;
+    padding: 12rem 0;
+    
+
+}
+
+.container-of-404 > h1  {
+    font-size: 5rem;
+    color: red;
+    margin: 2rem auto;
+}
+
+.container-of-404 > h2  {
+    font-size: 3rem;
+    color: white;
+    margin: 2rem auto;
+}
+

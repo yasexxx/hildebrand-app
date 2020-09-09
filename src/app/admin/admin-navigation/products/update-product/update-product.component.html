@@ -9,22 +9,28 @@
         <table class="table table-bordered">
           <thead class="table-dark">
           <tr>
-            <th scope="col" sortable="id" (sort)="onSort($event)">#</th>
-            <th scope="col" sortable="url" (sort)="onSort($event)">Product Image</th>
-            <th scope="col" sortable="name" (sort)="onSort($event)">Product Name</th>
+            <th scope="col" sortable="productId" (sort)="onSort($event)">Product Id</th>
+            <th scope="col">Product Image</th>
+            <th scope="col" sortable="productName" (sort)="onSort($event)">Product Name</th>
             <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+            <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
+            <th scope="col" sortable="availableProduct" (sort)="onSort($event)">Available Product</th>
+            <th scope="col" sortable="isPublished" (sort)="onSort($event)">Published</th>
             <th scope="col">Actions</th>
 
           </tr>
           </thead>
           <tbody class="table-body-1">
           <tr *ngFor="let product of products$ | async">
-            <th scope="row">{{ product.id }}</th>
+            <th scope="row">{{ product.productId }}</th>
             <td>
-              <img [src]="product.url"  class="mr-2 img-table">
+              <img [src]="'data:'+product.imageFile.mimetype+';base64,'+product.imageFile.data.toString('base64')"  class="mr-2 img-table">
             </td>
-            <td><ngb-highlight class="my-auto" [result]="product.name" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight class="my-auto" [result]="product.productName" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight class="my-auto" [result]="product.price | number" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight class="my-auto" [result]="product.category" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight class="my-auto" [result]="product.availableProduct | number" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight class="my-auto" [result]="product.isPublished ? 'Published' : 'Not published'" [term]="service.searchTerm"></ngb-highlight></td>
             <td style="width:250px;">
                 <div class="btn-action">
                 <button class="btn btn-success">Edit</button>

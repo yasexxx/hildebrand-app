@@ -39,6 +39,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AuthGuard } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
 import { UserService } from './shared/user.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UserService } from './shared/user.service';
     RestaurantComponent,
     RouterComponent,
     WishlistComponent,
-    ProductComponent
+    ProductComponent,
+    PageNotFoundComponent
 
   ],
   imports: [

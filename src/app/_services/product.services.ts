@@ -1,6 +1,8 @@
+import { ProductInfo } from './update-product.service';
 import { Injectable, Inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable(
@@ -18,11 +20,16 @@ export class ProductServiceOperation {
     }
 
     getAll(): Observable<any> {
-        return this.http.get(this.baseUrl);
-      }
+        return this.http.get(this.baseUrl).pipe(
+          map( (data,i) => {
+                  delete data[i].createdAt;
+                  delete data[i].updatedAt;
+                  return data;
+                  }));
+    }
     
     get(id): Observable<any> {
-        return this.http.get(`${this.baseUrl}/${id}`);
+        return this.http.get<ProductInfo>(`${this.baseUrl}/${id}`);
       } 
     
     update(id, data): Observable<any> {
@@ -43,6 +50,6 @@ export class ProductServiceOperation {
       }
 
     create(data): Observable<any> {
-        return this.http.post<any>(this.baseUrl+'=&create', data);
+        return this.http.post<any>(this.baseUrl, data);
       }
 }

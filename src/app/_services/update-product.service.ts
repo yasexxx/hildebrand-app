@@ -92,17 +92,11 @@ export class ProductService implements OnDestroy {
     constructor(private pipe: DecimalPipe,
                 private productService: ProductServiceOperation ) {
         this.dataCollector = [];
-        this._subscriber$ = this.productService.getAll().pipe(
-            map( (data,i) => {
-                    delete data[i].createdAt;
-                    delete data[i].updatedAt;
-                    return data;
-                    })
-            ).subscribe( data => { 
+        this._subscriber$ = this.productService.getAll().subscribe( data => { 
                 this.dataCollector = data;
                 this.initializeOpSearch();
                   }, err => {
-                console.log("Something is wrong: "+err);
+                console.log("Error : "+err);
                     });
 
     }

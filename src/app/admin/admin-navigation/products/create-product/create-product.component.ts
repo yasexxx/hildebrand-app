@@ -111,6 +111,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
           this.openModal()
           setTimeout( ()=> {
             if (res) this.closeModal(); this.isSubmitted = true;
+            this.chooseFile = 'Choose file';
           }, 5000 );
         }
         ,

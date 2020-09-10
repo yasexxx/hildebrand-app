@@ -2,8 +2,9 @@
 
     <h2>Edit Product:</h2>
 
-      <form #productForm="ngForm" (ngSubmit)="onSubmit()">
-
+    <button (click)="check(productForm)">asdf</button>
+      <form #productForm="ngForm" (ngSubmit)="updateProduct()">
+                      <button (click)="check(productForm)">asdf</button>
         <div [hidden]="isSubmitted">
           <div [ngClass]="{'create-a-form form-column': isCreate}">
             <label class="'my-auto font-weight-bold" for="name">Name:</label>
@@ -53,12 +54,12 @@
           <div  class="create-a-form">
             <h4>Upload Image:</h4>
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputFiles" name="inputFiles" [(ngModel)]="file" (change)="onFileChanged($event)" required #inputFiles="ngModel">
-              <label class="custom-file-label" for="inputFiles">{{chooseFile}} (required)</label>
+              <input type="file" class="custom-file-input" id="inputFiles" name="inputFiles" (change)="onFileChanged($event)" required [(ngModel)]="fields" #inputFiles="ngModel">
+              <label class="custom-file-label" for="inputFiles">{{chooseFile}}</label>
             </div>
           </div>
         <div class="btn-1">
-          <button type="submit" [disabled]="productForm.invalid" class="btn btn-success">Create</button>
+          <button type="submit" class="btn btn-warning" [disabled]="productForm.untouched">Update</button>
           <a routerLink="../products" type="button" class="btn btn-dark" role="button">Cancel</a>
         </div>
         </div>

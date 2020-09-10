@@ -24,7 +24,7 @@
           <tr *ngFor="let product of products$ | async">
             <th scope="row">{{ product.productId }}</th>
             <td>
-              <img [src]="'data:'+product.imageFile.mimetype+';base64,'+product.imageFile.data.toString('base64')"  class="mr-2 img-table">
+              <img [src]="convertTypeImage(product)"  class="mr-2 img-table">
             </td>
             <td><ngb-highlight class="my-auto" [result]="product.productName" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight class="my-auto" [result]="product.price | number" [term]="service.searchTerm"></ngb-highlight></td>
@@ -32,10 +32,10 @@
             <td><ngb-highlight class="my-auto" [result]="product.availableProduct | number" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight class="my-auto" [result]="product.isPublished ? 'Published' : 'Not published'" [term]="service.searchTerm"></ngb-highlight></td>
             <td style="width:250px;">
-                <div class="btn-action">
-                <button class="btn btn-success">Edit</button>
+                <div class="btn-action" *ngIf="product">
+                <a routerLink="../edit/{{product.id}}" role="button" class="btn btn-success">Edit</a>
                 <button class="btn btn-primary">View</button>
-                <button class="btn btn-warning">Delete</button>
+                <button class="btn btn-warning" >Delete</button>
                 </div>
 
             </td>

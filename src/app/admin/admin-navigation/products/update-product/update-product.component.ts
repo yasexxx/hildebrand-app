@@ -60,17 +60,23 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  getProduct(id): void {
-    this.productOpService.get(id)
-    .subscribe( data => {
+  deleteProduct(id):void {
+    this.productOpService.delete(id)
+    .subscribe( res => {
+      console.log( res);
+    },
+    err => {
+      console.log(err);
       
-    })
+    });
   }
-
-
-  deleteProduct() {
+  convertTypeImage(imageStr) {
+    if(imageStr.imageFile.data.includes('data:image')){
+      return imageStr.imageFile.data;
+    } else {
+      return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
+    }
   }
-
 
 
 }

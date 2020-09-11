@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform, OnDestroy } from '@angular/core';
+import { Injectable, PipeTransform, OnDestroy, OnInit } from '@angular/core';
 
 import { DecimalPipe } from '@angular/common';
 
@@ -69,13 +69,11 @@ function matches (product: ProductInfo, term: string, pipe: PipeTransform){
 
 
 @Injectable({providedIn: 'any'})
-export class ProductService implements OnDestroy {
+export class ProductService implements OnDestroy, OnInit {
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _search$ = new Subject<void>();
     private _products$ = new BehaviorSubject<ProductInfo[]>([]);
     private _total$ = new BehaviorSubject<number>(0);
-
-    private _getProduct$ = new BehaviorSubject<ProductInfo[]>([]);
 
     dataCollector: any[];
     private _subscriber$ : Subscription;
@@ -92,18 +90,26 @@ export class ProductService implements OnDestroy {
     constructor(private pipe: DecimalPipe,
                 private productService: ProductServiceOperation ) {
         this.dataCollector = [];
-        this._subscriber$ = this.productService.getAll().subscribe( data => { 
-                this.dataCollector = data;
-                this.initializeOpSearch();
-                  }, err => {
-                console.log("Error : "+err);
-                    });
-
+        this.ngOnInit();
     }
+
+    ngOnInit(): void {
+        this._subscriber$ = this.productService.getAll().subscribe( data => { 
+            this.dataCollector = data;
+            this.initializeOpSearch();
+              }, err => {
+            console.log("Error : "+err);
+                });
+    }
+
+    
     
     ngOnDestroy(): void {
-        this._subscriber$.unsubscribe();
-        this._subscriber2$.unsubscribe();
+        if (this._subscriber$){
+            this._subscriber$.unsubscribe();
+        } if ( this._subscriber2$){
+            this._subscriber2$.unsubscribe();
+        }   
     }
 
     initializeOpSearch(){
@@ -118,7 +124,6 @@ export class ProductService implements OnDestroy {
                 this._total$.next(result.total);
             } );
         this._search$.next();
-        console.log(this.dataCollector);
         
     }
 

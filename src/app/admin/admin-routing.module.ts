@@ -11,22 +11,25 @@ import { AdminNavigationComponent } from './admin-navigation/admin-navigation.co
 import { ProductEditComponent } from './admin-navigation/product-edit/product-edit.component';
 import { ProductViewComponent } from './admin-navigation/product-view/product-view.component';
 
-
+import { PageNotFoundComponent } from './../page-not-found/page-not-found.component';
+import { ProductComponent } from '../product/product.component';
 
 const routes: Routes = [
   { path:'',component: AdminNavigationComponent,
     children: [
       { path:'dashboard', component:AdminDashboardComponent},
       { path:'sales',component: SalesComponent },
-      { path:'products',component: ProductsComponent},
+      { path:'products',component: ProductsComponent },
       { path:'create',component:CreateProductComponent },
-      { path:'edit', component:UpdateProductComponent},
-      { path: 'edit/:id', component: ProductEditComponent},
-      { path: 'edit/view/:id', component: ProductViewComponent},
+      { path:'edit', component:UpdateProductComponent },
+      { path: 'edit/:id', component: ProductEditComponent },
+      { path: 'edit/view/:id', component: ProductViewComponent },
       { path: 'orders', component: OrdersComponent },
-      { path: 'customers', component:CustomersComponent},
-      { path: '' , redirectTo:'dashboard' , pathMatch:'full' }
-    ]}
+      { path: 'customers', component:CustomersComponent },
+      { path: '' , redirectTo:'dashboard' , pathMatch:'full' },
+      { path: 'product/:id', component: ProductComponent }
+    ]},
+    { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

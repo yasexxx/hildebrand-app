@@ -1,4 +1,4 @@
-import { ProductComponent } from './product/product.component';
+
 import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.component';
 import { RestaurantComponent } from './navigation/restaurant/restaurant.component';
 import { SupermarketComponent } from './navigation/supermarket/supermarket.component';
@@ -11,6 +11,7 @@ import { HomeComponent } from './core/home/home.component'
 import { RouterComponent } from "./router/router.component";
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: '', component: RouterComponent,
@@ -22,8 +23,7 @@ const routes: Routes = [
       { path: 'restaurant',component: RestaurantComponent },
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'wishlist', component: WishlistComponent },
-      { path: 'product', component: ProductComponent },
-
+      { path: 'product/id/:id', component: ProductComponent},
       
       { path: '' , redirectTo: 'home', pathMatch: 'full', }
               ]

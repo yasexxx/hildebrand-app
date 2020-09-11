@@ -50,6 +50,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductViewComponent } from './admin-navigation/product-view/product-view.component';
 import { ProductEditComponent } from './admin-navigation/product-edit/product-edit.component';
 
+import { PageNotFoundComponent } from './../page-not-found/page-not-found.component';
+import { ProductComponent } from './../product/product.component';
+
   @NgModule({
   declarations: [
     AdminComponent,
@@ -78,7 +81,10 @@ import { ProductEditComponent } from './admin-navigation/product-edit/product-ed
     NgbdSortableHeader3,
     NgbdSortableHeader4,
     ProductViewComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    PageNotFoundComponent,
+    ProductComponent
+    
   ],
   imports: [
     CommonModule,
@@ -101,26 +107,19 @@ import { ProductEditComponent } from './admin-navigation/product-edit/product-ed
   ],
   exports: [
     AdminComponent,
-    AdminNavigationComponent,
-    AdminDashboardComponent,
-    CardComponent,
-    AnnualSalesChartComponent,
-    ProductSalesChartComponent,
-    SalesTrafficChartComponent,
-    StoreSessionsChartComponent,
-    AdminTableComponent,
     FeaturedProductComponent,
 	  TopProductComponent,
     LatestProductComponent,
     RestaurantProductsComponent,
     SupermarketProductsComponent,
-    CreateProductComponent,
-    UpdateProductComponent,
     NgbdSortableHeader,
     NgbdSortableHeader2,
     NgbdSortableHeader3,
-    NgbdSortableHeader4
+    NgbdSortableHeader4,
+    PageNotFoundComponent,
+    ProductComponent
   ],
+  
   providers: [ 
     SalesService,
     CustomerService ,

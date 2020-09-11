@@ -2,10 +2,9 @@
 
     <h2>Edit Product:</h2>
 
-    <button (click)="check(productForm)">asdf</button>
-      <form #productForm="ngForm" (ngSubmit)="updateProduct()">
-                      <button (click)="check(productForm)">asdf</button>
-        <div [hidden]="isSubmitted">
+
+      <form #productForm="ngForm" (ngSubmit)="checkUpdate(productForm)">
+        <div>
           <div [ngClass]="{'create-a-form form-column': isCreate}">
             <label class="'my-auto font-weight-bold" for="name">Name:</label>
             <input type="text" minlength="4" class="form-control" aria-describedby="validateName1" id="name" required [(ngModel)]="product.productName" name="name" #name="ngModel">
@@ -54,20 +53,16 @@
           <div  class="create-a-form">
             <h4>Upload Image:</h4>
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputFiles" name="inputFiles" (change)="onFileChanged($event)" required [(ngModel)]="fields" #inputFiles="ngModel">
+              <input type="file" class="custom-file-input" id="inputFiles" name="inputFiles" (change)="onFileChanged($event)" required>
               <label class="custom-file-label" for="inputFiles">{{chooseFile}}</label>
             </div>
           </div>
         <div class="btn-1">
-          <button type="submit" class="btn btn-warning" [disabled]="productForm.untouched">Update</button>
-          <a routerLink="../products" type="button" class="btn btn-dark" role="button">Cancel</a>
+          <button type="submit" class="btn btn-warning">Update</button>
+          <a routerLink="../../edit" type="button" class="btn btn-dark" role="button">Cancel</a>
         </div>
         </div>
       
-        <div class="ml-5" *ngIf="isSubmitted">
-            <p>You have submitted your product, {{product.productName | titlecase}}</p>
-            <button class="btn btn-success" (click)="productForm.reset();submittedBtn()">Add New Product</button>
-        </div>
       </form>
 
 

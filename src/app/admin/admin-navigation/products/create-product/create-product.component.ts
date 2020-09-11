@@ -2,6 +2,7 @@ import { ProductServiceOperation } from './../../../../_services/product.service
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -58,7 +59,8 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   }
 
   constructor(private productsService: ProductServiceOperation,
-              private modalService: NgbModal) 
+              private modalService: NgbModal,
+              private router: Router) 
   { 
     this.isCreate = true;
   }
@@ -107,8 +109,11 @@ export class CreateProductComponent implements OnInit, OnDestroy {
 
     if(formData){
       this._subscription$ = this.productsService.create(formData).subscribe(
-        (res) => {console.log(res);
-          this.openModal()
+        (res) => {
+          console.log(res);
+          
+          this.messageModal = res.message
+          this.openModal();
           setTimeout( ()=> {
             if (res) this.closeModal(); this.isSubmitted = true;
             this.chooseFile = 'Choose file';
@@ -124,12 +129,16 @@ export class CreateProductComponent implements OnInit, OnDestroy {
 
   submittedBtn() : void {
     this.isSubmitted = false;
-    
   }
 
   ngOnDestroy() :void {
-    this._subscription$.unsubscribe();
-    
+    if (this._subscription$ !== undefined){
+      this._subscription$.unsubscribe();
+    }
+  }
+
+  navigateEdit(){
+    this.router.navigate(['admin/edit']);
   }
 
 

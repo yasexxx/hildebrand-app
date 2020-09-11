@@ -1,5 +1,4 @@
 import { ProductServiceOperation } from './_services/product.services';
-import { ProductComponent } from './product/product.component';
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { UsersModule } from './users/users.module';
@@ -39,7 +38,6 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AuthGuard } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
 import { UserService } from './shared/user.service';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -57,9 +55,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SupermarketComponent,
     RestaurantComponent,
     RouterComponent,
-    WishlistComponent,
-    ProductComponent,
-    PageNotFoundComponent
+    WishlistComponent
 
   ],
   imports: [

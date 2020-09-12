@@ -40,6 +40,8 @@ export class ModalContentEdit {
 })
 export class ProductEditComponent implements OnInit {
 
+  
+  imageDataUrl;
   timeout;
   timeout2;
   _subscription$: Subscription;
@@ -51,8 +53,6 @@ export class ProductEditComponent implements OnInit {
   imageUpload = null;
   private messageModal = 'The product was successfully updated!' ;
 
-  initData = [];
-  length;
 
   product = {
     id: null,
@@ -107,7 +107,8 @@ export class ProductEditComponent implements OnInit {
   inputSubmitCondition(info, value){
     const values = value.value;
     const theSame = (info.productName === values.name) && (info.description === values.description)
-    && (info.category === values.category) && ( info.price === values.price) && ( info.availableProduct === values.availableProduct);
+    && (info.category === values.category) && ( info.price === values.price) && ( info.availableProduct === values.availableProduct)
+    && (this.imageUpload === null);
     if (theSame) {
       this.messageModal = "No changes done try change one field before clicking update";
       this.openModal();
@@ -124,11 +125,22 @@ export class ProductEditComponent implements OnInit {
     if (file?.name !== undefined && (file.type).search(img) !== -1){
       this.imageUpload = file;
       this.chooseFile = file.name;
+      this.imageDisplay();
     } else {
       this.messageModal = "Please select a valid image file";
       this.openModal();
       this.closeModal()
     } 
+  }
+
+  imageDisplay(){
+    if ( this.imageUpload !== null || undefined ){
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageDataUrl = e.target.result;
+      };
+      reader.readAsDataURL(this.imageUpload);
+    }
   }
 
 

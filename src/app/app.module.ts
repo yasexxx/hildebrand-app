@@ -4,7 +4,6 @@ import { AdminModule } from './admin/admin.module';
 import { UsersModule } from './users/users.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,11 +32,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 
 import {MatSelectModule} from '@angular/material/select';
-
-import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AuthGuard } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
 import { UserService } from './shared/user.service';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,12 +64,10 @@ import { UserService } from './shared/user.service';
     MatButtonModule,
     MatIconModule,
     NgbModule,
-    NgxNumberSpinnerModule,
     UsersModule,
     AdminModule,
     MatBadgeModule,
     MatSelectModule,
-    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -79,7 +75,8 @@ import { UserService } from './shared/user.service';
     AuthGuard,
     NavService,
     UserService,
-    ProductServiceOperation
+    ProductServiceOperation,
+    AuthInterceptor
   ],
   bootstrap: [AppComponent]
 })

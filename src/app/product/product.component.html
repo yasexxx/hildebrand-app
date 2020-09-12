@@ -2,39 +2,46 @@
     <div class="product-header">
         <h1>Single Product</h1>
       </div>
-    <div *ngIf="productFormat as prod"  class="wrapper-product">
+    <div *ngIf="product"  class="wrapper-product">
         <div class="img-1">
-            <img class="img-inside" src="https://picsum.photos/400" alt="camaties">
+            <img class="img-inside" [src]="convertTypeImage(product)" alt="camaties" style="width: 20rem">
         </div>
         <div class="details">
-            <h1>Banana</h1>
+            <h1>{{product.productName}}</h1>
             <div class="rating-1">
                 <ngb-rating max="5"></ngb-rating>
                 <span>100 rating</span>
                 <span>500 sold</span>
             </div>
             <div>
-                $120.00
+                {{product.price | currency}}
             </div>
             <div class="p-1-0">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium hic magnam quos accusantium possimus repellendus cumque quasi mollitia minima expedita.
+                <b>Description:</b>
+                <p>{{product.description}}</p>
             </div>
             
-            <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-success btn-select" id="dropdownBasic1" ngbDropdownToggle>{{buttonName}}</button>
-                <div class="btn-select" *ngIf="productSize" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button *ngFor="let size of productSize" (click)="changeBtnName(size)" ngbDropdownItem>{{size}}</button>
-                </div>
-            </div>
 
             <div class="spinner-1">
                 <ngx-number-spinner class="input-spin" [value]="0" [min]="0"></ngx-number-spinner>
 
             </div>
 
-            <p class="p-1-0">600 kg available</p>
+            <p class="p-1-0">{{product.availableProduct}} kg available</p>
 
-            <button class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
+            <button (click)="addToCart()" class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
         </div>
     </div>
 </div>
+
+<div *ngIf="isAdmin">
+    <a role="button" class="btn btn-outline-success mx-auto" (click)="navigateToEdit()"><strong> Go back to Edit List </strong></a>
+</div>
+
+
+<!-- <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-success btn-select" id="dropdownBasic1" ngbDropdownToggle>{{buttonName}}</button>
+                <div class="btn-select" *ngIf="productSize" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button *ngFor="let size of productSize" (click)="changeBtnName(size)" ngbDropdownItem>{{size}}</button>
+                </div>
+            </div> -->

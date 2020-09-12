@@ -86,7 +86,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   convertTypeImage(imageStr) {
     const imgData = imageStr.imageFile.data;
-    if( imgData !== ''|| undefined){
+    if( imgData !== undefined){
       return 'data:'+imageStr.imageFile.mimetype+';base64,'+imgData.toString('base64');
     }
     return;

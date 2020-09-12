@@ -34,8 +34,13 @@
     </div>
 </div>
 
-<div *ngIf="isAdmin">
-    <a role="button" class="btn btn-outline-success mx-auto" (click)="navigateToEdit()"><strong> Go back to Edit List </strong></a>
+
+<div *ngIf="isAdmin" class="bg-success">
+    <hr>
+    <div class="navigation-btn">
+        <a role="button" class="btn btn-dark rounded-circle" (click)="navigateToEdit()"><strong> Go back to Edit List </strong></a>
+    </div>
+    <hr>
 </div>
 
 

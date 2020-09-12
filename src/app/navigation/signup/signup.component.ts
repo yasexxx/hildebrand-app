@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +8,17 @@ import { AuthService } from '../../_services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
+    signupForm = new FormGroup({
+    username : new FormControl(''),
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    confirmPassword: new FormControl(''),
+    address: new FormControl(''),
+    phoneNummber : new FormControl('')
+  });
 
   form: any = {};
   isSucessful = false;

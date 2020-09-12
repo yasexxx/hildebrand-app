@@ -104,7 +104,6 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     MatGridListModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
     NgxNumberSpinnerModule,

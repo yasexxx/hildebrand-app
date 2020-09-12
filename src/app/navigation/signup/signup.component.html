@@ -5,57 +5,30 @@
     <div class="card-header">
       <span style="font-size: 15px;" class="text-white">Register:</span>
     </div>
-    <form **ngIf="!isSuccessful" name="form" (ngSumbit)="signUpForm.form.valid && onSubmit()" #signUpForm="ngForm" novalidate class="form-a-adjust">
+    <form [formGroup]="signupForm"class="form-a-adjust">
           <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" name="username" [(ngModel)]="form.username" minlength="3" maxlength="20" #username="ngModel" id="name" class="form-control" required>
-            <div class="alert-danger" *ngIf="signUpForm.submitted && username.invalid">
-              <div *ngIf="username.errors.required">
-                Username is required
-              </div>
-              <div *ngIf="username.errors.minlength">
-                Username must be atleast 3 characters
-              </div>
-              <div *ngIf="username.errors.maxlength">
-                Username must be at most 20 characters
-              </div>
-            </div>
+            <input type="text" name="username" minlength="3" maxlength="20" id="username" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="firstname" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname" class="form-control" required>
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" [(ngModel)]="form.email" name="email" #email="ngModel" class="form-control" required email>
-            <div class="alert-danger" *ngIf="signUpForm.submitted && email.invalid">
-              <div *ngIf="email.errors.required">
-                Email is required
-              </div>
-              <div *ngIf="email.errors.email">
-                Email must be a valid email address
-              </div>
-            </div>
+            <input type="email" id="email" name="email" class="form-control" required email>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
-              <input type="password" id="password" name="password" [(ngModel)]="form.password" minlength="8" #password="ngModel" class="form-control" required>
-                <div class="alert-danger" *ngIf="signUpForm.submitted && password.invalid">
-                  <div *ngIf="password.errors.required">
-                    Password is required
-                  </div>
-                  <div *ngIf="password.errors.minlength">
-                    Email must be a valid email address
-                  </div>
-                </div>
+              <input type="password" id="password" name="password" minlength="8" class="form-control" required>
             </div>
           <div class="form-group">
             <label for="passwordConfirm">Confirm Password:</label>
-             <input type="password" id="passwordConfirm" name="passwordConfirm" [(ngModel)]="form.passwordConfirm" #passwordConfirm="ngModel" class="form-control" required>
-                <div class="alert-danger" *ngIf="signUpForm.submitted && passwordConfirm.invalid">
-                  <div *ngIf="passwordConfirm.errors.required">
-                    Confirm password is required
-                  </div>
-                  <div *ngIf="passwordConfirm.errors.minlength">
-                    Email must be a valid email address
-                  </div>
-                </div>
+             <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" required>
             </div>
           <div class="form-group">
             <label for="addresses">Address:</label>

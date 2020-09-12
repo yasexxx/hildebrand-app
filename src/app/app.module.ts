@@ -36,7 +36,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
 import { UserService } from './shared/user.service';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +68,8 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     AdminModule,
     MatBadgeModule,
     MatSelectModule,
+    ReactiveFormsModule
+    
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

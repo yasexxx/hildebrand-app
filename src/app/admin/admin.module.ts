@@ -52,6 +52,9 @@ import { ProductEditComponent } from './admin-navigation/product-edit/product-ed
 
 import { PageNotFoundComponent } from './../page-not-found/page-not-found.component';
 import { ProductComponent } from './../product/product.component';
+import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 
   @NgModule({
   declarations: [
@@ -103,7 +106,9 @@ import { ProductComponent } from './../product/product.component';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxNumberSpinnerModule,
+    SimpleNotificationsModule.forRoot()
   ],
   exports: [
     AdminComponent,

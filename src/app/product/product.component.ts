@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { Title } from '@angular/platform-browser';
-
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,18 +12,28 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy {
+  
+  name;
+  isAdmin;
+  timeout;
+  subscription$ : Subscription;
+  subscription2$ : Subscription;
+  
   productSize: string[];
   buttonName: string = 'Small';
-  name;
 
-  productFormat = {
-    id: NaN,
-    name: null,
+
+  product = {
+    id: null,
+    productName: '',
     description: '',
-    price: 0,
-    size: '',
-    available: 0,
-    rate: 0,
+    category: '',
+    price: '',
+    availableProduct: '',
+    isPublished: false,
+    imageFile: {
+      fileName: null
+    }
   }
 
   currentProduct = null;
@@ -34,23 +44,37 @@ export class ProductComponent implements OnInit, OnDestroy {
               private router: Router,
               private toastService: NotificationsService,
               private titleService: Title,
-              private productService: ProductServiceOperation
-                      ) { 
+              private productsService: ProductServiceOperation
+                      ) { this.isAdmin = true;
 
   }
 
   ngOnInit(): void { 
   this.productSize = ['Small', 'Medium', 'Large', 'Extra Large'];
-  const total = this.route.snapshot.paramMap.get('id');
-  console.log(total);
-  };
+  this.getProductId(this.route.snapshot.paramMap.get('id'));
+  }
+
+  ngOnDestroy() {
+    if (this.timeout){ clearTimeout(this.timeout); }
+    if (this.subscription$) { this.subscription$.unsubscribe(); }
+  }
+
+  getProductId(id) {
+    this.subscription$ = this.productsService.get(id)
+    .subscribe( data => {
+      this.product = data;
+      console.log(data);
+      
+    }, err => {
+      console.log(err);
+    });
+  }
 
   changeBtnName(name:string){
     if(!name){
       console.error("Error: no string defined");
     } else {
       this.buttonName = name;
-      this.productFormat.size = name;
     }
   }
 
@@ -60,7 +84,13 @@ export class ProductComponent implements OnInit, OnDestroy {
     });
   }
 
-
+  convertTypeImage(imageStr) {
+    const imgData = imageStr.imageFile.data;
+    if( imgData !== ''|| undefined){
+      return 'data:'+imageStr.imageFile.mimetype+';base64,'+imgData.toString('base64');
+    }
+    return;
+  }
   
 
   addToCart(id, qty) {
@@ -70,10 +100,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
   }
 
-
-  ngOnDestroy() {
-
+  navigateToEdit(){
+    this.timeout = setTimeout( () => {
+      this.router.navigate(['admin/edit']);
+    }, 500);
   }
-
 
 }

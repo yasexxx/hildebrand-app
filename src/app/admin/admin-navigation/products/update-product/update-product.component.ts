@@ -52,8 +52,6 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
 
   dataContainer = [];
 
-  timeStap;
-  linkImage;
   message = 'The product was successfully deleted!' ;
 
 
@@ -121,14 +119,17 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
     });
   }
 
-
   convertTypeImage(imageStr) {
-    return this.linkImage = 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64')
+    return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   }
 
 
   navigateById(id){
     this.router.navigate(['admin/edit/'+id]);
+  }
+
+  viewNavigateById(id){
+    this.router.navigate(['admin/product/'+id]);
   }
 
 

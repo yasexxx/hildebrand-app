@@ -16,7 +16,7 @@ import { ProductComponent } from './product/product.component';
 const routes: Routes = [
   { path: '', component: RouterComponent,
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent,},
       { path: 'login', component: LoginComponent },
       { path: 'register',component: SignupComponent },
       { path: 'supermarket',component:SupermarketComponent },
@@ -25,7 +25,7 @@ const routes: Routes = [
       { path: 'wishlist', component: WishlistComponent },
       { path: 'product/id/:id', component: ProductComponent},
       
-      { path: '' , redirectTo: 'home', pathMatch: 'full', }
+      { path: '' , redirectTo: '', pathMatch: 'full', }
               ]
   },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},

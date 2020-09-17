@@ -18,7 +18,6 @@ export class RestaurantProductsComponent implements OnInit {
 
   constructor() { 
     this.outputShow.emit(this.active);
-    console.log(this.active);
   }
 
   ngOnInit(): void {

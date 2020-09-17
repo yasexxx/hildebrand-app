@@ -1,26 +1,33 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+<div *ngIf="isAdmin$">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+  
+      <mat-toolbar><a (click)="changeTextName()" routerLink="/admin">Administrator</a></mat-toolbar>
+      <mat-nav-list>
+        <a *ngFor="let item of menuItems" (click)="navigateToMenu(item)" [routerLink]="'./'+item" mat-list-item >{{item | titlecase}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>{{headerAdmin | titlecase}}</span>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+</div>
 
-    <mat-toolbar><a (click)="changeTextName()" routerLink="/admin">Administrator</a></mat-toolbar>
-    <mat-nav-list>
-      <a *ngFor="let item of menuItems" (click)="navigateToMenu(item)" [routerLink]="'./'+item" mat-list-item >{{item | titlecase}}</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>{{headerAdmin | titlecase}}</span>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div *ngIf="!isAdmin$">
+  <p>Unauthorized Access!</p>
+</div>

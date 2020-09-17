@@ -5,51 +5,115 @@
     <div class="card-header">
       <span style="font-size: 15px;" class="text-white">Register:</span>
     </div>
-    <form [formGroup]="signupForm"class="form-a-adjust">
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" name="username" minlength="3" maxlength="20" id="username" class="form-control" required>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-a-adjust">
+      <div *ngIf="!isSuccessful">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" class="form-control" formControlName="username" required>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.username">
+              <div *ngIf="username.hasError(validation.type) && (username.dirty || username.touched)">
+                {{validation.message}}
+              </div>
           </div>
-          <div class="form-group">
-            <label for="firstname">First Name:</label>
-            <input type="text" name="firstname" id="firstname" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="lastname">Last Name:</label>
-            <input type="text" name="lastname" id="lastname" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" required email>
-          </div>
+        </div>
+        <div class="form-group">
+          <label for="firstname">First Name:</label>
+          <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname" required>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.firstname">
+            <div *ngIf="firstname.hasError(validation.type) && (firstname.dirty || firstname.touched)">
+              {{validation.message}}
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name:</label>
+          <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname" required>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.lastname">
+            <div *ngIf="lastname.hasError(validation.type) && (lastname.dirty || lastname.touched)">
+              {{validation.message}}
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" class="form-control" formControlName="email" required>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.email">
+            <div *ngIf="email.hasError(validation.type) && (email.dirty || email.touched)">
+              {{validation.message}}
+            </div>
+        </div>
+        </div>
+        <div formGroupName="passwordGroup" class="form-group">
           <div class="form-group">
             <label for="password">Password:</label>
-              <input type="password" id="password" name="password" minlength="8" class="form-control" required>
+              <input type="password" id="password" name="password" class="form-control" formControlName="password" required>
+              <div class="text-danger" *ngFor="let validation of accountValidationMessages$.password">
+                <div *ngIf="password.hasError(validation.type) && (password.dirty || password.touched)">
+                  {{validation.message}}
+                </div>
             </div>
-          <div class="form-group">
-            <label for="passwordConfirm">Confirm Password:</label>
-             <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" required>
+            <label for="confirmPass">Confirm Password:</label>
+           <input type="password" id="confirmPass" name="confirmPass" class="form-control" formControlName="confirmPass" required>
+           <div class="text-danger" *ngFor="let validation of accountValidationMessages$.confirmPass">
+            <div *ngIf="(passwordGroup.hasError(validation.type)|| confirmPass.hasError(validation.type)) && (confirmPass.dirty || confirmPass.touched)">
+              {{validation.message}}
             </div>
-          <div class="form-group">
-            <label for="addresses">Address:</label>
-            <input type="address" id="address-confirm" class="form-control" required>
+        </div>  
           </div>
-          <div class="form-group">
-            <label for="phone">Phone Number:</label>
-            <input type="phone" id="phone-confirm" class="form-control" required>
-          </div>
-          <div class="form-group">
-          <div class="form-check">
-            <input type="checkbox" id="agree" class="form-check-input" required>
-            <label for="agree" class="form-check-label ml-2">I agree to Terms and Conditions</label>
-          </div>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-outline-dark">Register</button>
-          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input type="address" id="address" name="address" class="form-control" formControlName="address" required>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.address">
+            <div *ngIf="address.hasError(validation.type) && (address.dirty || address.touched)">
+              {{validation.message}}
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label><br>
+            <ngx-intl-tel-input [inputId]="form-phoneNumber" [searchCountryPlaceholder]="'Search country here...'" name="phoneNumber" [separateDialCode]="true" [searchCountryFlag]="true" [phoneValidation]="true" formControlName="phoneNumber"></ngx-intl-tel-input>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.phonenumber">
+            <div *ngIf="phoneNumber.hasError(validation.type) && phoneNumber.touched">
+              {{validation.message}}
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" id="terms" class="form-check-input" name="terms" formControlName="terms" required>
+          <label for="terms" class="form-check-label ml-2">I agree to Terms and Conditions</label>
+          <div class="text-danger" *ngFor="let validation of accountValidationMessages$.terms">
+            <div *ngIf="terms.hasError(validation.type) && (terms.dirty || terms.touched)">
+              {{validation.message}}
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!signupForm.valid" class="btn btn-outline-dark">Register</button>
+        </div>
+
+        <div class="alert alert-danger" *ngIf="signupForm.valid && isRegisterFailed">
+          {{ errorMessage }}
+        </div>
+      </div>
     </form>
+
+    
+
+    <div class="alert alert-success" *ngIf="isSuccessful" style="margin: -1rem 2rem 2rem 2rem;">
+      Your registration is successful!
+    </div>
+
     </div>
     <br/>
+</div>
+
+<div class="spin-1" *ngIf="isLoading|async">
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </div>
 
 

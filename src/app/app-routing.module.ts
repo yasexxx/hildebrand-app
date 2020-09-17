@@ -12,6 +12,7 @@ import { RouterComponent } from "./router/router.component";
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductComponent } from './product/product.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', component: RouterComponent,
@@ -24,8 +25,9 @@ const routes: Routes = [
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'product/id/:id', component: ProductComponent},
-      
-      { path: '' , redirectTo: '', pathMatch: 'full', }
+      { path: 'profile', component: UserProfileComponent },
+    
+      { path: 'home' , redirectTo: '', pathMatch: 'full', }
               ]
   },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},

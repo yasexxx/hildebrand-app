@@ -24,7 +24,7 @@ import { AnnualSalesChartComponent } from './admin-dashboard/charts/annual-sales
 import { StoreSessionsChartComponent } from './admin-dashboard/charts/store-sessions-chart/store-sessions-chart.component';
 import { AdminTableComponent } from './admin-dashboard/admin-table/admin-table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MiniCardComponent } from './admin-dashboard/mini-card/mini-card.component';
 import { StoreSummaryService } from '../services/store-summary.service';
 import { SalesComponent } from './admin-navigation/sales/sales.component';
@@ -54,7 +54,6 @@ import { PageNotFoundComponent } from './../page-not-found/page-not-found.compon
 import { ProductComponent } from './../product/product.component';
 import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-
 
   @NgModule({
   declarations: [
@@ -103,6 +102,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     MatMenuModule,
     MatGridListModule,
     NgbModule,
+    ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
@@ -121,7 +121,9 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     NgbdSortableHeader3,
     NgbdSortableHeader4,
     PageNotFoundComponent,
-    ProductComponent
+    ProductComponent,
+    ReactiveFormsModule,
+    FormsModule
   ],
   
   providers: [ 

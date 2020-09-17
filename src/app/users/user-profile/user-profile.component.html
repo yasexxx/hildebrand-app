@@ -1,4 +1,4 @@
-<div class="container-at-profile">
+<div class="container-at-profile" *ngIf="currentUser; else loggedOut">
 <div class="bg-a-color">
   <h1>User Profile</h1>
 </div>
@@ -9,6 +9,10 @@
   <span>Email: {{user.email}}</span>
   <span>Address: {{user.address}}</span>
   <span>Contact Number: {{user.contact}}</span>
-  <button class="btn btn-1" type="button">Update</button>
+  <button class="btn btn-1 mb-5 ml-auto" type="button">Update</button>
 </div>
 </div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

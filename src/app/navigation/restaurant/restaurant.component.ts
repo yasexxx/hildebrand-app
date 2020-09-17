@@ -19,11 +19,6 @@ export class RestaurantComponent implements OnInit {
 
   constructor(private productService : ProductLocalService) { }
 
-  imgLoadCheck(){
-    const logss = document.querySelectorAll('.card');
-    console.log(logss);
-
-  }
 
   ngOnInit(): void {
     this.productRestaurant1 = this.productService.getRestaurantAll();

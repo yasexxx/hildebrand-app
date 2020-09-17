@@ -1,5 +1,7 @@
 
-<!-- Carousel Home -->
+<div *ngIf="isContentRender">
+
+  <!-- Carousel Home -->
 <ngb-carousel class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
   <ng-template ngbSlide *ngFor="let img of slide_images; index as i">
     <div class="carousel-caption">
@@ -44,6 +46,7 @@
 </div>
 
 
+
 <!-- Top of footer Display -->
 
 <div class="col bg-light d-sm-block d-none">
@@ -74,4 +77,13 @@
         </div>
     </div>
 </div>
+</div>
 
+<div *ngIf="!isContentRender" class="something-wrong">
+  <h2>
+    <strong>
+      Something went wrong!
+    </strong>
+  </h2>
+  <p>Check your internet connection!</p>
+</div>

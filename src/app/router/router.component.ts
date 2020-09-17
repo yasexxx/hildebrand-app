@@ -16,6 +16,7 @@ export class RouterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

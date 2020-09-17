@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TokenStackService } from './../../_services/token-stack.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -8,15 +8,24 @@ import { Component, OnInit } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
   user = {
-    name: "Elijah Marie Ligtas",
-    email: "elijah_mary@gmail.com",
-    address: "Sogod Southern Leyte",
-    contact: "09066133963",
+    name: '',
+    email: '',
+    address: '',
+    contact: '',
     picture: "https://picsum.photos/200"
   }
-  constructor() { }
+
+  currentUser: any;
+
+  constructor(private tokenStack: TokenStackService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.tokenStack.getUser();
+    this.user.name = this.currentUser.firstname+' '+this.currentUser.lastname;
+    this.user.email = this.currentUser.email;
+    this.user.address = this.currentUser.address;
+    this.user.contact = this.currentUser.phonenumber;
+    
   }
 
 }

@@ -1,13 +1,11 @@
 
 .bg-a-signup {
-  background: url(./../../../assets/images/bg/_signup.jpg);
-  background-size: cover;
-  background-position: center;
+  background: #18cc4e;
 }
 
 .signup-a-resize {
   margin: 2rem auto;
-  width: 50em;
+  width: 40em;
 
 }
 
@@ -18,6 +16,25 @@
 .card-header {
   background: #002447;
 }
+
+.spin-1 {
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 998;
+
+}
+.spin-1 > div {
+  width: 6rem;
+  height: 6rem;
+}
+
 
 @media (max-width: 570px) {
   .signup-a-resize {

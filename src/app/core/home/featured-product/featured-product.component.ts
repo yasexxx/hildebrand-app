@@ -10,7 +10,6 @@ export class FeaturedProductComponent implements OnInit {
   @Input() product_data: [];
 
   constructor() { 
-    console.log(this.product_data);
   }
 
   

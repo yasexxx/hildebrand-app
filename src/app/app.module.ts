@@ -35,8 +35,12 @@ import {MatSelectModule} from '@angular/material/select';
 import { AuthGuard } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
 import { UserService } from './shared/user.service';
-import { AuthInterceptor } from './_helpers/auth.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor} from './_helpers/auth.interceptor';
+import { LoaderService } from './_services/loader.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './_helpers/loader.interceptor';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,17 +72,21 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminModule,
     MatBadgeModule,
     MatSelectModule,
-    ReactiveFormsModule
-    
+    NgxIntlTelInputModule
+
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ProductLocalService,
     AuthGuard,
     NavService,
     UserService,
     ProductServiceOperation,
-    AuthInterceptor
+    LoaderService,
+
+
   ],
   bootstrap: [AppComponent]
 })

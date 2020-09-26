@@ -27,7 +27,6 @@ export class ModalContent {
   titleClass = 'color: green; font-size: 1rem;'
 
   constructor(public activeModal: NgbActiveModal) {}
-
 }
 
 
@@ -41,7 +40,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   _subscription$: Subscription;
   isCreate:boolean;
   published = 'unPublish';
-  chooseFile = 'Choose file';
+  chooseFile = 'Choose file (required)';
   isSubmitted = false;
   file: any;
 
@@ -55,7 +54,23 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     price: '',
     availableProduct: '',
     isPublished: false,
-
+    post: {
+      topProduct: false,
+      featuredProduct: false,
+      latestProduct: false,
+      restaurantProduct: false,
+      supermarketProduct: false,
+      other: false
+    },
+    options:{
+      restaurantFood: false,
+      restaurantDrink: false,
+      restaurantDessert: false,
+      supermarketGrocery: false,
+      supermarketVegetable: false,
+      supermarketCannedGoods: false
+    }
+  
   }
 
   constructor(private productsService: ProductServiceOperation,
@@ -76,7 +91,6 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   closeModal() :void {
     this.modalService.dismissAll();
   }
-
     
   publishCheck(publish:boolean) : void {
     if (!publish === true){
@@ -105,13 +119,24 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     formData.append('category', this.product.category);
     formData.append('price', this.product.price.toString());
     formData.append('availableProduct', this.product.availableProduct.toString());
-    formData.append('isPublished', this.product.price.toString());
-
+    formData.append('isPublished', (this.product.isPublished).toString());
+    formData.append('topProduct', (this.product.post.topProduct).toString());
+    formData.append('featuredProduct', (this.product.post.featuredProduct).toString());
+    formData.append('latestProduct', (this.product.post.latestProduct).toString());
+    formData.append('supermarketProduct', (this.product.post.supermarketProduct).toString());
+    formData.append('restaurantProduct', (this.product.post.restaurantProduct).toString());
+    formData.append('other', (this.product.post.other).toString());
+    formData.append('supermarketGrocery', (this.product.options.supermarketGrocery).toString());
+    formData.append('supermarketVegetable', (this.product.options.supermarketVegetable).toString());
+    formData.append('supermarketCannedGoods', (this.product.options.supermarketCannedGoods).toString());
+    formData.append('restaurantFood', (this.product.options.restaurantFood).toString());
+    formData.append('restaurantDrink', (this.product.options.restaurantDrink).toString());
+    formData.append('restaurantDessert', (this.product.options.restaurantDessert).toString());
+    
+    
     if(formData){
       this._subscription$ = this.productsService.create(formData).subscribe(
         (res) => {
-          console.log(res);
-          
           this.messageModal = res.message
           this.openModal();
           setTimeout( ()=> {
@@ -126,13 +151,15 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     }
 
 
-
   submittedBtn() : void {
     this.isSubmitted = false;
+    this.router.navigateByUrl('/', { skipLocationChange: true}).then( () => {
+      this.router.navigate(['admin/create']);
+    });
   }
 
   ngOnDestroy() :void {
-    if (this._subscription$ !== undefined){
+    if (this._subscription$){
       this._subscription$.unsubscribe();
     }
   }

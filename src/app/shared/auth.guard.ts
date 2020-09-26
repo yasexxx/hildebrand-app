@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
-import {
-    Router, 
-    CanActivate,
-    RouterStateSnapshot,
-    ActivatedRouteSnapshot
-} from '@angular/router';
+import { CanLoad, Route, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { TokenStackService } from '../_services/token-stack.service';
 
-import { UserService } from './user.service';
+@Injectable({
+    providedIn: 'root'
+})
+export class AuthGuard implements CanLoad {
 
-@Injectable()
-export class AuthGuard implements CanActivate {
-    constructor(
-        private router: Router,
-        private userService: UserService
-    ) {}
-    
-    canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const user = this.userService.getUser();
-        if (!user && ! this.userService.isLoading) {
-            this.router.navigate(['/login'], {
-                queryParams: { returnUrl: state.url }
-            });
-
-            return false;
+    constructor(private tokenStack: TokenStackService,
+                private router: Router ){}
+    canLoad(
+        route: Route
+    ): Observable<boolean> | Promise<boolean> | boolean {
+        const url  = route.path;
+        const user = this.tokenStack.getUser();
+        const isAdmin = user?.roles.includes('ROLE_ADMIN');
+        if (url === 'admin' && isAdmin ){
+            return isAdmin;
         }
-
-        return true;
+        this.router.navigate(['/login']);
+        return isAdmin;
     }
 }

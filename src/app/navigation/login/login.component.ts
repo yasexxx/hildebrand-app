@@ -68,9 +68,11 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.reloadPage();
         } else {
         this.isLoggedFailed = true;
+        console.log(data);
         if(!!data.error.message){
           this.errorMessage = data.error.message;
         } else{
+           
           this.errorMessage = data.statusText;
         }
 

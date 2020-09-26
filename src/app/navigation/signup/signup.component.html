@@ -72,9 +72,9 @@
         </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number:</label><br>
-            <ngx-intl-tel-input [inputId]="form-phoneNumber" [searchCountryPlaceholder]="'Search country here...'" name="phoneNumber" [separateDialCode]="true" [searchCountryFlag]="true" [phoneValidation]="true" formControlName="phoneNumber"></ngx-intl-tel-input>
+            <ngx-intl-tel-input [inputId]="phonenumber" [phoneValidation]="true" [searchCountryPlaceholder]="'Search country here...'" name="phoneNumber" [separateDialCode]="true" [searchCountryFlag]="true" formControlName="phoneNumber"></ngx-intl-tel-input>
           <div class="text-danger" *ngFor="let validation of accountValidationMessages$.phonenumber">
-            <div *ngIf="phoneNumber.hasError(validation.type) && phoneNumber.touched">
+            <div *ngIf="phoneNumber.hasError(validation.type) && (phoneNumber.touched|| phoneNumber.dirty)">
               {{validation.message}}
             </div>
         </div>
@@ -94,11 +94,13 @@
           <button type="submit" [disabled]="!signupForm.valid" class="btn btn-outline-dark">Register</button>
         </div>
 
+
         <div class="alert alert-danger" *ngIf="signupForm.valid && isRegisterFailed">
           {{ errorMessage }}
         </div>
       </div>
     </form>
+
 
     
 

@@ -1,12 +1,8 @@
 import { Injectable, Inject, OnDestroy } from '@angular/core';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, defer, from, Observable, of, Subscription, throwError } from 'rxjs';
-import { catchError, debounceTime, delay, map, retryWhen, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, debounceTime, delay, tap } from 'rxjs/operators';
 
-
-const httpOptions = {
-  headers: new HttpHeaders( {'Content-Type': 'application/json' })
-};
 
 
 @Injectable({
@@ -21,6 +17,7 @@ export class AuthService implements OnDestroy {
   constructor(@Inject('BASE_URL') baseUrl: string,
               private http: HttpClient) { 
                 this._apiUrl = baseUrl+'/api/auth'
+                
               }
 
   login(credentials): Observable<any>{
@@ -28,7 +25,9 @@ export class AuthService implements OnDestroy {
       return this.http.post(`${this._apiUrl}/signin`, {
         username: credentials.username,
         password: credentials.password
-      }, httpOptions)
+      }, {
+        headers: new HttpHeaders( {'Content-Type': 'application/json' })
+      })
       .pipe(
       catchError( err => { 
           return of(err);
@@ -39,23 +38,22 @@ export class AuthService implements OnDestroy {
       );
   }
 
-
-
-
   ngOnDestroy(): void {
     
   }
 
   register(user): Observable<any> {
+    console.log(user);
+    
     return this.http.post(this._apiUrl+'/signup', {
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      address: user.address,
-      phoneNumber: user.phoneNumber
-    }, httpOptions);
+      user
+    },{
+      headers: new HttpHeaders( {'Content-Type': 'application/json' })
+    });
+  }
+
+  updateUser(id, data): Observable<any> {
+    return this.http.post(`${this._apiUrl}/update-user/${id}`,data);
   }
 
   get loading$() { return this._loading$.asObservable(); }

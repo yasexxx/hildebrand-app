@@ -39,8 +39,6 @@ export class AdminNavigationComponent implements OnInit {
       data => {
         if (data) {
           this.isAdmin$ = true;
-          console.log("token:",data);
-          
         }
       },
       err => {

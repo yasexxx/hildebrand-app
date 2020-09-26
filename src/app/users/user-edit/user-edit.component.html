@@ -2,35 +2,37 @@
   <h1>Edit Profile</h1>
   <img class="img-fluid rounded-circle img-n-fit" src="https://picsum.photos/200"/>
   <button class="btn btn-warning btn1 text-white" type="button">Update Avatar</button>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="form-a-wrapper">
       <div>
+        <h2><strong>{{username}}</strong></h2>
+      </div>
+      <div>
         <label for="validationServer01">First name:</label>
-        <input type="text" class="form-control" id="validationServer01" required>
+        <input type="text" class="form-control" name="firstname" id="firstname" [(ngModel)]="user.firstname" required>
       </div>
       <div>
         <label for="validationServer01">Last name:</label>
-        <input type="text" class="form-control" id="validationServer01" required>
+        <input type="text" class="form-control" name="lastname" id="lastname" [(ngModel)]="user.lastname" required>
       </div>
       <div>
         <label for="validationServer01">Email:</label>
-        <input type="email" class="form-control" id="validationServer01" required>
+        <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email" required>
       </div>
       <div>
         <label for="validationServer01">Address:</label>
-        <input type="text" class="form-control" id="validationServer01" required>
+        <input type="text" class="form-control" name="address" id="address" [(ngModel)]="user.address" required>
       </div>
       <div>
         <label for="validationServer01">Contact Number:</label>
-        <input type="text" class="form-control" id="validationServer01" required>
+        <input type="text" class="form-control" name="phoneNumber2" id="phoneNumber2" [(ngModel)]="user.phoneNumber" required>
       </div>
-
   </div>
   <div class="row mb-4 ml-1">
     Change password? <a class="link-style- ml-1" href="#">Click here</a>
   </div>
   <div>
-    <button class="btn btn-primary" type="button">Update</button>
+    <button class="btn btn-primary" type="submit">Update</button>
     <button class="btn btn-dark ml-3" type="button">Cancel</button>
   </div>
   </form>

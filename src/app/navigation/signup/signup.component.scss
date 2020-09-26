@@ -1,6 +1,9 @@
 
 .bg-a-signup {
-  background: #18cc4e;
+  background: url(./../../../assets/images/bg/_signup.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position-y: 1;
 }
 
 .signup-a-resize {

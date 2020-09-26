@@ -1,3 +1,4 @@
+import { CarouselService } from './../../../../_services/carousel.service';
 import { Component, OnInit, ViewChildren, QueryList, OnDestroy, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { NgbdSortableHeader, SortEvent } from '../../../../directives/sortable.directives';
@@ -6,7 +7,7 @@ import { ProductServiceOperation } from '../../../../_services/product.services'
 
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -47,12 +48,24 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
 
   // products$ : Observable<ProductInfo[]>;
   total$ : Observable<number>;
+
+  carousel$: Observable<any[]>;
+
+  totalLatest$: Observable<any>;
+  totalFeatured$: Observable<any>;
+  totalTop$: Observable<any>;
+  totalFoods$: Observable<any>;
+  totalDrinks$: Observable<any>;
+  totalDesserts$: Observable<any>;
+  totalGrocery$: Observable<any>;
+  totalVegetables$: Observable<any>;
+  totalCannedGoods$: Observable<any>;
   
   _subscription$ : Subscription;
 
-  dataContainer = [];
-
   message = 'The product was successfully deleted!' ;
+
+  isTypePost:boolean = false;
 
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
@@ -62,7 +75,9 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
   constructor(public service: ProductService,
               private productOpService: ProductServiceOperation,
               private router: Router,
-              private modalService: NgbModal ) {
+              private modalService: NgbModal,
+              private carouselService: CarouselService ) {
+                
    }
 
   ngOnInit(): void {
@@ -71,7 +86,7 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy(): void {
-    if ( this.subscriber$ !== undefined) { this.subscriber$.unsubscribe();}
+    if ( this.subscriber$) { this.subscriber$.unsubscribe();}
     this.service.ngOnDestroy();
   }
 
@@ -97,9 +112,16 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
 
   retrieveData(): void {
     this.total$ = this.service.total$;
-    this.subscriber$ = this.service.products$.subscribe ( data => {
-      this.dataContainer = data;
-    });
+    this.carousel$ = this.carouselService.getAll();
+    this.totalFeatured$ = this.productOpService.getFeaturedProduct();
+    this.totalTop$ = this.productOpService.getTopProduct();
+    this.totalLatest$ = this.productOpService.getLatestProduct();
+    this.totalFoods$ = this.productOpService.getRestaurantFood();
+    this.totalDrinks$ = this.productOpService.getRestaurantDrink();
+    this.totalDesserts$ = this.productOpService.getRestaurantDessert();
+    this.totalGrocery$ = this.productOpService.getSupermarketGrocery();
+    this.totalVegetables$ = this.productOpService.getSupermarketVegetable();
+    this.totalCannedGoods$ = this.productOpService.getSupermarketCannedGoods();
   }
 
 
@@ -123,14 +145,27 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
     return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   }
 
+  convertCarouselImage(imageStr) {
+    return 'data:'+imageStr.mimetype+';base64,'+imageStr.data.toString('base64');
+  }
 
-  navigateById(id){
+
+  editNavigateById(id){
     this.router.navigate(['admin/edit/'+id]);
   }
 
   viewNavigateById(id){
     this.router.navigate(['admin/product/'+id]);
   }
+
+  navigateToCreate(){
+    this.router.navigate(['admin/create']);
+  }
+
+  navigateToEditCarousel(id){
+    this.router.navigate(['admin/edit-carousel/'+id]);
+  }
+
 
 
 }

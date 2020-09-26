@@ -19,7 +19,7 @@ export const accountValidationMessages = {
   ],
   'confirmPass': [
     { type: 'required', message: 'Confirm password is required' },
-    { type: 'mismatch', message: 'Password mismatch' }
+    { type: 'mismatch', message: 'Password don\'t match' }
   ],
   'password': [
     { type: 'required', message: 'Password is required' },
@@ -44,7 +44,8 @@ export const accountValidationMessages = {
     { type: 'pattern', message:'Your address is invalid'}
   ],
   'phonenumber': [
-    { type: 'required', message: 'Phone Number is required'}
+    { type: 'required', message: 'Phone Number is required'},
+    { type: 'validatePhoneNumber', message:'Phone number is invalid'}
   ]
   };
 
@@ -72,7 +73,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       confirmPass: ['', [Validators.required]]
     }, { validator: this.passwordMatchValidator }),
     address: ['', Validators.compose([Validators.required, addressPattern ])],
-    phoneNumber : [undefined, Validators.required],
+    phoneNumber : ['', Validators.required],
     terms : ['', [Validators.requiredTrue]]
   });
 
@@ -97,9 +98,18 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.signupForm.value);
-    
-    this.subscription$ = this.authService.register(this.signupForm.value).subscribe(
+    const phone$ = this.phoneNumber.value;
+    const formData = {
+      username: this.username.value,
+      firstname: this.firstname.value,
+      lastname: this.lastname.value,
+      email: this.email.value,
+      address: this.address.value,
+      password: this.password.value,
+      phoneNumber: phone$.nationalNumber,
+      terms: this.terms.value
+    };
+    this.subscription$ = this.authService.register(formData).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -109,7 +119,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         this.isRegisterFailed = true
         if(!!err.error.message){
           this.errorMessage = err.error.message;
-        } else { this.errorMessage =  err.statusText || 'Cannot Sign-up, Check your connection!' ;}
+          this.errorMessage = JSON.stringify(this.errorMessage);
+        } else { this.errorMessage = err.statusText || 'Cannot Sign-up, Check your connection!' ;}
       }
     )
   }
@@ -120,6 +131,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     const result = v1 ===  v2 ? null : { mismatch : true} ;
     return result;
     }
+
 
   get username() { return this.signupForm.get('username'); }
 

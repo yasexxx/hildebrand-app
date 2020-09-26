@@ -7,11 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TopProductComponent implements OnInit {
 
-  @Input() top_product: [];
+  @Input() topProduct$: [];
   
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  convert2Base64(imageStr){
+    return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   }
 
 }

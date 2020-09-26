@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductLocalService  } from '../../../services/product-local.service';
 import { ProductServiceOperation } from '../../../_services/product.services';
-import { Subscription, pipe } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 
 
@@ -26,8 +25,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   _subscription$ = Subscription;
 
-  constructor(private productService: ProductLocalService,
-              private productOpService: ProductServiceOperation
+  constructor(private productOpService: ProductServiceOperation
               ) {
 
   }

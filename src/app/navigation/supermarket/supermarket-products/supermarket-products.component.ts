@@ -6,16 +6,20 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./supermarket-products.component.scss']
 })
 export class SupermarketProductsComponent implements OnInit {
-
   @Input() page:number;
   @Input() active:number;
-  @Input() productSupermarket1:{}[];
-  @Input() productSupermarket2:{}[];
-  @Input() productSupermarket3:{}[];
+  @Input() allProducts$:any[];
+  @Input() groceryProducts$:any[];
+  @Input() vegetableProducts$:any[];
+  @Input() cannedGoodsProducts$:any[];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  convert2Base64(imageStr){
+    return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   }
 
 }

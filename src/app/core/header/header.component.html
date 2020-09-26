@@ -25,9 +25,9 @@
             <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block"> 
                 <a class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false" role="button">&nbsp;&nbsp;<i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{{userName}}</a>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="drop-profile">
-                  <button ngbDropdownItem>Profile</button>
+                  <button (click)="viewProfile()" ngbDropdownItem>Profile</button>
                   <button ngbDropdownItem>Order</button>
-                  <button *ngIf="isAdmin$" ngbDropdownItem>Admin</button>
+                  <button *ngIf="isAdmin$" (click)="goToAdmin()" ngbDropdownItem>Admin</button>
                   <button ngbDropdownItem>Cart</button>
                   <button (click)="logout()" ngbDropdownItem>Logout</button>
                 </div>

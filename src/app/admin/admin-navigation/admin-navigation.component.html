@@ -3,7 +3,7 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false">
+        [opened]="!(isHandset$ | async)">
   
       <mat-toolbar><a (click)="changeTextName()" routerLink="/admin">Administrator</a></mat-toolbar>
       <mat-nav-list>
@@ -26,8 +26,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
   
-</div>
-
-<div *ngIf="!isAdmin$">
-  <p>Unauthorized Access!</p>
 </div>

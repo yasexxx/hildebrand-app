@@ -5,7 +5,7 @@
             Products Info: <input class="form-control ml-2" placeholder="Search products here..." type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
             <span class="ml-3" *ngIf="service.loading$ | async"><mat-spinner [diameter]="30"></mat-spinner></span>
         </div>
-
+  
         <table class="table table-bordered">
           <thead class="table-dark">
           <tr>
@@ -17,12 +17,14 @@
             <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
             <th scope="col" sortable="availableProduct" (sort)="onSort($event)">Available Product</th>
             <th scope="col" sortable="isPublished" (sort)="onSort($event)">Published</th>
+            <th scope="col" sortable="post" (sort)="onSort($event)">Post</th>
+            <th scope="col" sortable="options" (sort)="onSort($event)">Type of Post</th>
             <th scope="col">Actions</th>
 
           </tr>
           </thead>
           <tbody class="table-body-1">
-          <tr *ngFor="let product of dataContainer">
+          <tr *ngFor="let product of service.products$ | async">
             <th scope="row">{{ product.productId }}</th>
             <td>
               <img [src]="convertTypeImage(product)"  class="mr-2 img-table">
@@ -33,9 +35,28 @@
             <td><ngb-highlight class="my-auto" [result]="product.category" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight class="my-auto" [result]="product.availableProduct | number" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight class="my-auto" [result]="product.isPublished ? 'Published' : 'Not published'" [term]="service.searchTerm"></ngb-highlight></td>
+            <td>
+              <ngb-highlight class="my-auto" [result]="product.post.topProduct ? product.post.topProduct : ''" [term]="service.searchTerm"></ngb-highlight>
+              <br><ngb-highlight class="my-auto" [result]="product.post.featuredProduct ? product.post.featuredProduct : ''" [term]="service.searchTerm"></ngb-highlight>
+              <br><ngb-highlight class="my-auto" [result]="product.post.latestProduct ? product.post.latestProduct : ''  " [term]="service.searchTerm"></ngb-highlight>
+              <br><ngb-highlight class="my-auto" [result]="product.post.restaurantProduct ? product.post.restaurantProduct : '' " [term]="service.searchTerm"></ngb-highlight>
+              <br><ngb-highlight class="my-auto" [result]="product.post.supermarketProduct ? product.post.supermarketProduct : '' " [term]="service.searchTerm"></ngb-highlight>
+              <br><ngb-highlight class="my-auto" [result]="product.post.other ? product.post.other : ''" [term]="service.searchTerm"></ngb-highlight>
+
+            </td>
+
+            <td>
+              <ngb-highlight class="my-auto" [result]="product.options.restaurantFood ? product.options.restaurantFood : ''" [term]="service.searchTerm"></ngb-highlight>
+            <br><ngb-highlight class="my-auto" [result]="product.options.restaurantDrink ? product.options.restaurantDrink : ''" [term]="service.searchTerm"></ngb-highlight>
+            <br><ngb-highlight class="my-auto" [result]="product.options.restaurantDessert ? product.options.restaurantDessert : ''" [term]="service.searchTerm"></ngb-highlight>
+            <br><ngb-highlight class="my-auto" [result]="product.options.supermarketGrocery ? product.options.supermarketGrocery : ''" [term]="service.searchTerm"></ngb-highlight>
+            <br><ngb-highlight class="my-auto" [result]="product.options.supermarketVegetable ? product.options.supermarketVegetable : ''" [term]="service.searchTerm"></ngb-highlight>
+            <br><ngb-highlight class="my-auto" [result]="product.options.supermarketCannedGoods ? product.options.supermarketCannedGoods : ''" [term]="service.searchTerm"></ngb-highlight>
+            </td>
+            
             <td style="width:250px;">
                 <div class="btn-action" *ngIf="product">
-                <a role="button" (click)="navigateById(product.id)" role="button" class="btn btn-success">Edit</a>
+                <a role="button" (click)="editNavigateById(product.id)" class="btn btn-success">Edit</a>
                 <a role="button" (click)="viewNavigateById(product.id)" role="button" class="btn btn-primary">View</a>
                 <button (click)="deleteProduct(product.id)" class="btn btn-warning" >Delete</button>
                 </div>
@@ -62,8 +83,70 @@
 
       </form>
 
-      <div class="btn-save">
-        <button class="btn btn-outline-success">Save</button>
-        <button class="btn btn-outline-dark">Cancel</button>
+      <div class="edit-slides">
+
+        <div class="card" *ngFor="let carousel of (carousel$ |async)">
+          <img [src]="convertCarouselImage(carousel)" class="card-img-top card-slides" alt="...">
+          <div class="card-body">
+            <strong class="text-center">{{carousel.name}}</strong>
+            <p class="card-text">{{carousel.miniDescription}}</p>
+          </div>
+          <button (click)="navigateToEditCarousel(carousel.id)" class="btn btn-warning mx-5 mb-2">Edit</button>
+        </div>
+
       </div>
-</div>
+
+
+      <div class="container-fluid">
+        <hr>
+        <strong class="h3">Product Listing:</strong>
+        <div class="listing-product">
+
+          <div class="l-1">
+            <strong>Top Product:</strong>
+          <strong>Featured Product:</strong>
+          <strong>Latest Product:</strong>
+          <strong><br>Restaurant Product</strong>
+          <div class="l-2">
+            <span>Food Product:</span>
+            <span>Drink Product:</span>
+            <span>Dessert Product:</span>
+          </div>
+          <strong><br>Supermarket Product</strong>
+          <div class="l-2">
+            <span>Grocery Product:</span>
+            <span>Vegetable Product:</span>
+            <span>Canned Goods Product:</span>
+          </div>
+        </div>
+
+          <div *ngIf="!!(totalTop$|async)" class="l-2 pl-3">
+            <span>{{(totalTop$| async)?.length|| "0"}}</span>
+          <span>{{(totalFeatured$| async)?.length|| "0"}}</span>
+          <span>{{(totalLatest$| async)?.length|| "0"}}</span>
+          <strong><br>&nbsp;</strong>
+          <div class="l-2">
+            <span>{{(totalFoods$| async)?.length || "0"}}</span>
+            <span>{{(totalDrinks$| async)?.length || "0"}}</span>
+            <span>{{(totalDesserts$| async)?.length || "0"}}</span>
+          </div>
+          <strong><br>&nbsp;</strong>
+          <div class="l-2">
+            <span>{{(totalGrocery$| async)?.length|| "0"}}</span>
+            <span>{{(totalVegetables$| async)?.length|| "0"}}</span>
+            <span>{{(totalCannedGoods$| async)?.length|| "0"}}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+    </div>
+
+
+
+    
+
+      <div class="btn-save">
+        <button (click)="navigateToCreate()" class="btn btn-outline-success">Create Product</button>
+        <button class="btn btn-outline-dark">Back</button>
+      </div>

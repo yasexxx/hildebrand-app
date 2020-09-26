@@ -1,14 +1,14 @@
 <div class="tab-of-product">
     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngClass]="{'h2': active===1, 'h1':!(active===1)}" [ngbNavItem]="1" (click)="getEvent($event)">
+      <li [ngClass]="{'h2': active===1, 'h1':!(active===1)}" [ngbNavItem]="1">
         <a ngbNavLink>All</a>
         <ng-template ngbNavContent>
           <div class="img-supermarket">
-            <div class="card" *ngFor="let img of productRestaurant1; index as i">
-              <img [src]="img.url" [alt]="i" class="img-sup">
-              <h2 class="name-img">{{img.name}}</h2>
+            <div class="card" *ngFor="let product of allProducts$; index as i">
+              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+              <h2 class="name-img">{{product.productName}}</h2>
               <div class="hide-price-hover">
-                ${{img.price}}
+                ${{product.price}}
               </div>
               <div class="icon-container-1">
                   <button mat-mini-fab class="iconic-btn2">
@@ -27,26 +27,26 @@
       </li>
 
       <li [ngClass]="{'h2': active===2, 'h1':!(active===2)}" [ngbNavItem]="2">
-        <a ngbNavLink>Seafoods</a>
-        <ng-template  ngbNavContent>
+        <a ngbNavLink>Foods</a>
+        <ng-template ngbNavContent>
           <div class="img-supermarket">
-            <div class="card" *ngFor="let img of productRestaurant2; index as i">
-              <img [src]="img.url" [alt]="i" class="img-sup">
-              <h2 class="name-img">{{img.name}}</h2>
+            <div class="card" *ngFor="let product of foodProducts$; index as i">
+              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+              <h2 class="name-img">{{product.productName}}</h2>
               <div class="hide-price-hover">
-                ${{img.price}}
+                ${{product.price}}
               </div>
               <div class="icon-container-1">
-                <button mat-mini-fab class="iconic-btn2">
-                  <mat-icon>menu</mat-icon>
-                </button>
-                <button mat-mini-fab class="iconic-btn">
-                  <i class="fa fa-shopping-cart"></i>
-                </button>
-                <button mat-mini-fab class="iconic-btn2">
-                  <i class="fa fa-heart"></i>
-                </button>
-              </div>
+                  <button mat-mini-fab class="iconic-btn2">
+                    <mat-icon>menu</mat-icon>
+                  </button>
+                  <button mat-mini-fab class="iconic-btn">
+                    <i class="fa fa-shopping-cart"></i>
+                  </button>
+                  <button mat-mini-fab class="iconic-btn2">
+                    <i class="fa fa-heart"></i>
+                  </button>
+                </div>
             </div>
           </div>
         </ng-template>
@@ -54,26 +54,53 @@
 
 
       <li [ngClass]="{'h2': active===3, 'h1':!(active===3)}" [ngbNavItem]="3">
-        <a ngbNavLink>Meat</a>
+        <a ngbNavLink>Drinks</a>
         <ng-template ngbNavContent>
           <div class="img-supermarket">
-            <div class="card" *ngFor="let img of productRestaurant3; index as i">
-              <img [src]="img.url" [alt]="i" class="img-sup">
-              <h2 class="name-img">{{img.name}}</h2>
+            <div class="card" *ngFor="let product of drinkProducts$; index as i">
+              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+              <h2 class="name-img">{{product.productName}}</h2>
               <div class="hide-price-hover">
-                ${{img.price}}
+                ${{product.price}}
               </div>
               <div class="icon-container-1">
-                <button mat-mini-fab class="iconic-btn2">
-                  <mat-icon>menu</mat-icon>
-                </button>
-                <button mat-mini-fab class="iconic-btn">
-                  <i class="fa fa-shopping-cart"></i>
-                </button>
-                <button mat-mini-fab class="iconic-btn2">
-                  <i class="fa fa-heart"></i>
-                </button>
+                  <button mat-mini-fab class="iconic-btn2">
+                    <mat-icon>menu</mat-icon>
+                  </button>
+                  <button mat-mini-fab class="iconic-btn">
+                    <i class="fa fa-shopping-cart"></i>
+                  </button>
+                  <button mat-mini-fab class="iconic-btn2">
+                    <i class="fa fa-heart"></i>
+                  </button>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+
+
+      <li [ngClass]="{'h2': active===4, 'h1':!(active===4)}" [ngbNavItem]="4">
+        <a ngbNavLink>Desserts</a>
+        <ng-template ngbNavContent>
+          <div class="img-supermarket">
+            <div class="card" *ngFor="let product of dessertProducts$; index as i">
+              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+              <h2 class="name-img">{{product.productName}}</h2>
+              <div class="hide-price-hover">
+                ${{product.price}}
               </div>
+              <div class="icon-container-1">
+                  <button mat-mini-fab class="iconic-btn2">
+                    <mat-icon>menu</mat-icon>
+                  </button>
+                  <button mat-mini-fab class="iconic-btn">
+                    <i class="fa fa-shopping-cart"></i>
+                  </button>
+                  <button mat-mini-fab class="iconic-btn2">
+                    <i class="fa fa-heart"></i>
+                  </button>
+                </div>
             </div>
           </div>
         </ng-template>
@@ -90,6 +117,6 @@
 
 
   <div class="pagination-a-market">
-    <ngb-pagination [collectionSize]="120" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
+    <ngb-pagination [collectionSize]="10" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
     </ngb-pagination>
   </div>

@@ -1,34 +1,19 @@
-
-
-
 li.h1 {
   font-size: 1.5rem;
-
 }
-
 li.h2 {
   font-size: 1.5rem;
-
 }
-
-.styling-link {
-  background: rgb(36, 24, 141);
-}
-
 .pick-color a{
   color: black;
 }
 
 li.h1 a {
   color: white;
-
 }
-
 li.h2 a{
   color:black;
 }
-
-
 li.h1 a:hover {
   color: black;
 }
@@ -36,13 +21,14 @@ li.h1 a:hover {
 .img-supermarket {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 28vw;
   gap: 1.5rem;
 
 }
 
 .img-sup {
   width: 100%;
+  height: 15rem;
+  object-fit: cover;
 }
 
 .img-btn {
@@ -73,7 +59,8 @@ li.h1 a:hover {
 .icon-container-1 {
   display: flex;
   justify-content: space-evenly;
-  margin: 0.3vw 5vw;
+  margin: 0 3rem;
+
 }
 
 .card > .icon-container-1 {
@@ -113,49 +100,60 @@ li.h1 a:hover {
     justify-content: center;
 }
 
-@media (max-width:1050px) and (min-width:760px){
 
-.img-supermarket {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 36vw;
-  gap: 1.5rem;
-
-
-}
-
-
-}
-
-@media (max-width:759px) and (min-width:650px){
+@media (max-width:992px) and (min-width:650px){
 
   .img-supermarket {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    grid-auto-rows: 50vw;
   }
 
   }
 
-  @media (max-width:649px){
+@media (max-width:649px){
 
-    li.h1 {
+li.h1 {
       font-size: 1rem;
-
     }
-
-    li.h2 {
+li.h2 {
       font-size: 1rem;
-
     }
-
-    .img-supermarket {
+.img-supermarket {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
-      gap: 1.5rem;
-      grid-auto-rows: 90vw;
-
     }
-
+.icon-container-1 {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 7rem;
     }
+.card {
+      height: 350px;
+    }
+    }
+@media (max-width:430px){
+.tab-of-product {
+    margin: 3rem 1rem;
+  }
+.products-of-market {
+    margin: 0rem 2rem;
+  }
+}
+@media (max-width:285px){
+.products-of-market {
+    margin: 0rem .4rem;
+  }
+  .icon-container-1 {
+    margin-left: -1rem;
+  }
+}
+@media (max-width:190px){
+  .icon-container-1 {
+    margin-left: -2rem;
+  }
+
+  .tab-of-product {
+    overflow: hidden;
+  }
+}
+  

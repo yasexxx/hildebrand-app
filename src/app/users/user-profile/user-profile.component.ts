@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStackService } from './../../_services/token-stack.service';
 @Component({
@@ -17,7 +18,8 @@ export class UserProfileComponent implements OnInit {
 
   currentUser: any;
 
-  constructor(private tokenStack: TokenStackService) { }
+  constructor(private tokenStack: TokenStackService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.currentUser = this.tokenStack.getUser();
@@ -26,6 +28,10 @@ export class UserProfileComponent implements OnInit {
     this.user.address = this.currentUser.address;
     this.user.contact = this.currentUser.phonenumber;
     
+  }
+
+  updateUser(){
+    this.router.navigate(['user', this.currentUser.id ]);
   }
 
 }

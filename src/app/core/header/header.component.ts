@@ -65,13 +65,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
+  viewProfile() {
+    this.router.navigate(['user']);
+  }
+
+  goToAdmin(){
+    this.router.navigate(['/admin'])
+  }
+
   
 
   logout(): void {
     this.subscription2$ = this.tokenStack.logOut().subscribe(
       data => {
         if(data){
-          this.router.navigateByUrl('/admin', { skipLocationChange: true}).then( () =>
+          this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
           this.router.navigate([''])
           );
         }

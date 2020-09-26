@@ -33,6 +33,10 @@ export class TokenStackService {
     return of(sessionStorage.getItem(this.TOKEN_KEY));
   }
 
+  public getTokenDirect() {
+    return window.sessionStorage.getItem(this.TOKEN_KEY);
+  }
+
   public saveUser(user): void {
     window.sessionStorage.removeItem(this.USER_KEY);
     window.sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));

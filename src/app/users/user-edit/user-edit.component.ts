@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
+  username = 'datebaiyo';
 
+  user = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    address: '',
+    phoneNumber: ''
+  }
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    console.log('event');
+    
   }
 
 }

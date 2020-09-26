@@ -2,8 +2,9 @@
     <div class="bg-a-img">
       <h1>Restaurant</h1>
     </div>
-   <app-restaurant-products [productRestaurant1]="productRestaurant1"
-   [productRestaurant2]="productRestaurant2" [productRestaurant3]="productRestaurant3"
+   <app-restaurant-products [allProducts$]="allRestaurantProducts"
+   [foodProducts$]="foodProducts" [drinkProducts$]="drinkProducts"
+   [dessertProducts$]="dessertProducts"
    [page]="page" [active]="active"></app-restaurant-products> 
     </div>
 

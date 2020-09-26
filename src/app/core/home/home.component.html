@@ -3,13 +3,13 @@
 
   <!-- Carousel Home -->
 <ngb-carousel class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
-  <ng-template ngbSlide *ngFor="let img of slide_images; index as i">
+  <ng-template ngbSlide *ngFor="let img of slideImages; index as i">
     <div class="carousel-caption">
-      <h3>My slide {{i + 1}} title</h3>
+      <h3>{{img.name}}</h3>
     </div>
     <a href="#{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
       <div class="picsum-img-wrapper">
-        <img class="carousel-a-bar" [src]="img" alt="My image {{i + 1}} description">
+        <img class="carousel-a-bar" [src]="convert2Base64(img)" alt="{{img.miniDescription}}">
 
       </div>
     </a>
@@ -22,7 +22,7 @@
 <div class="bg-a-color">
   
 <h2>Featured Products</h2>
-<app-featured-product [product_data]="product_data"></app-featured-product>
+<app-featured-product [featuredProduct$]="featuredProduct"></app-featured-product>
 
 
 <div class="col-12">
@@ -30,14 +30,14 @@
 </div>
 
 <h2>Latest Products</h2>
-<app-latest-product [product_latest]="product_latest"></app-latest-product>
+<app-latest-product [latestProduct$]="latestProduct"></app-latest-product>
 
 <div class="col-12">
     <hr>
 </div>
 
 <h2>Top Products</h2>
-<app-top-product [top_product]="top_product"></app-top-product>
+<app-top-product [topProduct$]="topProduct"></app-top-product>
  
 <br/>
  <br/>

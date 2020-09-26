@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-restaurant-products',
@@ -7,24 +7,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class RestaurantProductsComponent implements OnInit {
 
-  @Input() productRestaurant1;
-  @Input() productRestaurant2;
-  @Input() productRestaurant3;
+  @Input() allProducts$;
+  @Input() foodProducts$;
+  @Input() drinkProducts$;
+  @Input() dessertProducts$;
   @Input() page:number;
   @Input() active:number;
 
-  @Output() outputShow = new EventEmitter<number>();
-
-
   constructor() { 
-    this.outputShow.emit(this.active);
   }
 
   ngOnInit(): void {
   }
 
-  getEvent(event) {
-    console.log(event);
+  convert2Base64(imageStr){
+    return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   }
 
 }

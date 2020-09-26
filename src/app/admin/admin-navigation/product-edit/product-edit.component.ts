@@ -53,6 +53,7 @@ export class ProductEditComponent implements OnInit {
   imageUpload = null;
   private messageModal = 'The product was successfully updated!' ;
 
+  isTypePost: boolean = false;
 
   product = {
     id: null,
@@ -64,6 +65,22 @@ export class ProductEditComponent implements OnInit {
     isPublished: false,
     imageFile: {
       fileName: null
+    },
+    post: {
+      topProduct: false,
+      featuredProduct: false,
+      latestProduct: false,
+      restaurantProduct: false,
+      supermarketProduct: false,
+      other: false
+    },
+    options:{
+      restaurantFood: false,
+      restaurantDrink: false,
+      restaurantDessert: false,
+      supermarketGrocery: false,
+      supermarketVegetable: false,
+      supermarketCannedGoods: false
     }
   }
 
@@ -72,10 +89,12 @@ export class ProductEditComponent implements OnInit {
               private modalService: NgbModal,
               private route: ActivatedRoute,
               private router: Router) {
-                this.isCreate = true;
+              this.isCreate = true;
 }
 
   ngOnInit(): void {
+
+
     this.getProductById(this.route.snapshot.paramMap.get('id'));
   }
 
@@ -90,6 +109,7 @@ export class ProductEditComponent implements OnInit {
     this._subscription$ = this.productsService.get(id)
     .subscribe( data => {
       this.product =  data;
+      if(!!this.product.options){this.isTypePost = true; }
       this.setNameAndPublish();
     }, err => { console.log(err); }
      );
@@ -99,7 +119,7 @@ export class ProductEditComponent implements OnInit {
     this._subscription$ = this.productsService.get(this.route.snapshot.paramMap.get('id'))
     .subscribe( data => {
       this.inputSubmitCondition(data, event);
-    }, () => { if(this._subscription$) {this._subscription$.unsubscribe(); console.log("unsub");
+    }, () => { if(this._subscription$) {this._subscription$.unsubscribe();
     }} )
   }
 
@@ -108,7 +128,10 @@ export class ProductEditComponent implements OnInit {
     const values = value.value;
     const theSame = (info.productName === values.name) && (info.description === values.description)
     && (info.category === values.category) && ( info.price === values.price) && ( info.availableProduct === values.availableProduct)
-    && (this.imageUpload === null);
+    && (this.imageUpload === null) && (info.isPublished === values.isPublished) && (info.post.topProducts === values.post.topProducts)
+    && (info.post.featuredProduct === values.post.featuredProduct) && (info.post.latestProduct === values.post.latestProduct) &&
+    (info.post.restaurantProduct === values.post.restaurantProduct) && (info.post.supermarketProduct === values.post.supermarketProduct) &&
+    (info.post.other === values.post.other);
     if (theSame) {
       this.messageModal = "No changes done try change one field before clicking update";
       this.openModal();
@@ -182,6 +205,19 @@ export class ProductEditComponent implements OnInit {
     data.append('price', this.product.price.toString());
     data.append('availableProduct', this.product.availableProduct.toString());
     data.append('isPublished', this.product.isPublished.toString());
+    data.append('topProduct', this.product.post.topProduct.toString());
+    data.append('latestProduct', this.product.post.latestProduct.toString());
+    data.append('featuredProduct', this.product.post.featuredProduct.toString());
+    data.append('restaurantProduct', this.product.post.restaurantProduct.toString());
+    data.append('supermarketProduct', this.product.post.supermarketProduct.toString());
+    data.append('other', this.product.post.other.toString());
+    data.append('supermarketGrocery', this.product.options.supermarketGrocery.toString());
+    data.append('supermarketVegetable', this.product.options.supermarketVegetable.toString());
+    data.append('supermarketCannedGoods', this.product.options.supermarketCannedGoods.toString());
+    data.append('restaurantFood', this.product.options.restaurantFood.toString());
+    data.append('restaurantDessert', this.product.options.restaurantDessert.toString());
+    data.append('restaurantDrink', this.product.options.restaurantDrink.toString());
+    
     return data;
   }
 

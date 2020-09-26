@@ -6,11 +6,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./latest-product.component.scss']
 })
 export class LatestProductComponent implements OnInit {
-  @Input() product_latest: [];
+  @Input() latestProduct$: [];
   
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  convert2Base64(imageStr){
+    return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   }
 
 }

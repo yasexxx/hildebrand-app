@@ -1,0 +1,58 @@
+<div class="container-a-create">
+
+    <h2>Create Product:</h2>
+
+      <form #productForm="ngForm" (ngSubmit)="updateCarousel()">
+
+        <div [hidden]="isSubmitted">
+          <div class="create-a-form form-column">
+            <label class="'my-auto font-weight-bold" for="name">Name:</label>
+            <input type="text" minlength="4" class="form-control" aria-describedby="validateName1" id="name" required [(ngModel)]="product.name" name="name" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+              <div *ngIf="name.errors.required">
+                * &nbsp;Name is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                *&nbsp; Name must be at least 4 characters long.
+              </div>
+            </div>
+            <label class="'my-auto font-weight-bold" for="description">Description:</label>
+            <textarea minlength="10" id="description" class="form-control" name="description" [(ngModel)]="product.miniDescription" required rows="5" style="resize:none;" #description="ngModel"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+              <div *ngIf="description.errors.required">
+                *&nbsp; Give a description about the product.
+              </div>
+              <div *ngIf="description.errors.minlength">
+                * &nbsp;The description must be at least 10 characters long.
+              </div>
+            </div>
+
+            
+            
+          </div>
+          <div  class="create-a-form">
+            <h4>Upload Image:</h4>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputFiles" name="inputFiles" [(ngModel)]="file" (change)="onFileChanged($event)" required #inputFiles="ngModel">
+              <label class="custom-file-label" for="inputFiles">{{chooseFile}}</label>
+            </div>
+
+            <div *ngIf="!!product.data" class="mt-4">
+              <img [src]="imageDataUrl" alt="product-image-purchase" class="image-attach">
+            </div>
+          </div>
+        <div class="btn-1">
+          <button type="submit" [disabled]="productForm.invalid" class="btn btn-warning">Update</button>
+          <a routerLink="../products" type="button" class="btn btn-dark" role="button">Cancel</a>
+        </div>
+        </div>
+        <div class="ml-5" *ngIf="isSubmitted">
+            <p>You have submitted your product, {{product.name | titlecase}}</p>
+            <button type="button" class="btn btn-success" (click)="submittedBtn()"> <b>+</b> Add New Product</button>
+            <br>
+            <button type="button" class="btn btn-success" (click)="navigateEdit()"> <b>></b> Go to Edit</button>
+        </div>
+      </form>
+
+
+</div>

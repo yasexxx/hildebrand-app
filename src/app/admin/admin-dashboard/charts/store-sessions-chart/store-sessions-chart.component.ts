@@ -15,8 +15,6 @@ export class StoreSessionsChartComponent implements OnInit {
   };
   public orderChartLabels: Label[] = [];
 
-
-
   public orderChartData: ChartDataSets[] = [{
     data: [], label: 'Total Orders'
   }];

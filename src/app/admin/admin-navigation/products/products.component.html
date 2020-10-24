@@ -5,35 +5,49 @@
     <div class="mx-4">
       <ngb-tabset type="pills">
 
-        <ngb-tab title="HOME">
+        <ngb-tab>
+          <ng-template ngbTabTitle><strong class="h4">HOME</strong></ng-template>
           <ng-template ngbTabContent>
-              Home
+            <div class="my-4">
+              <app-home></app-home>
+            </div>
           </ng-template>
         </ngb-tab>
 
-        <ngb-tab title="RESTAURANT">
+        <ngb-tab>
+          <ng-template ngbTabTitle><strong class="h4">RESTAURANT</strong></ng-template>
           <ng-template ngbTabContent>
-              Home
+            <div class="my-4">
+              <app-restaurant></app-restaurant>
+            </div>
           </ng-template>
         </ngb-tab>
 
-        <ngb-tab title="SUPERMARKET">
+        <ngb-tab>
+          <ng-template ngbTabTitle><strong class="h4">SUPERMARKET</strong></ng-template>
           <ng-template ngbTabContent>
-              Home
+            <div class="my-4">
+              <app-supermarket></app-supermarket>
+            </div>
           </ng-template>
         </ngb-tab>
       </ngb-tabset>
 
     </div>
 
-      <div class="btn-1">
-        <h2 class="opt-text">Options:</h2>
-        <a routerLink="/admin/create">
-          <button class="btn btn-outline-success">Create Products</button>
-        </a>
-        <a routerLink="/admin/edit">
-          <button class="btn btn-outline-primary">Edit Products</button>
-        </a>
+
+      <div class="d-flex">
+        <hr>
+        <div class="btn-1">
+          <h2 class="opt-text">Options:</h2>
+          <a routerLink="/admin/create">
+            <button class="btn btn-outline-success">Create Products</button>
+          </a>
+          <a routerLink="/admin/edit">
+            <button class="btn btn-outline-primary">Edit Products</button>
+          </a>
+        </div>
+        <hr>
       </div>
       <br/>
     <br/>

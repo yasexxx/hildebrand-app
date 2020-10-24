@@ -9,6 +9,13 @@
       <mat-nav-list>
         <a *ngFor="let item of menuItems" (click)="navigateToMenu(item)" [routerLink]="'./'+item" mat-list-item >{{item | titlecase}}</a>
       </mat-nav-list>
+
+      <div class="bg-dark" style="margin-top: 8rem"><hr>
+      <div class="d-flex justify-content-around">
+        <a routerLink="/home" class="btn btn-primary" role="button">Home</a>
+        <button (click)="logout()" class="btn btn-primary">Logout</button>
+      </div>
+      <hr></div>
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary">

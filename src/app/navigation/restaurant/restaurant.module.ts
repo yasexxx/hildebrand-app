@@ -10,6 +10,8 @@ import { MainSharedModule } from 'src/app/main-shared.module';
         RestaurantComponent
     ],
     imports: [ CommonModule, SharedModule, RestaurantRoutingModule ],
-    exports: []
+    exports: [
+        RestaurantComponent
+    ]
 })
 export class RestaurantModule {}

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons/';
 import { Observable, Subscription } from 'rxjs';
+import { NavService } from '../shared/nav.service';
 import { TokenStackService } from './../_services/token-stack.service';
 
 @Component({
@@ -20,42 +21,46 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isHover2: boolean = false;
   isLoggedIn: boolean = false;
   userName: string = ''
-  badgeNumber: number = 10;
+  badgeNumber: number = 1;
   totalInCart:number = 10000;
   hideBadge: boolean = true;
   subscription$ : Subscription;
   subscription2$ : Subscription;
+  subscription3$ : Subscription;
   roles;
   isAdmin$: boolean;
+  cart = 0;
 
   constructor(private tokenStack: TokenStackService,
-              private router: Router) { }
+              private router: Router,
+              private navService : NavService) {
+               }
 
-  mouseOver() {
+  mouseOver():void {
     if (this.isHover === false){
       this.isHover = true;
   }
   }
 
-  mouseOut() {
+  mouseOut():void {
     if (this.isHover === true){
       this.isHover = false;
     }
   }
 
-  mouseOver2() {
+  mouseOver2():void {
     if (this.isHover2 === false){
       this.isHover2 = true;
   }
   }
 
-  mouseOut2() {
+  mouseOut2():void {
     if (this.isHover2 === true){
       this.isHover2 = false;
     }
   }
 
-  collapsedActivate() {
+  collapsedActivate():void {
     if(this.collapsed === false){
       this.collapsed = true;
     }
@@ -73,7 +78,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {
+  navigateAdmin():void{
+    this.router.navigate(['/admin']);
+  }
+
+  subCart(): void {
+    this.subscription3$ = this.navService.navCart$.subscribe(
+      value => {
+        this.cart = value;
+        if(this.cart > 0) {
+          this.hideBadge = false;
+        } else this.hideBadge = true;
+      }, err => {
+        console.log(err);
+      }
+
+    )
+  }
+
+  subUser():void {
     this.subscription$ = this.tokenStack.getToken().subscribe(
       str => {
         this.isLoggedIn = !!(str);
@@ -91,12 +114,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngOnInit(): void {
+    this.subUser();
+    this.subCart();
+  }
+
   ngOnDestroy(): void {
     if(this.subscription2$) { this.subscription2$.unsubscribe(); }
     if(this.subscription$) { this.subscription$.unsubscribe(); }
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    
+    if(this.subscription3$) { this.subscription3$.unsubscribe();}
   }
+
 
 }

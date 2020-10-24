@@ -11,16 +11,6 @@ import { Subscription } from 'rxjs';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
-  productContents:{}[];
-
-  HomePageBundle:{}[];
-  SupermarketBundle:{}[];
-  RestaurantBundle:{}[];
-
-  initHomeBundle;
-  initSupBundle;
-  initRestBundle;
-
   packer: any[];
 
   _subscription$ = Subscription;
@@ -42,15 +32,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     
   }
 
-
-  getServiceData():void {
-    this.productOpService.getAll().subscribe( data => {
-      console.log(data);
-      
-    })
-  }
-
 }
+
 
 
 

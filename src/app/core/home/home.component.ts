@@ -2,7 +2,7 @@ import { CarouselService } from './../../_services/carousel.service';
 import { Subscription } from 'rxjs';
 import { ProductServiceOperation } from './../../_services/product.services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faMoneyBill, faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons/';
+import { faMoneyBill } from '@fortawesome/free-solid-svg-icons/';
 import { UserService } from './../../_services/user.service';
 import { HeaderComponent } from './../header/header.component';
 
@@ -15,15 +15,12 @@ import { HeaderComponent } from './../header/header.component';
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  product_latest:{}[] = [];
-  top_product:{}[] = [];
-  slideImages: any[] = [];
+  slideImages: any[] = null;
   paused = false;
   unpauseOnArrow = false;
   pauseOnHover = true;
 
   moneyBill = faMoneyBill;
-  moneyBillWave = faMoneyBillWaveAlt;
   isContentRender = true;
   
   featuredProduct: any[];
@@ -53,39 +50,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     .subscribe(
       data => {
         this.slideImages = data;
-        console.log(this.slideImages);
-        
       }
     )
     this.subscription$ = this.productService.getFeaturedProduct()
     .subscribe( 
       data => {
         const newData = data.filter( li => li.isPublished === true  )
-        const length = newData.length;
-        const rem = length % 4;
-        newData.splice(length-rem, length);
-        this.featuredProduct = newData;
-        
+        const modifiedData = this.arrangeBy4(newData);
+        this.featuredProduct = modifiedData;
       }
     );
     this.subscription2$ = this.productService.getTopProduct()
     .subscribe(
       data => {
         const newData = data.filter( li => li.isPublished === true  )
-        const length = newData.length;
-        const rem = length % 4;
-        newData.splice(length-rem, length);
-        this.topProduct = newData;
+        const modifiedData = this.arrangeBy4(newData);
+        this.topProduct = modifiedData;
       }
     );
     this.subscription3$ = this.productService.getLatestProduct()
     .subscribe(
       data => {
         const newData = data.filter( li => li.isPublished === true  )
-        const length = newData.length;
-        const rem = length % 4;
-        newData.splice(length-rem, length);
-        this.latestProduct = newData;
+        const modifiedData = this.arrangeBy4(newData);
+        this.latestProduct = modifiedData;
       }
     );
     this.header.ngOnInit();
@@ -105,11 +93,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
   }
 
+  arrangeBy4(data) {
+    const length = data.length;
+    const rem = length % 4;
+    data.splice(length-rem, length);
+    return data;
+  }
+
   ngOnDestroy(): void {
     if( this.subscription$) { this.subscription$.unsubscribe(); }
     if( this.subscription2$) { this.subscription2$.unsubscribe(); }
     if( this.subscription3$) { this.subscription3$.unsubscribe(); }
     if( this.subscription4$) { this.subscription4$.unsubscribe(); }
+    this.header.ngOnDestroy();
   }
 
   convert2Base64(imageStr){

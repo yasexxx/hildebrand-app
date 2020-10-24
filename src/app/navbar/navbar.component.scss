@@ -21,12 +21,25 @@
   color: #002447;
 }
 
+.nav > li > a:hover {
+  text-decoration: underline;
+}
 
+.nav > li > div > a:hover {
+  text-decoration: underline;
+}
+
+.icon-select1{
+  font-size: 2.5rem ;
+}
+
+.qty-icon {
+  font-size: 2rem; 
+}
 
 .header-item-holder{
-	font-size: 1.1rem;
-  margin: 1rem 1rem 0 0;
-  color: black;
+  margin: 1rem 2.5rem 0 0;
+  color: rgb(49, 47, 47);
 
   }
 
@@ -57,10 +70,14 @@
   background: #002447;
 }
 
-.in-profile > a > button:hover {
+.in-profile > button {
+  font-size: 0.8rem;;
+}
+.in-profile >  button:hover {
   color:white;
   background: #002447;
 }
+
 
 
 
@@ -80,6 +97,7 @@
 	.header-item-holder{
 	display: flex;
   margin: auto;}
+
   }
 
 @media (max-width: 767px) {

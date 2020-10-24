@@ -1,4 +1,3 @@
-import { ProductServiceOperation } from './../../_services/product.services';
 import { SupermarketRoutingModule } from './supermarket-routing.module';
 import { SharedModule } from './../../shared/shared.module';
 import { SupermarketComponent } from './supermarket.component';
@@ -10,6 +9,8 @@ import { CommonModule } from '@angular/common';
         SupermarketComponent
     ],
     imports: [ CommonModule, SharedModule, SupermarketRoutingModule ],
-    exports: []
+    exports: [
+        SupermarketComponent
+    ]
 })
 export class SupermarketModule {}

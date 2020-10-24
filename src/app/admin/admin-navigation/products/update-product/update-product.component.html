@@ -83,7 +83,11 @@
 
       </form>
 
-      <div class="edit-slides">
+      <div class="ml-4 mt-2">
+        <hr>
+      </div>
+      <strong class="h3">DISPLAY CAROUSEL SETTINGS:</strong>
+      <div class="edit-slides bg-light">
 
         <div class="card" *ngFor="let carousel of (carousel$ |async)">
           <img [src]="convertCarouselImage(carousel)" class="card-img-top card-slides" alt="...">

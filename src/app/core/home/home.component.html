@@ -2,19 +2,21 @@
 <div *ngIf="isContentRender">
 
   <!-- Carousel Home -->
-<ngb-carousel class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
-  <ng-template ngbSlide *ngFor="let img of slideImages; index as i">
-    <div class="carousel-caption">
-      <h3>{{img.name}}</h3>
-    </div>
-    <a href="#{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
-      <div class="picsum-img-wrapper">
-        <img class="carousel-a-bar" [src]="convert2Base64(img)" alt="{{img.miniDescription}}">
-
+<div *ngIf="!!slideImages">
+  <ngb-carousel class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
+    <ng-template ngbSlide *ngFor="let img of slideImages; index as i">
+      <div class="carousel-caption">
+        <strong class="h2 text-dark">{{img.name}}</strong>
       </div>
-    </a>
-  </ng-template>
-</ngb-carousel>
+      <a href="#{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
+        <div class="picsum-img-wrapper">
+          <img class="carousel-a-bar" [src]="convert2Base64(img)" alt="{{img.miniDescription}}">
+  
+        </div>
+      </a>
+    </ng-template>
+  </ngb-carousel>
+</div>
 
 
 <!-- Home Product Layout -->
@@ -53,7 +55,7 @@
     <div class="row a-top-footer">
         <div class="large-holder">
                 <div class="large-icon">
-                    <fa-icon [icon]="moneyBill"></fa-icon>
+                  <fa-icon [icon]="moneyBill"></fa-icon>
                 </div>
                 <div class="large-text">
                     Best Price

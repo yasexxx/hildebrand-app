@@ -16,11 +16,10 @@ const routes: Routes = [
       { path: 'register', loadChildren: () => import('./navigation/signup/signup.module').then( m => m.SignUpModule) },
       { path: 'supermarket', loadChildren: () => import('./navigation/supermarket/supermarket.module').then( m => m.SupermarketModule) },
       { path: 'restaurant', loadChildren:() => import('./navigation/restaurant/restaurant.module').then( m => m.RestaurantModule) },
-      { path: 'cart', loadChildren:() => import('./core/shopping-cart/shopping-cart.module').then( m => m.ShoppingCartModule), canLoad:[AuthGuard] },
+      { path: 'cart', loadChildren:() => import('./core/shopping-cart/shopping-cart.module').then( m => m.ShoppingCartModule) },
       { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuardActivate] },
       { path: 'product/id/:id', loadChildren: () => import('./product/product.module').then( l => l.ProductModule)},
       { path: 'user', loadChildren: () => import('./users/users.module').then( m => m.UsersModule)},
-
       { path: 'home' , redirectTo: '', pathMatch: 'full', }
               ]
   },

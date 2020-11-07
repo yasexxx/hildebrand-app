@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CartService } from 'src/app/_services/cart.service';
+import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
+import { CartService } from './../../../_services/cart.service';
 
 @Component({
   selector: 'app-latest-product',
@@ -9,7 +11,9 @@ import { CartService } from 'src/app/_services/cart.service';
 export class LatestProductComponent implements OnInit {
   @Input() latestProduct$: [];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private toastService: NotificationsService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +24,25 @@ export class LatestProductComponent implements OnInit {
 
   addCart(product, qty= 1) {
     this.cartService.addToCart(product = product, qty = qty);
+    this.popToast(true, qty, product);
+  };
+
+  popToast(isTrue: boolean, quantity: number, product) {
+    if (isTrue) {
+      this.toastService.success(
+        `${quantity} Added`,
+        `${product.productName}...`
+      );
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
+
+  popToastInvalid(header: string, subject: string) {
+    this.toastService.info(header, subject, {
+      timeOut: 3000
+    });
+  }
+
 
 }

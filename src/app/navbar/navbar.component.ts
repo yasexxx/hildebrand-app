@@ -34,6 +34,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isAdmin$: boolean;
   cart = 0;
   cartItems = [];
+  options = {
+    position: ['top', 'right'],
+    timeOut: 4000,
+    lastOnBottom: true,
+    pauseOnHover: true,
+    clickToClose: true,
+    maxLength: 0
+  };
 
   constructor(private tokenStack: TokenStackService,
               private router: Router,

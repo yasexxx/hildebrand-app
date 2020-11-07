@@ -16,6 +16,7 @@ import { RouterComponent } from './router/router.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 
 @NgModule({
@@ -31,11 +32,12 @@ import { MatIconModule } from '@angular/material/icon';
 
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MatBadgeModule,
     MatIconModule,
+    SimpleNotificationsModule.forRoot(),
     MainSharedModule.forRoot(),
 
   ],

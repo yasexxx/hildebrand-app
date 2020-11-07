@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons/';
 import { Observable, Subscription } from 'rxjs';
 import { NavService } from '../shared/nav.service';
+import { CartService } from '../_services/cart.service';
 import { TokenStackService } from './../_services/token-stack.service';
 
 @Component({
@@ -32,10 +33,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   roles;
   isAdmin$: boolean;
   cart = 0;
+  cartItems = [];
 
   constructor(private tokenStack: TokenStackService,
               private router: Router,
               private navService: NavService,
+              private cartService: CartService,
               @Inject(PLATFORM_ID) private platformId ) {
                }
 
@@ -123,6 +126,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subUser();
     this.subCart();
+    let count = 0;
+    if (this.cart === 0) {
+      const cartArr = this.cartService.getCartLocal();
+      this.cartItems = JSON.parse(cartArr);
+      this.cartItems.forEach(
+        (product) => {
+          count += product.quantity;
+        }
+      );
+      this.cart = count;
+
+    }
   }
 
   ngOnDestroy(): void {

@@ -15,7 +15,7 @@ export class AuthService implements OnDestroy {
 
 
   constructor(@Inject('BASE_URL') baseUrl: string,
-              private http: HttpClient) { 
+              private http: HttpClient) {
                 this._apiUrl = baseUrl+'/api/v1/en-PH/auth';
               }
 
@@ -28,25 +28,23 @@ export class AuthService implements OnDestroy {
         headers: new HttpHeaders( {'Content-Type': 'application/json' })
       })
       .pipe(
-      catchError( err => { 
+      catchError( err => {
           return of(err);
          }),
       debounceTime(200),
-      delay(1000), 
+      delay(1000),
       tap( () => this._loading$.next(false)),
       );
   }
 
   ngOnDestroy(): void {
-    
   }
 
   register(user): Observable<any> {
     console.log(user);
-    
     return this.http.post(this._apiUrl+'/signup', {
       user
-    },{
+    }, {
       headers: new HttpHeaders( {'Content-Type': 'application/json' })
     });
   }

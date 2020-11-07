@@ -2,7 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { Injectable } from '@angular/core';
 import {  BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, delay, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class TokenStackService {
   private TOKEN_KEY = 'auth-token';
   private USER_KEY = 'auth-user';
 
+  // tslint:disable-next-line: variable-name
   private _loadingLogOut$ = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -30,38 +31,38 @@ export class TokenStackService {
     }
   }
 
-  public saveToken( token:string ){
+  saveToken(token: string ): void{
     if (isPlatformBrowser(this.platformId)){
       window.sessionStorage.removeItem(this.TOKEN_KEY);
       window.sessionStorage.setItem(this.TOKEN_KEY, token);
     }
   }
 
-  public getToken(): Observable<string> {
+  getToken(): Observable<string> {
     if (isPlatformBrowser(this.platformId)){
       return of(sessionStorage.getItem(this.TOKEN_KEY));
     }
   }
 
-  public getTokenDirect() {
+  getTokenDirect(){
     if (isPlatformBrowser(this.platformId)){
       return window.sessionStorage.getItem(this.TOKEN_KEY);
     }
   }
 
-  public saveUser(user): void {
+  saveUser(user): void {
     if (isPlatformBrowser(this.platformId)){
       window.sessionStorage.removeItem(this.USER_KEY);
       window.sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
     }
   }
 
-  public getUser() {
+  getUser() {
     if (isPlatformBrowser(this.platformId)){
       return JSON.parse(sessionStorage.getItem(this.USER_KEY));
     }
   }
 
 
-  get loadingLogOut$() { return this._loadingLogOut$.asObservable(); }
+  get loadingLogOut$(): Observable<boolean> { return this._loadingLogOut$.asObservable(); }
 }

@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { TokenStackService } from './../../_services/token-stack.service';
@@ -27,25 +28,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName:string;
   isHover: boolean = false;
   constructor(private tokenStack: TokenStackService,
-              private router: Router) { }
+              private router: Router,
+              @Inject(PLATFORM_ID) private platformId) { }
 
   ngOnInit(): void {
-    this.subscription$ = this.tokenStack.getToken().subscribe(
-      str => {
-        this.isLoggedIn = !!(str);
-        if (this.isLoggedIn) {
-          const user = this.tokenStack.getUser();
-          this.roles = user.roles;
-          this.isAdmin$ = this.roles.includes('ROLE_ADMIN');
-          this.userName = user.username;
-          this.id = user.id;
-        }
-      },
-       err => {
-         console.log('error: ',err);
-         
-       }
-    );
+    if (isPlatformBrowser(this.platformId)){
+      this.subscription$ = this.tokenStack.getToken().subscribe(
+        str => {
+          this.isLoggedIn = !!(str);
+          if (this.isLoggedIn) {
+            const user = this.tokenStack.getUser();
+            this.roles = user.roles;
+            this.isAdmin$ = this.roles.includes('ROLE_ADMIN');
+            this.userName = user.username;
+            this.id = user.id;
+          }
+        },
+         err => {
+           console.log('error: ',err);
+           
+         }
+      );
+    }
   }
 
   ngOnDestroy(): void {
@@ -76,16 +80,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
 
   logout(): void {
-    this.subscription2$ = this.tokenStack.logOut().subscribe(
-      data => {
-        if(data){
-          this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
-          this.router.navigate([''])
-          );
+    if (isPlatformBrowser(this.platformId)){
+      this.subscription2$ = this.tokenStack.logOut().subscribe(
+        data => {
+          if(data){
+            this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
+            this.router.navigate([''])
+            );
+          }
         }
-      }
-    );
-  }
-  
-
+      );
+    }
+    }
 }

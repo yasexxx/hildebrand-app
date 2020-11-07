@@ -1,6 +1,6 @@
 <div class="container-a-create">
 
-    <h2>Add Carousel View:</h2>
+    <h2>Create Product:</h2>
 
       <form #productForm="ngForm" (ngSubmit)="onSubmit()">
 
@@ -44,9 +44,9 @@
         </div>
         <div class="ml-5" *ngIf="isSubmitted">
             <p>You have submitted your product, {{product.name | titlecase}}</p>
-            <button type="button" class="btn btn-success" (click)="submittedBtn()"> <b>+</b> Add New Carousel</button>
+            <button type="button" class="btn btn-success" (click)="submittedBtn()"> <b>+</b> Add New Product</button>
             <br>
-            <button type="button" class="btn btn-success" (click)="navigateEdit()"> <b>></b> Go to Edit Page</button>
+            <button type="button" class="btn btn-success" (click)="navigateEdit()"> <b>></b> Go to Edit</button>
         </div>
       </form>
 

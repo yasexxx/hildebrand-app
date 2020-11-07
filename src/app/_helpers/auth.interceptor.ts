@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
     HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS
 } from '@angular/common/http';
@@ -6,12 +6,11 @@ import {
 import { TokenStackService } from './../_services/token-stack.service';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
-    
+
     private TOKEN_HEADER_KEY = 'x-access-token';
 
     constructor(private token: TokenStackService){ }
@@ -19,8 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authenReq = req;
         const token = this.token.getTokenDirect();
-        if(token !== null){
-            authenReq = req.clone( { headers: req.headers.set(this.TOKEN_HEADER_KEY, token)});
+        if (token !== null){
+            authenReq = req.clone( { headers: req.headers.set(this.TOKEN_HEADER_KEY, 'Bearer ' + token)});
         }
         return next.handle(authenReq);
     }

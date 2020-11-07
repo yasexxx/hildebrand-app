@@ -11,7 +11,7 @@ export class CarouselService {
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
-        this.baseUrl = baseUrl+'/api/v1';
+        this.baseUrl = baseUrl+'/api/v1/en-PH';
     }
 
     getAll(): Observable<any> {

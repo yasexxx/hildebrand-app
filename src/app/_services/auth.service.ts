@@ -16,8 +16,7 @@ export class AuthService implements OnDestroy {
 
   constructor(@Inject('BASE_URL') baseUrl: string,
               private http: HttpClient) { 
-                this._apiUrl = baseUrl+'/api/auth'
-                
+                this._apiUrl = baseUrl+'/api/v1/en-PH/auth';
               }
 
   login(credentials): Observable<any>{

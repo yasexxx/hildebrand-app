@@ -32,5 +32,4 @@ export class NavService {
          this.routeNewProduct.next(isTrue);
      }
 
-     
 }

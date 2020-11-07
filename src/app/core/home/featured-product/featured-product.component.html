@@ -7,8 +7,6 @@
       <!-- <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther"></p>
           <ng-template #theOther><p>&nbsp;</p></ng-template> -->
       <p class="text-a-align">{{product.price |currency:"PHP":"symbol"}}</p>
-      <a [href]="product.productId" class="text-a-align">
-      <button class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
-        </a>
+      <button (click)="addCart(product)" class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
       </div>
     </div>

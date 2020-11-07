@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient,
               private navService : NavService,
               @Inject('BASE_URL') baseUrl:string) { 
-                this.apiUrl =  baseUrl+'/api/test';
+                this.apiUrl =  baseUrl+'/api/v1/en-PH/test';
               }
 
   getPublicContent(): Observable<any> {

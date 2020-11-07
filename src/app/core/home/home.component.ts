@@ -85,8 +85,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         },
         err => {
-          const errlog = JSON.parse(err.error).message;
-          console.log(errlog);
+          console.log(err);
           this.isContentRender = false;
           
         }

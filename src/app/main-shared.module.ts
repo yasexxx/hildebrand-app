@@ -22,6 +22,7 @@ import { AuthService } from './_services/auth.service';
 import { UserService } from './_services/user.service';
 import { AuthGuard, AuthGuardActivate } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
+import { CartService } from './_services/cart.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -31,14 +32,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         LatestProductComponent,
         HomeComponent
     ],
-    imports: [ 
-        CommonModule, 
+    imports: [
+        CommonModule,
         NgbNavModule,
         QuicklinkModule,
         HttpClientModule,
         NgbCarouselModule,
         FontAwesomeModule
-        
     ],
     exports: [
         NgbNavModule,
@@ -73,12 +73,13 @@ export class MainSharedModule {
                 AuthGuard,
                 AuthGuardActivate,
                 CarouselService,
-                NavService
+                NavService,
+                CartService
             ]
         }
     }
 }
 
-export function getBaseUrl(){
+export function getBaseUrl(): string {
     return environment.API_URL;
   }

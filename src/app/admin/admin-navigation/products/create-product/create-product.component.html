@@ -1,9 +1,6 @@
 <div [ngClass]="{'container-a-create': isCreate}">
 
     <h2>Create Product:</h2>
-        <div class="text-right mr-4">
-          <a routerLink="/admin/create-carousel" type="text" class="bt-link" role="button">Add carousel view here</a>
-        </div>
 
       <form #productForm="ngForm" (ngSubmit)="onSubmit()">
 
@@ -143,7 +140,6 @@
             <button type="button" class="btn btn-success" (click)="navigateEdit()"> <b>></b> Go to Edit</button>
         </div>
       </form>
-
 
 
 </div>

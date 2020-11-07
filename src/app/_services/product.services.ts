@@ -16,7 +16,7 @@ export class ProductServiceOperation {
     constructor(private http: HttpClient,
                 @Inject('BASE_URL') baseUrl: string
     ){
-        this.baseUrl = baseUrl+'/api/products/authen/access-token/private/&leaked=primary';
+        this.baseUrl = baseUrl+'/api/v1/en-PH/products';
     }
 
     getAll(): Observable<any> {
@@ -80,7 +80,7 @@ export class ProductServiceOperation {
     getRestaurantProduct(): Observable<any> {
       return this.http.get(this.baseUrl+'/display/restaurant-products');
     }
-    
+
     getOtherProduct(): Observable<any> {
       return this.http.get(this.baseUrl+'/display/other-products');
     }
@@ -111,21 +111,21 @@ export class ProductServiceOperation {
 
     get(id): Observable<any> {
         return this.http.get<ProductInfo>(`${this.baseUrl}/${id}`);
-      } 
-    
+      }
+
     update(id, data): Observable<any> {
         return this.http.put(`${this.baseUrl}/${id}`,data);
-    
+
       }
-    
+
     delete(id): Observable<any> {
         return this.http.delete(this.baseUrl+`/${id}`);
       }
-    
+
     deleteAll(): Observable<any> {
         return this.http.delete(this.baseUrl);
       }
-    
+
     findByTitle(name):Observable<any> {
         return this.http.get(`${this.baseUrl}?productName=${name}`);
       }
@@ -134,5 +134,5 @@ export class ProductServiceOperation {
         return this.http.post<any>(this.baseUrl, data);
       }
 
-    
+
 }

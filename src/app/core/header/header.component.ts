@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { CartService } from '../../_services/cart.service';
 import { TokenStackService } from './../../_services/token-stack.service';
 
 
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isHover: boolean = false;
   constructor(private tokenStack: TokenStackService,
               private router: Router,
+              private cartService: CartService,
               @Inject(PLATFORM_ID) private platformId) { }
 
   ngOnInit(): void {
@@ -87,6 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
             this.router.navigate([''])
             );
+          this.cartService.clearCartLoc();
           }
         }
       );

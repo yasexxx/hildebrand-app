@@ -3,23 +3,23 @@
     <h1>Shopping Cart</h1>
   </div>
   <div class="wrapper-content">
-      <div *ngIf="productCart" class="ml-2 product-list-content">
+      <div *ngIf="addedCart" class="ml-2 product-list-content">
         <hr/>
-        <div *ngFor="let product of productCart" class="wrapper-prod">
+        <div *ngFor="let product of addedCart" class="wrapper-prod">
           <div *ngIf="product" class="product-details">
-            <img  [src]="product.img" alt="" class="img-product"/>
+            <img  [src]="convert2Base64(product.img)" alt="" class="img-product"/>
             <h2 class="my-auto">{{product.name}}</h2>
-            <p class="my-auto">{{product.price}}</p>
+            <p class="my-auto">{{product.price |  currency:'USD'}}</p>
             <div class="my-auto mx-auto mx-lg-0">
               <p>Quantity:</p>
-              <ngx-number-spinner class="input-spin" [value]="0" [min]="0"></ngx-number-spinner>
+              <ngx-number-spinner (change)="changeCartValue($event, product.name)" class="input-spin" [value]="product.quantity" [min]="0"></ngx-number-spinner>
             </div>
           </div>
           <hr/>
         </div>
       </div>
-    <div class="card proceed-checkout">
-      <p class="font-weight-bold mt-4 mx-auto">Total Amount: $2000</p>
+    <div class="card proceed-checkout" *ngIf="totalAmount">
+      <p class="font-weight-bold mt-4 mx-auto">Total Amount: {{ totalAmount }}</p>
       <button class="rounded proceed-btn mx-5">Proceed to Checkout</button>
     </div>
 

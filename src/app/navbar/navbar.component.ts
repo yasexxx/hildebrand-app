@@ -24,9 +24,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isHover2 = false;
   isLoggedIn = false;
   userName = '';
-  badgeNumber = 1;
-  totalInCart = 10000;
-  hideBadge = true;
   subscription$: Subscription;
   subscription2$: Subscription;
   subscription3$: Subscription;
@@ -102,9 +99,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscription3$ = this.navService.navCart$.subscribe(
       value => {
         this.cart = value;
-        if (this.cart > 0) {
-          this.hideBadge = false;
-        } else {this.hideBadge = true; }
       }, err => {
         console.log(err);
       }
@@ -134,18 +128,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subUser();
     this.subCart();
-    let count = 0;
-    if (this.cart === 0) {
-      const cartArr = this.cartService.getCartLocal();
-      this.cartItems = JSON.parse(cartArr);
-      this.cartItems.forEach(
-        (product) => {
-          count += product.quantity;
-        }
-      );
-      this.cart = count;
-
-    }
+    this.cartService.initCart();
   }
 
   ngOnDestroy(): void {

@@ -29,7 +29,8 @@
 
 .img-product {
   margin-left: 3rem;
-  block-size: 12rem;
+  object-fit: cover;
+  width: 12rem;
 }
 
 .proceed-checkout {

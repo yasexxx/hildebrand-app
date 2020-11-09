@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../_services/cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,27 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  productCart = [{
-    name: "asi", img: "https://picsum.photos/200", price:52
-  },
-  {
-    name: "ayase", img: "https://picsum.photos/201", price:51
-  },
-  {
-    name: "aasd", img: "https://picsum.photos/202", price:51
-  },
-  {
-    name: "asiadf", img: "https://picsum.photos/203", price:54
-  },
-  {
-    name: "assdfi", img: "https://picsum.photos/204", price:52
-  },
-  {
-    name: "assfi", img: "https://picsum.photos/205", price:53
-  },]
-  constructor() { }
+  addedCart = [];
+  totalAmount: number;
+
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
+    let localCart = this.cartService.getCartLocal();
+    if (localCart !== null){
+      localCart = JSON.parse(localCart);
+      this.addedCart = localCart;
+    }
+    this.getTotalAmount();
+  }
+
+  getTotalAmount(): void {
+    let price, quanity = 0;
+    if (this.addedCart.length > 0){
+      this.addedCart.map( (li) => {
+        price = li.price;
+        quanity = li.quantity;
+        this.totalAmount += (price * quanity);
+      });
+    }
+  }
+
+  convert2Base64(imageStr): string{
+    return 'data:' + imageStr.mimetype + ';base64,' + imageStr.data.toString('base64');
+  }
+
+  changeCartValue(event, name){
+    console.log(event, name);
+    
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
+import { TokenStackService } from '../../../_services/token-stack.service';
 import { CartService } from './../../../_services/cart.service';
 
 @Component({
@@ -9,24 +10,29 @@ import { CartService } from './../../../_services/cart.service';
   styleUrls: ['./featured-product.component.scss']
 })
 export class FeaturedProductComponent implements OnInit {
-
+  userId :string;
   @Input() featuredProduct$: [];
 
   constructor(private cartService: CartService,
               private toastService: NotificationsService,
-              private router: Router) {
+              private router: Router,
+              private tokenService: TokenStackService) {
   }
 
 
   ngOnInit(): void {
+    const user = this.tokenService.getUser();
+    if (!!user){
+      this.userId = user.id;
+    }
   };
 
   convert2Base64(imageStr){
     return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   };
 
-  addCart(product, qty= 1) {
-    this.cartService.addToCart(product = product, qty = qty);
+  addCart(product, qty= 1, id=0) {
+    this.cartService.addToCart(product = product, qty = qty, id);
     this.popToast(true, qty, product);
   };
 

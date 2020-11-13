@@ -1,11 +1,9 @@
 import { HomeComponent } from './core/home/home.component';
 import { CarouselService } from './_services/carousel.service';
-import { LatestProductComponent } from './core/home/latest-product/latest-product.component';
 import { NgbCarouselModule, NgbDropdownModule, NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FeaturedProductComponent } from './core/home/featured-product/featured-product.component';
-import { TopProductComponent } from './core/home/top-product/top-product.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { environment } from '../environments/environment';
@@ -28,8 +26,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
     declarations: [
         FeaturedProductComponent,
-        TopProductComponent,
-        LatestProductComponent,
         HomeComponent
     ],
     imports: [
@@ -44,8 +40,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         NgbNavModule,
         NgbDropdownModule,
         FeaturedProductComponent,
-        TopProductComponent,
-        LatestProductComponent,
         HttpClientModule,
         QuicklinkModule,
         HomeComponent

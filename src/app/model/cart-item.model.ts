@@ -1,13 +1,14 @@
-export interface CartItem {
-    id:string;
+export interface CartModel {
     user: string;
     attributes: {
-        cart: [{
-            cartId: number;
-            product: string;
-            price: string;
-            quantity: number;
-        }],
-        totalAmount: number
+      cart: [
+        {
+          cartId: number,
+          product: string,
+          price: number,
+          quantity: number
+        }
+      ],
+      totalAmount: number
     }
-}
+  }

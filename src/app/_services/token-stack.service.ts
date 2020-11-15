@@ -24,7 +24,10 @@ export class TokenStackService {
       return of(1).pipe(
         tap( () => this._loadingLogOut$.next(true)),
         debounceTime(300),
-        tap( () => window.sessionStorage.clear()),
+        tap( () => {
+          window.sessionStorage.clear();
+          window.localStorage.clear();
+            }),
         delay(1000),
         tap( () => this._loadingLogOut$.next(false))
       );

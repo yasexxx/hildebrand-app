@@ -37,17 +37,42 @@ export class CartService implements OnDestroy {
       img: '',
 
     };
+<<<<<<< Updated upstream
     this.count += qty;
+=======
+    if (this.count === 0) {
+      const cartArr = this.getCartLocal();
+      this.cartStorage = JSON.parse(cartArr);
+      if (!!this.cartStorage){
+        this.cartStorage.forEach(
+          // tslint:disable-next-line: no-shadowed-variable
+          (products) => {
+            this.count += products.quantity;
+          }
+        );
+      }
+    }
+    this.count += qty;
+    console.log(product.productName);
+>>>>>>> Stashed changes
     cartObj.name = product.productName;
     cartObj.price = product.price;
     cartObj.quantity = qty;
     cartObj.img = product.imageFile;
     this.navService.changeCart(this.count);
+<<<<<<< Updated upstream
 
     // push only if cart is 0
     if (this.cartStorage.length === 0 ){
       this.cartStorage.push(cartObj);
       isAdded = true;
+=======
+    this.saveCart(this.cartStorage);
+      // return this.http.post(this.baseUrl, cartData)
+      // .pipe(
+      //   debounceTime(600)
+      // );
+>>>>>>> Stashed changes
     }
 
     // search for name exists
@@ -110,6 +135,23 @@ export class CartService implements OnDestroy {
       window.localStorage.setItem(this.CART_KEY, cartString);
     }
   }
+
+  initCart(){
+    const cartArr = this.getCartLocal();
+    this.cartStorage = JSON.parse(cartArr);
+    if (!!this.cartStorage){
+      console.log('go');
+      this.cartStorage.forEach(
+        // tslint:disable-next-line: no-shadowed-variable
+        (product) => {
+          this.count += product.quantity;
+        }
+      );
+      return this.count;
+    }
+    return;
+  }
+
 
 
   clearCartLoc(): void {

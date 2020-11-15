@@ -28,6 +28,7 @@ export class FeaturedProductComponent implements OnInit {
   };
 
   convert2Base64(imageStr){
+<<<<<<< Updated upstream
     return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   };
 
@@ -45,6 +46,9 @@ export class FeaturedProductComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+=======
+    return 'data:' + imageStr.imageFile.mimetype + ';base64,' + imageStr.imageFile.data.toString('base64');
+>>>>>>> Stashed changes
   }
 
   popToastInvalid(header: string, subject: string) {

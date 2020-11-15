@@ -54,13 +54,13 @@ export class CartService implements OnDestroy {
     this.cartStorage.map( item => {
     if (item.name === product.productName){
       if (!isAdded) {
-      item.quantity +=qty;
+      item.quantity += qty;
       isAdded = true;
       }
     }
     });
 
-    
+
     if (!isAdded) {
       this.cartStorage.push(cartObj);
       isAdded = true;
@@ -74,17 +74,15 @@ export class CartService implements OnDestroy {
       },
       err => {
         console.log(err);
-        
+
       });
     } catch (error) {
       console.log(error);
-      
-      
     }
     }
 
 
-  getCart(id:string): Observable<CartModel[]> {
+  getCart(id:string): Observable<any[]> {
       return this.http.get<CartModel[]>(`${this.baseUrl}/${id}`);
   }
 
@@ -120,19 +118,20 @@ export class CartService implements OnDestroy {
     }
   }
 
-  deleteItem(name) {
+  deleteItem(name): void {
     const removeIndex = this.cartStorage.map( (item) => {
       return item.name;
     }).indexOf(name);
+    this.initCart();
     this.cartStorage.splice(removeIndex, 1);
     this.saveCart(this.cartStorage);
-    this.router.navigateByUrl('/admin', { skipLocationChange: true}).then( () =>
+    this.router.navigateByUrl('/home', { skipLocationChange: true}).then( () =>
       this.router.navigate(['/cart']));
     this.initCart();
   }
 
 
-  initCart():void {
+  initCart(): void {
     let count = 0;
     const cartArr = this.getCartLocal();
     if (!!cartArr && (cartArr.length !== this.count)) {
@@ -142,16 +141,16 @@ export class CartService implements OnDestroy {
           count += product.quantity;
         }
       );
-    if (this.count !== count ){
+      if (this.count !== count ){
       this.count = count;
     }
-    this.navService.changeCart(this.count);
+      this.navService.changeCart(this.count);
     // console.log(this.cartStorage);
     // this.saveCart(this.cartStorage);
     }
     else {
       this.navService.changeCart(0);
-        
+
     }
   }
 
@@ -162,7 +161,11 @@ export class CartService implements OnDestroy {
       this.cartStorage.map( (li) => {
         price = li.price;
         quanity = li.quantity;
-        totalAmount += (price * quanity);
+        if (li.quantity === 0){
+          totalAmount = 0;
+        } else {
+          totalAmount += (price * quanity);
+        }
       });
     }
     return totalAmount;

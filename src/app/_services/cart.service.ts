@@ -1,8 +1,6 @@
 import { Inject, Injectable, OnDestroy, PLATFORM_ID, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
-
-import { debounceTime, map } from 'rxjs/operators';
 import { NavService } from './../shared/nav.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
@@ -34,45 +32,19 @@ export class CartService implements OnDestroy {
       name: '',
       price: 0,
       quantity: 0,
-      img: '',
-
+      img: ''
     };
-<<<<<<< Updated upstream
     this.count += qty;
-=======
-    if (this.count === 0) {
-      const cartArr = this.getCartLocal();
-      this.cartStorage = JSON.parse(cartArr);
-      if (!!this.cartStorage){
-        this.cartStorage.forEach(
-          // tslint:disable-next-line: no-shadowed-variable
-          (products) => {
-            this.count += products.quantity;
-          }
-        );
-      }
-    }
-    this.count += qty;
-    console.log(product.productName);
->>>>>>> Stashed changes
     cartObj.name = product.productName;
     cartObj.price = product.price;
     cartObj.quantity = qty;
     cartObj.img = product.imageFile;
     this.navService.changeCart(this.count);
-<<<<<<< Updated upstream
 
     // push only if cart is 0
     if (this.cartStorage.length === 0 ){
       this.cartStorage.push(cartObj);
       isAdded = true;
-=======
-    this.saveCart(this.cartStorage);
-      // return this.http.post(this.baseUrl, cartData)
-      // .pipe(
-      //   debounceTime(600)
-      // );
->>>>>>> Stashed changes
     }
 
     // search for name exists
@@ -94,8 +66,8 @@ export class CartService implements OnDestroy {
     try {
       this.saveCart(this.cartStorage);
       this.subscription1$ = this.updateCartInApi(id, this.cartStorage)
-      .subscribe( data => {
-          console.log(data);
+      ?.subscribe( data => {
+        data
       },
       err => {
         console.log(err);
@@ -134,21 +106,21 @@ export class CartService implements OnDestroy {
     }
   }
 
-  initCart(){
-    const cartArr = this.getCartLocal();
-    this.cartStorage = JSON.parse(cartArr);
-    if (!!this.cartStorage){
-      console.log('go');
-      this.cartStorage.forEach(
-        // tslint:disable-next-line: no-shadowed-variable
-        (product) => {
-          this.count += product.quantity;
-        }
-      );
-      return this.count;
-    }
-    return;
-  }
+  // initCart(){
+  //   const cartArr = this.getCartLocal();
+  //   this.cartStorage = JSON.parse(cartArr);
+  //   if (!!this.cartStorage){
+  //     console.log('go');
+  //     this.cartStorage.forEach(
+  //       // tslint:disable-next-line: no-shadowed-variable
+  //       (product) => {
+  //         this.count += product.quantity;
+  //       }
+  //     );
+  //     return this.count;
+  //   }
+  //   return;
+  // }
 
 
 
@@ -170,6 +142,11 @@ export class CartService implements OnDestroy {
     this.router.navigateByUrl('/home', { skipLocationChange: true}).then( () =>
       this.router.navigate(['/cart']));
     this.initCart();
+  }
+
+  deleteItemApi(id, name, itemId): Observable<any> {
+    const itemDelete = { name: name, itemId: itemId};
+    return this.http.post(`${this.baseUrl}/item/${id}`,itemDelete);
   }
 
 
@@ -211,6 +188,11 @@ export class CartService implements OnDestroy {
       });
     }
     return totalAmount;
+  }
+
+  updateItemQuantity(id ,qty, name): Observable<any> {
+    const data = {quantity: qty, name: name};
+    return this.http.post(`${this.baseUrl}/change/${id}`, data)
   }
 
   ngOnDestroy(): void {

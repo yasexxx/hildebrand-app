@@ -127,13 +127,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const countCart = this.cartService.initCart();
-    this.cart = countCart;
     this.subUser();
     this.subCart();
-<<<<<<< Updated upstream
     this.cartService.initCart();
-=======
->>>>>>> Stashed changes
   }
 
   ngOnDestroy(): void {

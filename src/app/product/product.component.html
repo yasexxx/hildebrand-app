@@ -4,7 +4,7 @@
       </div>
     <div *ngIf="product"  class="wrapper-product">
         <div class="img-1">
-            <img class="img-inside" [src]="convertTypeImage(product)" alt="camaties" style="width: 20rem">
+            <img class="img-inside" [src]="convertTypeImage(product)" [alt]="product.name" style="width: 20rem">
         </div>
         <div class="details">
             <h1>{{product.productName}}</h1>
@@ -29,7 +29,7 @@
 
             <p class="p-1-0">{{product.availableProduct}} kg available</p>
 
-            <button (click)="addToCart()" class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
+            <button (click)="addCart(product, 1, userId)" class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
         </div>
     </div>
 </div>

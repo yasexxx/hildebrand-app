@@ -5,13 +5,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faMoneyBill } from '@fortawesome/free-solid-svg-icons/';
 import { UserService } from './../../_services/user.service';
 import { HeaderComponent } from './../header/header.component';
+import { CartService } from '../../_services/cart.service';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [
-    HeaderComponent
+    HeaderComponent,
+    ShoppingCartComponent
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -35,14 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private userService: UserService,
               private carouselService: CarouselService,
+              private shoppingComponent: ShoppingCartComponent,
               private header: HeaderComponent,
               private productService: ProductServiceOperation ) {}
-
-  
-
-  typeOf(value:any) {
-    return typeof value;
-  };
 
 
   ngOnInit(): void {
@@ -90,7 +88,13 @@ export class HomeComponent implements OnInit, OnDestroy {
           
         }
       );
+    this.shoppingComponent.ngOnInit();
   }
+
+  typeOf(value:any) {
+    return typeof value;
+  };
+
 
   arrangeBy4(data) {
     const length = data.length;

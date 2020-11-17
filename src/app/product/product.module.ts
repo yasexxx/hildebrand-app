@@ -5,15 +5,15 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
     ],
-    imports: [ CommonModule, ProductRoutingModule, SharedModule ],
+    imports: [ CommonModule, ProductRoutingModule, SharedModule, NgbRatingModule ],
     exports: [],
     providers: [
-        ProductServiceOperation,
-        NotificationsService
+        ProductServiceOperation
     ],
     bootstrap:[ProductComponent]
 })

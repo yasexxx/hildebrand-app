@@ -12,7 +12,7 @@
             <p class="my-auto">{{product.price |  currency:'USD'}}</p>
             <div class="my-auto mx-auto mx-lg-0">
               <p>Quantity:</p>
-              <ngx-number-spinner (change)="changeCartValue($event, product.name)" class="input-spin" [value]="product.quantity" [min]="0"></ngx-number-spinner>
+              <ngx-number-spinner (change)="changeCartValue($event, product.name)" class="input-spin" [value]="product.quantity" [min]="0" [max]="15"></ngx-number-spinner>
 
             </div>
             <!-- <button class="btn btn-danger del-btn">Delete</button> -->

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { TokenStackService } from '../../../_services/token-stack.service';
@@ -9,7 +9,7 @@ import { CartService } from './../../../_services/cart.service';
   templateUrl: './featured-product.component.html',
   styleUrls: ['./featured-product.component.scss']
 })
-export class FeaturedProductComponent implements OnInit {
+export class FeaturedProductComponent implements OnInit, OnDestroy {
   userId :string;
   @Input() featuredProduct$: [];
 
@@ -27,8 +27,11 @@ export class FeaturedProductComponent implements OnInit {
     }
   };
 
+  ngOnDestroy(): void {
+    this.cartService.ngOnDestroy();
+  }
+
   convert2Base64(imageStr){
-<<<<<<< Updated upstream
     return 'data:'+imageStr.imageFile.mimetype+';base64,'+imageStr.imageFile.data.toString('base64');
   };
 
@@ -46,9 +49,6 @@ export class FeaturedProductComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
-=======
-    return 'data:' + imageStr.imageFile.mimetype + ';base64,' + imageStr.imageFile.data.toString('base64');
->>>>>>> Stashed changes
   }
 
   popToastInvalid(header: string, subject: string) {

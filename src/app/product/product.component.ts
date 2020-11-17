@@ -4,6 +4,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { CartService } from '../_services/cart.service';
+import { TokenStackService } from '../_services/token-stack.service';
 
 
 @Component({
@@ -37,21 +39,28 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   currentProduct = null;
-
+  userId: string;
   
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private toastService: NotificationsService,
+              private cartService: CartService,
+              private tokenService: TokenStackService,
               private titleService: Title,
               private productsService: ProductServiceOperation
                       ) { this.isAdmin = true;
+                          this.titleService.setTitle(this.product.productName);
 
   }
 
   ngOnInit(): void { 
   this.productSize = ['Small', 'Medium', 'Large', 'Extra Large'];
   this.getProductId(this.route.snapshot.paramMap.get('id'));
+  const user = this.tokenService.getUser();
+    if (!!user){
+      this.userId = user.id;
+    }
   }
 
   ngOnDestroy() {
@@ -63,8 +72,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.subscription$ = this.productsService.get(id)
     .subscribe( data => {
       this.product = data;
-      console.log(data);
-      
     }, err => {
       console.log(err);
     });
@@ -78,12 +85,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  popToastInvalid (header: string, subject: string) {
-    this.toastService.info(header, subject, {
-      timeOut: 3000
-    });
-  }
-
   convertTypeImage(imageStr) {
     const imgData = imageStr.imageFile.data;
     if( imgData !== undefined){
@@ -93,11 +94,26 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
   
 
-  addToCart(id, qty) {
-    const quantity = parseInt(qty, 10) || 0;
-    if (quantity <= 0) {
-      this.popToastInvalid('Missing Quantity', 'Did you mean to add 1?');
+  addCart(product, qty= 1, id=0) {
+    this.cartService.addToCart(product = product, qty = qty, id);
+    this.popToast(true, qty, product);
+  };
+
+  popToast(isTrue: boolean, quantity: number, product) {
+    if (isTrue) {
+      this.toastService.success(
+        `${quantity} Added`,
+        `${product.productName}...`
+      );
+    } else {
+      this.router.navigate(['/login']);
     }
+  }
+
+  popToastInvalid(header: string, subject: string) {
+    this.toastService.info(header, subject, {
+      timeOut: 3000
+    });
   }
 
   navigateToEdit(){

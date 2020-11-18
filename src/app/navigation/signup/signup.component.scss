@@ -4,6 +4,7 @@
   background-size: cover;
   background-attachment: fixed;
   background-position-y: 1;
+  min-height: 100vh;
 }
 
 .signup-a-resize {
@@ -38,10 +39,25 @@
   height: 6rem;
 }
 
+.success-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.success-icon > i {
+  font-size: 12rem;
+  color: #17b824;
+}
+
+.msg-success{
+  margin: 1rem 0 8rem 0;
+}
+
 
 @media (max-width: 570px) {
   .signup-a-resize {
     margin: 3em auto;
     width: 90%;
   }
+
 }

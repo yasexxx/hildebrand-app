@@ -20,6 +20,7 @@ const routes: Routes = [
       { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuardActivate] },
       { path: 'product/id/:id', loadChildren: () => import('./product/product.module').then( l => l.ProductModule)},
       { path: 'user', loadChildren: () => import('./users/users.module').then( m => m.UsersModule)},
+      { path: 'check-out', loadChildren: () => import('./navigation/checkout/checkout.module').then(m => m.CheckoutModule) },
       { path: 'home' , redirectTo: '', pathMatch: 'full', }
               ]
   },

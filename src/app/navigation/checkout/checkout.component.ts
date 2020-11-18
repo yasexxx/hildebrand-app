@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../../_services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoaderService } from '../../_services/loader.service';
 import { Subject, Subscription } from 'rxjs';
+import { AuthService } from '../../_services/auth.service';
+import { LoaderService } from '../../_services/loader.service';
 
 
 
@@ -54,13 +54,13 @@ const userPattern = Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'
 const addressPattern = Validators.pattern('^[a-zA-Z0-9,. ]+$');
 
 
-@Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
-})
-export class SignupComponent implements OnInit, OnDestroy {
 
+@Component({
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss']
+})
+export class CheckoutComponent implements OnInit {
   accountValidationMessages$ = accountValidationMessages;
 
   signupForm:FormGroup = this.fb.group ({
@@ -73,7 +73,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       confirmPass: ['', [Validators.required]]
     }, { validator: this.passwordMatchValidator }),
     address: ['', Validators.compose([Validators.required, addressPattern ])],
-    phoneNumber : [''],
+    phoneNumber : ['', Validators.required],
     terms : ['', [Validators.requiredTrue]]
   });
 
@@ -84,17 +84,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   isLoading: Subject<boolean> = this.loadService.isLoading;
   subscription$ : Subscription;
 
+
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private loadService: LoaderService ) {
-  }
-
+              private loadService: LoaderService) { }
 
   ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    if(this.subscription$) { this.subscription$.unsubscribe();}
   }
 
   onSubmit(): void {
@@ -106,7 +101,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: this.email.value,
       address: this.address.value,
       password: this.password.value,
-      phoneNumber: phone$?.nationalNumber,
+      phoneNumber: phone$.nationalNumber,
       terms: this.terms.value
     };
     this.subscription$ = this.authService.register(formData).subscribe(
@@ -125,13 +120,13 @@ export class SignupComponent implements OnInit, OnDestroy {
     )
   }
 
+  
   passwordMatchValidator(control: AbstractControl) {
     const v1 = control.value.password;
     const v2 = control.value.confirmPass;
     const result = v1 ===  v2 ? null : { mismatch : true} ;
     return result;
-    }
-
+  }
 
   get username() { return this.signupForm.get('username'); }
 
@@ -155,5 +150,3 @@ export class SignupComponent implements OnInit, OnDestroy {
 
 
 }
-
-

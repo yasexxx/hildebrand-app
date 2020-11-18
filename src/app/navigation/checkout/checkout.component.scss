@@ -1,0 +1,20 @@
+.bg-a-color {
+    background: #002447;
+  }
+  
+.checkout-header {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.checkout-header > h1 {
+    color:white;
+}
+
+.wrapper-content {
+    display: grid;
+    grid-template-columns: 2fr 0.7fr;
+    column-gap: 3rem;
+    background: white;
+    min-height: 100vh;
+  }

@@ -16,7 +16,7 @@ import { TokenStackService } from '../_services/token-stack.service';
 export class ProductComponent implements OnInit, OnDestroy {
   
   name;
-  isAdmin;
+  isAdmin = false;
   timeout;
   subscription$ : Subscription;
   subscription2$ : Subscription;
@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   productSize: string[];
   buttonName: string = 'Small';
 
-
+  currentRate = 0;
   product = {
     id: null,
     productName: '',
@@ -49,7 +49,8 @@ export class ProductComponent implements OnInit, OnDestroy {
               private tokenService: TokenStackService,
               private titleService: Title,
               private productsService: ProductServiceOperation
-                      ) { this.isAdmin = true;
+                      ) { this.isAdmin = false;
+                          this.currentRate = 3.56;
                           this.titleService.setTitle(this.product.productName);
 
   }

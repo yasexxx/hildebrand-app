@@ -1,6 +1,6 @@
 import { MainSharedModule } from './../main-shared.module';
 import { SupermarketProductsComponent } from './../navigation/supermarket/supermarket-products/supermarket-products.component';
-import {  NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbPaginationModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     imports: [ 
         CommonModule, MainSharedModule, NgbPaginationModule,MatButtonModule,
         MatIconModule,FormsModule ,
-        ReactiveFormsModule
+        ReactiveFormsModule, NgbRatingModule
     ],
     exports: [
         SupermarketProductsComponent,

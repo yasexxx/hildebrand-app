@@ -95,6 +95,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/admin']);
   }
 
+  viewCart() {
+    this.router.navigate(['/cart']);
+    this.collapsedActivate();
+  }
+
+  viewProfile() {
+    this.router.navigate(['user']);
+    this.collapsedActivate();
+  }
+
+  viewOrder() {
+    this.router.navigate(['user/order']);
+    this.collapsedActivate();
+  }
+
   subCart(): void {
     this.subscription3$ = this.navService.navCart$.subscribe(
       value => {

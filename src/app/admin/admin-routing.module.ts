@@ -21,10 +21,11 @@ const routes: Routes = [
       { path: 'edit/view/:id', component: ProductViewComponent },
       { path: 'orders', loadChildren: () => import('./admin-navigation/orders/orders.module').then(m => m.OrdersModule) },
       { path: 'customers', loadChildren: () => import('./admin-navigation/customers/customers.module').then(m => m.CustomersModule) },
-      { path: '' , redirectTo:'dashboard' , pathMatch:'full' },
+      { path: '' , redirectTo: 'dashboard' , pathMatch:'full' },
       { path: 'product/:id', component: ProductComponent },
       { path: 'create-carousel', component: FormCarouselComponent },
-      { path: 'edit-carousel/:id', component: FormEditCarouselComponent }
+      { path: 'edit-carousel/:id', component: FormEditCarouselComponent },
+      { path: '**', component: PageNotFoundComponent }
     ]},
     { path: '**', component: PageNotFoundComponent}
 ];

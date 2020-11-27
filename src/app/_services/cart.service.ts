@@ -106,24 +106,6 @@ export class CartService implements OnDestroy {
     }
   }
 
-  // initCart(){
-  //   const cartArr = this.getCartLocal();
-  //   this.cartStorage = JSON.parse(cartArr);
-  //   if (!!this.cartStorage){
-  //     console.log('go');
-  //     this.cartStorage.forEach(
-  //       // tslint:disable-next-line: no-shadowed-variable
-  //       (product) => {
-  //         this.count += product.quantity;
-  //       }
-  //     );
-  //     return this.count;
-  //   }
-  //   return;
-  // }
-
-
-
   clearCartLoc(): void {
     if (isPlatformBrowser(this.platformId)){
       window.localStorage.removeItem(this.CART_KEY);
@@ -147,6 +129,10 @@ export class CartService implements OnDestroy {
   deleteItemApi(id, name, itemId): Observable<any> {
     const itemDelete = { name: name, itemId: itemId};
     return this.http.post(`${this.baseUrl}/item/${id}`,itemDelete);
+  }
+
+  deleteAllApi(id:string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/remove/${id}`)
   }
 
 

@@ -1,34 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
-import { AuthService } from '../../_services/auth.service';
+import { ShoppingCartComponent } from '../../core/shopping-cart/shopping-cart.component';
+import { NavService } from '../../shared/nav.service';
+import { CartService } from '../../_services/cart.service';
+import { CheckOutService } from '../../_services/check-out.service';
 import { LoaderService } from '../../_services/loader.service';
+import { TokenStackService } from '../../_services/token-stack.service';
 
 
 
 export const accountValidationMessages = {
-  'username': [
-    { type: 'required', message: 'Username is required' },
-    { type: 'minlength', message: 'Username must be at least 5 characters long' },
-    { type: 'maxlength', message: 'Username cannot be more than 20 characters long' },
-    { type: 'pattern', message: 'Your username must contain only numbers and letters' },
-  ],
-  'email': [
-    { type: 'required', message: 'Email is required' },
-    { type: 'pattern', message: 'Enter a valid email' }
-  ],
-  'confirmPass': [
-    { type: 'required', message: 'Confirm password is required' },
-    { type: 'mismatch', message: 'Password don\'t match' }
-  ],
-  'password': [
-    { type: 'required', message: 'Password is required' },
-    { type: 'minlength', message: 'Password must be at least 7 characters long' },
-    { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
-  ],
-  'terms': [
-    { type: 'required', message: 'You must accept terms and conditions' }
-  ],
   'firstname': [
     { type: 'required', message: 'First Name is required'},
     { type: 'minlength', message: 'First Name must be at least 3 characters long' },
@@ -39,85 +22,172 @@ export const accountValidationMessages = {
     { type: 'minlength', message: 'Last Name must be at least 3 characters long' },
     { type: 'maxlength', message: 'Last Name cannot be more than 25 characters long' }
   ],
+  'email': [
+    { type: 'required', message: 'Email is required' },
+    { type: 'pattern', message: 'Enter a valid email' }
+  ],
+  'country': [
+    { type: 'required', message: 'Country is required' },
+  ],
+  'streetAddress': [
+    { type: 'required', message: 'Street address is required' },
+  ],
+  'city': [
+    { type: 'required', message: 'Town or city is required' },
+  ],
+  'postcode': [
+    { type: 'required', message: 'Post code is required' },
+  ],
+  'state': [
+    { type: 'required', message: 'State is required' },
+  ],
+  'terms': [
+    { type: 'required', message: 'You must accept terms and conditions' }
+  ],
   'address': [
     { type: 'required', message: 'Address is required'},
     { type: 'pattern', message:'Your address is invalid'}
-  ],
-  'phonenumber': [
-    { type: 'required', message: 'Phone Number is required'},
-    { type: 'validatePhoneNumber', message:'Phone number is invalid'}
   ]
   };
 
 const emailPattern = Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
-const userPattern = Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$');
-const addressPattern = Validators.pattern('^[a-zA-Z0-9,. ]+$');
 
 
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+  styleUrls: ['./checkout.component.scss'],
+  providers: [
+    ShoppingCartComponent
+  ]
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   accountValidationMessages$ = accountValidationMessages;
 
-  signupForm:FormGroup = this.fb.group ({
-    username : ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20),userPattern])],
+  checkOutForm:FormGroup = this.fb.group ({
     firstname : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
     lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+    companyName: [''],
+    country: ['', Validators.required],
+    streetAddress: ['', Validators.required],
+    city: ['', Validators.required],
+    postcode: ['', Validators.required],
+    state: ['', Validators.required],
     email: ['', Validators.compose([Validators.required,emailPattern ])],
-    passwordGroup: this.fb.group({
-      password: ['', Validators.compose([Validators.required,Validators.minLength(7)])],
-      confirmPass: ['', [Validators.required]]
-    }, { validator: this.passwordMatchValidator }),
-    address: ['', Validators.compose([Validators.required, addressPattern ])],
-    phoneNumber : ['', Validators.required],
+    phoneNumber : [''],
+    orderNote: [''],
     terms : ['', [Validators.requiredTrue]]
   });
 
+  paymentForm: FormGroup = this.fb.group({
+    payment: ['cod']
+  })
+
 
   isSuccessful = false;
-  isRegisterFailed = false;
   errorMessage = '';
   isLoading: Subject<boolean> = this.loadService.isLoading;
   subscription$ : Subscription;
+  userId: string;
+  cartItems = [];
+  totalAmount = 0;
+  shippingAmount = 0;
+  finalTotal = 0;
+  validForm = false;
+  subscription2$: Subscription;
+  subscription3$: Subscription;
 
-
-  constructor(private authService: AuthService,
+  constructor(private checkOutService: CheckOutService,
               private fb: FormBuilder,
-              private loadService: LoaderService) { }
+              private shoppingCart: ShoppingCartComponent,
+              private tokenService: TokenStackService,
+              private router: Router,
+              private cartService: CartService,
+              private navService: NavService,
+              private loadService: LoaderService) {
+                this.shippingAmount = 20;
+                this.getFinalTotal();
+               }
 
   ngOnInit(): void {
+    this.shoppingCart.ngOnInit();
+    this.cartItems = this.shoppingCart.addedCart;
+    this.totalAmount = this.shoppingCart.totalAmount;
+    this.userId = this.shoppingCart.userId;
+    this.getFinalTotal();
+    
+  }
+
+  ngOnDestroy(): void {
+    if(this.subscription$) { this.subscription$.unsubscribe(); }
+    if (this.subscription2$) { this.subscription2$.unsubscribe(); }
+    if(this.subscription3$) { this.subscription3$.unsubscribe(); }
+    this.shoppingCart.ngOnDestroy();
+  }
+
+  getFinalTotal(): void{
+    this.finalTotal = this.shippingAmount+this.totalAmount;
+  }
+
+  subTotal(qty:number, price:number){
+    let subTotal = 0;
+    subTotal = qty*price;
+    return subTotal;
+  }
+
+  getItemsOnCart(): void {
+    this.cartService.initCart();
   }
 
   onSubmit(): void {
-    const phone$ = this.phoneNumber.value;
-    const formData = {
-      username: this.username.value,
-      firstname: this.firstname.value,
-      lastname: this.lastname.value,
-      email: this.email.value,
-      address: this.address.value,
-      password: this.password.value,
-      phoneNumber: phone$.nationalNumber,
-      terms: this.terms.value
-    };
-    this.subscription$ = this.authService.register(formData).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isRegisterFailed = false;
-      },
-      err => {
-        this.isRegisterFailed = true
-        if(!!err.error.message){
-          this.errorMessage = err.error.message;
-          this.errorMessage = JSON.stringify(this.errorMessage);
-        } else { this.errorMessage = err.statusText || 'Cannot Sign-up, Check your connection!' ;}
-      }
-    )
+    const form = this.checkOutForm;
+    const paymentform = this.paymentForm;
+    if (form.status === 'INVALID' ) {
+      this.errorMessage = 'Some field are missing, complete the form and try again!'
+      this.validForm = false;
+    } else {
+        this.validForm = true;
+        const phone$ = this.phoneNumber.value;
+        const formData = {
+          firstname: this.firstname.value,
+          lastname: this.lastname.value,
+          email: this.email.value,
+          companyName: this.companyName.value,
+          country: this.country.value,
+          streetAddress: this.streetAddress.value,
+          city : this.city.value,
+          postcode: this.postcode.value,
+          state: this.state.value,
+          phoneNumber: phone$.nationalNumber,
+          terms: this.terms.value,
+          orderNotes: this.orderNote.value,
+          paymentOption: this.payment.value,
+          value:{
+            totalAmount: this.totalAmount,
+            shippingAmount: this.shippingAmount
+          }
+        };
+        this.subscription$ =this.checkOutService.checkOutApi(this.userId, formData)
+          .subscribe( res => {
+            this.subscription2$ = this.cartService.deleteAllApi(this.userId)
+              .subscribe(res => {
+                this.cartService.clearCartLoc();
+                this.navService.changeCart(0);
+                this.isSuccessful = true;
+              }, err => {
+                console.log(err);
+              })
+          }, err => {
+            console.log(err);
+            this.isSuccessful = false;
+            this.subscription3$ = this.tokenService.logOut()
+                  .subscribe( log => {
+                    this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
+                    this.router.navigate(['/check-out']));
+                  });
+          });
+    }
   }
 
   
@@ -128,25 +198,30 @@ export class CheckoutComponent implements OnInit {
     return result;
   }
 
-  get username() { return this.signupForm.get('username'); }
+  get firstname() { return this.checkOutForm.get('firstname'); }
 
-  get firstname() { return this.signupForm.get('firstname'); }
+  get lastname() { return this.checkOutForm.get('lastname'); }
 
-  get lastname() { return this.signupForm.get('lastname'); }
+  get email() { return this.checkOutForm.get('email'); }
 
-  get email() { return this.signupForm.get('email'); }
+  get companyName() { return this.checkOutForm.get('companyName'); }
 
-  get password() { return this.signupForm.get('passwordGroup.password'); }
+  get country() { return this.checkOutForm.get('country'); }
 
-  get confirmPass() { return this.signupForm.get('passwordGroup.confirmPass'); }
+  get streetAddress() { return this.checkOutForm.get('streetAddress'); }
 
-  get address() { return this.signupForm.get('address'); }
+  get postcode() { return this.checkOutForm.get('postcode'); }
 
-  get phoneNumber() { return this.signupForm.get('phoneNumber'); }
+  get state() { return this.checkOutForm.get('state'); }
 
-  get terms() { return this.signupForm.get('terms'); }
+  get city() { return this.checkOutForm.get('city')}
 
-  get passwordGroup() { return this.signupForm.get('passwordGroup'); }
+  get phoneNumber() { return this.checkOutForm.get('phoneNumber'); }
 
+  get orderNote() { return this.checkOutForm.get('orderNote'); }
+
+  get terms() { return this.checkOutForm.get('terms'); }
+
+  get payment() { return this.paymentForm.get('payment'); }
 
 }

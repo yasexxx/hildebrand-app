@@ -1,0 +1,52 @@
+<div class="bg-a-color">
+    <div class="order-header">
+      <h1>Order</h1>
+    </div>
+    <div class="order-wrapper" *ngIf="(!!userId)">
+        <div class="table-order table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Complete Name</th>
+                <th scope="col">Products</th>
+                <th scope="col">Status</th>
+                <th scope="col">Shipping Fee</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orderArray; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.firstname}}&nbsp;{{item.lastname}}</td>
+                <td><div *ngFor="let product of item.orderItems">
+                  {{product.name}}&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{product.price | currency: currencyUsed}}</strong>&nbsp;&nbsp;X&nbsp;&nbsp;<strong>{{product.quantity}}</strong>
+                </div></td>
+                <td><div [ngClass]="{'text-primary': item.type.processing, 'text-success': !(item.type.processing)}">{{item.type.processing ? 'Processing' : 'Process Complete'}}</div> <br><div [ngClass]="{'text-success': item.type.delivered, 'text-secondary': !(item.type.delivered)}">{{item.type.delivered ? 'Delivered' : 'Not yet delivered'}}</div></td>
+                <td>{{item.value.shippingAmount | currency: curencyUsed}}</td>
+                <td>{{item.value.totalAmount | currency: curencyUsed}}</td>
+                <td>{{item.value.totalAmount + item.value.shippingAmount | currency: curencyUsed}}</td>
+                <td>{{ item.createdAt | date }}</td>
+                <td><button (click)="orderView(item.orderId)" class="btn btn-primary">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="no-user" *ngIf="!(!!userId)">
+      <div class="no-content">
+        <div class="icon-warning">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </div>
+        <div class="not-found">
+          Content not found!
+        </div>
+        <div class="not-found">
+          Please enter the correct url or contact site administrator.
+        </div>
+      </div>
+    </div>
+</div>

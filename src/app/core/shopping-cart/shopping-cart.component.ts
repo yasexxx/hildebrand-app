@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
+import { NavService } from '../../shared/nav.service';
 import { CartService } from '../../_services/cart.service';
 import { TokenStackService } from '../../_services/token-stack.service';
 
@@ -21,7 +22,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     price: 0,
     quantity: 0
   };
-  userId = false;
+  userId: string;
   subscription$: Subscription;
   subscriptionDelAPi$: Subscription;
   subscriptionUpdateApi$: Subscription;
@@ -30,8 +31,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   constructor(private cartService: CartService,
               private router: Router,
+              private navService: NavService,
               private tokenService: TokenStackService) {
-
               }
 
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   getCartApi(id) {
     this.subscription$ = this.cartService.getCart(id)
     .subscribe( (cart ) => {
-      if (!!(cart[0].attributes)){
+      if (!!(cart[0]?.attributes)){
         this.cartApiArray = cart[0].attributes.cartArr;
         this.addedCart = [...this.cartApiArray];
       }
@@ -68,6 +69,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     },
     err => {
       console.log(err);
+      this.initCartApi();
     });
   }
 
@@ -110,6 +112,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
         this.initCartApi();
       }, err => {
         console.log(err);
+        this.initCartApi();
       });
     }
   }
@@ -147,6 +150,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     } else {
       this.cartService.deleteItem(name);
     }
+  }
+
+  checkOut():void {
+    this.router.navigate(['/check-out']);
   }
 
 

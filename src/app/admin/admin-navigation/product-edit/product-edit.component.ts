@@ -93,8 +93,6 @@ export class ProductEditComponent implements OnInit {
 }
 
   ngOnInit(): void {
-
-
     this.getProductById(this.route.snapshot.paramMap.get('id'));
   }
 

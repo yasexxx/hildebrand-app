@@ -1,0 +1,100 @@
+<div class="view-wrapper">
+    <hr style="margin: 1rem;">
+    <div class="order-id" *ngFor="let item0 of orderArray">
+      <strong>Order Id: {{item0.orderId}}</strong>
+      <strong>Verification No.: {{item0.id}}</strong>
+    </div>
+    <div class="order-listing">
+      <div><a [routerLink]="['/user/order']">Order List -></a></div>
+    </div>
+    <div class="order-view card">
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th style="font-size:1.1rem;" scope="col">Product</th>
+                <th style="font-size:1.1rem;" scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div *ngFor="let item of orderItems">
+                    <strong style="color: #c73c3c;">{{item.name}}</strong>
+                    <strong>&nbsp;&nbsp;X&nbsp;&nbsp;{{item.quantity}}</strong>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let item of orderItems">
+                    <strong>{{item.price * item.quantity | currency: currencyUsed}}</strong>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Subtotal:</strong></td>
+                <td *ngFor="let item1 of orderArray"><strong>{{item1.value.totalAmount | currency: currencyUsed}}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Shipping:</strong></td>
+                <td *ngFor="let item2 of orderArray"><strong>{{item2.value.shippingAmount | currency: currencyUsed}}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Payment method:</strong></td>
+                <td *ngFor="let item3 of orderArray"><strong>{{paymentName(item3.paymentOption)}}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Total:</strong></td>
+                <td *ngFor="let item4 of orderArray"><strong>{{(item4.value.shippingAmount) + (item4.value.totalAmount) | currency: currencyUsed}}</strong></td>
+              </tr>
+          </table>
+    </div> 
+    <div class="two-column">
+      <div class="card">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col"><h2>Billing address</h2></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div *ngFor="let item5 of orderArray" class="billing-address">
+                  <div>{{item5.firstname}} {{item5.lastname}}</div>
+                  <div>{{item5.email}}</div>
+                  <div>{{item5.country | titlecase}}</div>
+                  <div>{{item5.city | titlecase}}</div>
+                  <div>{{item5.streetAddress | titlecase}}</div>
+                  <div>{{item5.orderNotes | titlecase}}</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>&nbsp;</div>
+
+      <div class="card">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col"><h2>Shipping address</h2></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div *ngFor="let item5 of orderArray" class="billing-address">
+                  <div>{{item5.firstname | titlecase}} {{item5.lastname | titlecase}}</div>
+                  <div>{{item5.country | titlecase}}</div>
+                  <div>{{item5.city | titlecase}}</div>
+                  <div>{{item5.streetAddress | titlecase}}</div>
+                  <div>{{item5.orderNotes | titlecase}}</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>

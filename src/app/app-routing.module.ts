@@ -19,8 +19,9 @@ const routes: Routes = [
       { path: 'cart', loadChildren:() => import('./core/shopping-cart/shopping-cart.module').then( m => m.ShoppingCartModule) },
       { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuardActivate] },
       { path: 'product/id/:id', loadChildren: () => import('./product/product.module').then( l => l.ProductModule)},
-      { path: 'user', loadChildren: () => import('./users/users.module').then( m => m.UsersModule)},
+      { path: 'user', loadChildren: () => import('./users/users.module').then( m => m.UsersModule), canLoad: [AuthGuard]},
       { path: 'check-out', loadChildren: () => import('./navigation/checkout/checkout.module').then(m => m.CheckoutModule) },
+      { path: 'search', loadChildren: () => import('./shared/search-bar/search-bar.module').then(m => m.SearchBarModule) },
       { path: 'home' , redirectTo: '', pathMatch: 'full', }
               ]
   },

@@ -2,38 +2,39 @@
     <div class="checkout-header">
       <h1>Check Out</h1>
     </div>
-    <div class="wrapper-content">
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-a-adjust">
-            <div *ngIf="!isSuccessful">
-              <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" class="form-control" formControlName="username" required>
-                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.username">
-                    <div *ngIf="username.hasError(validation.type) && (username.dirty || username.touched)">
+    <div class="wrapper-content" *ngIf="!isSuccessful">
+      <div class="checkout-billing">
+        <h1 style="font-weight: bold;">Billing details</h1>
+        <hr>
+        <div [formGroup]="checkOutForm" class="form-a-adjust">
+            <div>
+              <div class="form-row">
+                <div class="form-group col-lg-6">
+                  <label for="firstname"><strong>First Name</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                  <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname" required>
+                  <div class="text-danger" *ngFor="let validation of accountValidationMessages$.firstname">
+                    <div *ngIf="firstname.hasError(validation.type) && (firstname.dirty || firstname.touched)">
                       {{validation.message}}
                     </div>
                 </div>
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="lastname"><strong>Last Name</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                  <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname" required>
+                  <div class="text-danger" *ngFor="let validation of accountValidationMessages$.lastname">
+                    <div *ngIf="lastname.hasError(validation.type) && (lastname.dirty || lastname.touched)">
+                      {{validation.message}}
+                    </div>
+                </div>
+                </div>
               </div>
               <div class="form-group">
-                <label for="firstname">First Name:</label>
-                <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname" required>
-                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.firstname">
-                  <div *ngIf="firstname.hasError(validation.type) && (firstname.dirty || firstname.touched)">
-                    {{validation.message}}
-                  </div>
+                <label for="companyName"><strong>Company name</strong>&nbsp;(optional)</label>
+                <input type="text" id="companyName" name="companyName" class="form-control" formControlName="companyName">
               </div>
-              </div>
+
               <div class="form-group">
-                <label for="lastname">Last Name:</label>
-                <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname" required>
-                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.lastname">
-                  <div *ngIf="lastname.hasError(validation.type) && (lastname.dirty || lastname.touched)">
-                    {{validation.message}}
-                  </div>
-              </div>
-              </div>
-              <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email"><strong>Email</strong>&nbsp;</label><span class="symbol-validate">*</span>
                 <input type="email" id="email" name="email" class="form-control" formControlName="email" required>
                 <div class="text-danger" *ngFor="let validation of accountValidationMessages$.email">
                   <div *ngIf="email.hasError(validation.type) && (email.dirty || email.touched)">
@@ -41,43 +42,66 @@
                   </div>
               </div>
               </div>
-              <div formGroupName="passwordGroup" class="form-group">
-                <div class="form-group">
-                  <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" class="form-control" formControlName="password" required>
-                    <div class="text-danger" *ngFor="let validation of accountValidationMessages$.password">
-                      <div *ngIf="password.hasError(validation.type) && (password.dirty || password.touched)">
-                        {{validation.message}}
-                      </div>
-                  </div>
-                  <label for="confirmPass">Confirm Password:</label>
-                 <input type="password" id="confirmPass" name="confirmPass" class="form-control" formControlName="confirmPass" required>
-                 <div class="text-danger" *ngFor="let validation of accountValidationMessages$.confirmPass">
-                  <div *ngIf="(passwordGroup.hasError(validation.type)|| confirmPass.hasError(validation.type)) && (confirmPass.dirty || confirmPass.touched)">
-                    {{validation.message}}
-                  </div>
-              </div>  
-                </div>
-              </div>
+
+
               <div class="form-group">
-                <label for="address">Address:</label>
-                <input type="address" id="address" name="address" class="form-control" formControlName="address" required>
-                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.address">
-                  <div *ngIf="address.hasError(validation.type) && (address.dirty || address.touched)">
+                <label for="country"><strong>Country / Region</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                <input type="text" id="country" name="country" class="form-control" formControlName="country" required>
+                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.country">
+                  <div *ngIf="country.hasError(validation.type) && (country.dirty || country.touched)">
                     {{validation.message}}
                   </div>
               </div>
               </div>
               <div class="form-group">
-                <label for="phoneNumber">Phone Number:</label><br>
-                  <ngx-intl-tel-input [inputId]="phonenumber" [phoneValidation]="true" [searchCountryPlaceholder]="'Search country here...'" name="phoneNumber" [separateDialCode]="true" [searchCountryFlag]="true" formControlName="phoneNumber"></ngx-intl-tel-input>
-                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.phonenumber">
-                  <div *ngIf="phoneNumber.hasError(validation.type) && (phoneNumber.touched|| phoneNumber.dirty)">
+                <label for="streetAddress"><strong>Street address</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                <input type="text" id="streetAddress" name="streetAddress" class="form-control" formControlName="streetAddress" required>
+                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.streetAddress">
+                  <div *ngIf="streetAddress.hasError(validation.type) && (streetAddress.dirty || streetAddress.touched)">
                     {{validation.message}}
                   </div>
               </div>
               </div>
               <div class="form-group">
+                <label for="city"><strong>Town / City</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                <input type="text" id="city" name="city" class="form-control" formControlName="city" required>
+                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.city">
+                  <div *ngIf="city.hasError(validation.type) && (city.dirty || city.touched)">
+                    {{validation.message}}
+                  </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <label for="postcode"><strong>Postcode / ZIP</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                <input type="text" id="postcode" name="postcode" class="form-control" formControlName="postcode" required>
+                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.postcode">
+                  <div *ngIf="postcode.hasError(validation.type) && (postcode.dirty || postcode.touched)">
+                    {{validation.message}}
+                  </div>
+              </div>
+              </div>
+              
+
+              <div class="form-group">
+                <label for="state"><strong>State</strong>&nbsp;</label><span class="symbol-validate">*</span>
+                <input type="text" id="state" name="state" class="form-control" formControlName="state" required>
+                <div class="text-danger" *ngFor="let validation of accountValidationMessages$.state">
+                  <div *ngIf="state.hasError(validation.type) && (state.dirty || state.touched)">
+                    {{validation.message}}
+                  </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber"><strong>Phone Number</strong> &nbsp;</label><br>
+                  <input type="text" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="address"><strong>Order notes</strong> &nbsp;(optional)</label>
+                <textarea class="form-control" placeholder="Notes about your order, e.g special notes for delivery" name="orderNote" id="orderNote" formControlName="orderNote" cols="1" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
               <div class="form-check">
                 <input type="checkbox" id="terms" class="form-check-input" name="terms" formControlName="terms" required>
                 <label for="terms" class="form-check-label ml-2">I agree to Terms and Conditions</label>
@@ -88,15 +112,62 @@
               </div>
               </div>
               </div>
-              <div class="form-group">
-                <button type="submit" [disabled]="!signupForm.valid" class="btn btn-outline-dark">Register</button>
-              </div>
-      
-      
-              <div class="alert alert-danger" *ngIf="signupForm.valid && isRegisterFailed">
-                {{ errorMessage }}
-              </div>
+
+
             </div>
-          </form>
+          </div>
+      </div>
+      <div class="card your-order">
+        <strong class="order-title">Your order</strong>
+        <div class="order-total">
+          <strong>Product</strong>
+          <strong>Subtotal</strong>
+        </div>
+          <div style="margin: 0 1rem;"><hr></div>
+        <div class="order-total" *ngFor="let item of cartItems">
+          <span>{{item.name}} &nbsp; <strong>{{item.price | currency:'USD'}}</strong> &nbsp;&nbsp; X &nbsp;&nbsp; <strong>{{item.quantity}}</strong></span>
+          <span>{{ subTotal(item.quantity, item.price) | currency:'USD' }}</span>
+        </div>
+          <div style="margin: 0 1rem;"><hr></div>
+        <div class="order-total">
+          <strong>Subtotal</strong>
+          <strong>{{ totalAmount | currency:'USD' }}</strong>
+        </div>
+        <div style="margin: 0 1rem;"><hr></div>
+        <div class="order-total">
+          <strong>Shipping</strong>
+          <strong>{{ shippingAmount | currency:'USD' }}</strong>
+        </div>
+          <div style="margin: 0 1rem;"><hr></div>
+        <div class="order-total">
+          <strong>Total</strong>
+          <strong>{{ finalTotal | currency:'USD' }}</strong>
+        </div>
+          <div style="margin: 0 1rem;"><hr></div>
+        <div [formGroup]="paymentForm">
+          <div class="form-check mx-3 mt-3 btn-group btn-group-toggle">
+            <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" value="cod" formControlName="payment" checked>
+            <label class="form-check-label" for="cashOnDelivery">
+              Cash on Delivery
+            </label>
+          </div>
+          <div class="form-check mx-3 mt-3">
+            <input class="form-check-input" type="radio" name="payment" id="cashPaypal" value="paypal" formControlName="payment">
+            <label class="form-check-label" for="cashPaypal">
+              Paypal
+            </label>
+          </div>
+        </div>
+        <p class="mx-3 mt-2">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+        <button type="button" (click)="onSubmit()"  class="btn mx-3 mb-5 mb-sm-3 place-order">Place Order</button>
+
+        <div class="text-danger err-msg" *ngIf="!validForm">
+            {{errorMessage}}
+        </div>
+      </div>
+    </div>
+
+    <div class="success-added" *ngIf="isSuccessful">
+      <div class="response-success">Your order was successfully added.&nbsp;<a [routerLink]="[ '/user/order']">Click here</a>&nbsp;to view order.</div>
     </div>
 </div>

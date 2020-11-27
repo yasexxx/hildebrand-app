@@ -78,10 +78,10 @@
                                                   <div ngbDropdown (mouseover)="mouseOver2()" (mouseout)="mouseOut2()" [open]="isHover2" class="d-inline-block">
                                                       <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false" role="button"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{{userName}}</a>
                                                       <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="in-profile">
-                                                        <button ngbDropdownItem>Profile</button>
-                                                        <button ngbDropdownItem>Order</button>
+                                                        <button (click)="viewProfile()" ngbDropdownItem>Profile</button>
+                                                        <button (click)="viewOrder()" ngbDropdownItem>Order</button>
                                                         <button *ngIf="isAdmin$" (click)="navigateAdmin()" ngbDropdownItem>Admin</button>
-                                                        <button ngbDropdownItem>Cart</button>
+                                                        <button (click)="viewCart()" ngbDropdownItem>Cart</button>
                                                         <button (click)="logout()" ngbDropdownItem>Logout</button>
                                                       </div>
                                                     </div>

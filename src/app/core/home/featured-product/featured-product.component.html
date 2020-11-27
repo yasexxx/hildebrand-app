@@ -3,7 +3,7 @@
         <a [href]="convert2Base64(product)">
           <img class="img-a-display" [src]="convert2Base64(product)" alt="image-1">
           </a>
-      <br><p >{{product.productName}}</p>
+      <br><p (click)="singleProduct(product.id)" role="button">{{product.productName}}</p>
       <!-- <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther"></p>
           <ng-template #theOther><p>&nbsp;</p></ng-template> -->
       <p class="text-a-align">{{product.price |currency:"PHP":"symbol"}}</p>

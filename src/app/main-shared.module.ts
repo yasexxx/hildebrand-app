@@ -18,10 +18,12 @@ import { OnlineOrderService } from './services/online-order.service';
 import { TokenStackService } from './_services/token-stack.service';
 import { AuthService } from './_services/auth.service';
 import { UserService } from './_services/user.service';
-import { AuthGuard, AuthGuardActivate } from './shared/auth.guard';
+import { AuthGuard, AuthGuardActivate, AuthGuardActivate2 } from './shared/auth.guard';
 import { NavService } from './shared/nav.service';
 import { CartService } from './_services/cart.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserOrderComponent } from './users/user-order/user-order.component';
+import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.component';
 
 @NgModule({
     declarations: [
@@ -65,6 +67,9 @@ export class MainSharedModule {
                 TokenStackService,
                 UserService,
                 AuthGuard,
+                AuthGuardActivate2,
+                UserOrderComponent,
+                ShoppingCartComponent,
                 AuthGuardActivate,
                 CarouselService,
                 NavService,

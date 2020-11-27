@@ -75,6 +75,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['user']);
   }
 
+  viewCart() {
+    this.router.navigate(['/cart']);
+  }
+
+  viewOrder() {
+    this.router.navigate(['user/order']);
+  }
+
   goToAdmin(){
     this.router.navigate(['/admin'])
   }

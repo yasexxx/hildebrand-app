@@ -1,0 +1,78 @@
+.view-wrapper {
+    min-height: 100vh;
+}
+
+.order-view {
+    margin:3rem 12vw;
+}
+
+.order-listing {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 12vw;
+    margin-top: -5vh;
+}
+
+.order-listing a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 0.1fr 1fr;
+    margin: 1rem 12vw;
+}
+
+th > h2 {
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+.order-id {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0 0 8vw;
+    font-size: 1.2rem;
+}
+
+.billing-address {
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-rows: 1fr;
+    row-gap: 0.6rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@media (max-width: 640px) {
+    .order-id {
+        font-size: 0.7rem;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .order-id {
+        padding-top: 2.5rem;
+    }
+
+    .order-listing {
+        margin-top: -10vh;
+    }
+}
+
+
+@media (max-width: 315px) {
+    .billing-address {
+        font-size: 0.6rem;
+    }
+
+    .order-view {
+        font-size: 0.7rem;
+    }
+
+
+}

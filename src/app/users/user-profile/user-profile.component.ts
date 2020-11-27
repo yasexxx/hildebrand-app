@@ -13,7 +13,7 @@ export class UserProfileComponent implements OnInit {
     email: '',
     address: '',
     contact: '',
-    picture: "https://picsum.photos/200"
+    picture: "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
   }
 
   currentUser: any;
@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUser(){
-    this.router.navigate(['user', this.currentUser.id ]);
+    this.router.navigate(['user/profile', this.currentUser.id ]);
   }
 
 }

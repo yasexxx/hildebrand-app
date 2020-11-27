@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { UserOrderViewComponent } from '../users/user-order/user-order-view/user-order-view.component';
+import { UserOrderComponent } from '../users/user-order/user-order.component';
+import { CheckOutService } from '../_services/check-out.service';
 import { TokenStackService } from '../_services/token-stack.service';
 
 @Injectable({
@@ -19,12 +22,11 @@ export class AuthGuard implements CanLoad {
         const id = user?.id;
         if (url === 'admin' && isAdmin ){
             return isAdmin;
-        } else if (url === 'cart' && !!id ){
+        } else if (url === 'user' && !!id ){
             return true;
         } else if (url === 'wishlist' && !id){
             return true;
         }
-
         this.router.navigate(['/login']);
         return isAdmin;
     }
@@ -48,4 +50,31 @@ export class AuthGuardActivate implements CanActivate {
         }
         return true;
       }
+}
+
+
+@Injectable(
+)
+export class AuthGuardActivate2 implements CanActivate {
+
+    subscription$: Subscription;
+
+    constructor(
+        private router: Router,
+        private userViewComponent: UserOrderComponent,
+      ) {}
+    
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        let itemTrue: boolean;
+        this.userViewComponent.ngOnInit();
+        itemTrue = !!this.userViewComponent.userId;
+        this.userViewComponent.ngOnDestroy();
+        if (itemTrue) {
+            return true;
+      } else {
+          this.router.navigate(['/login'])
+          return false;
+      }
+    }
+    
 }

@@ -1,7 +1,12 @@
-<div class="container">
+<div style="margin:1rem 2rem"><hr></div>
+<div class="container" *ngIf="isUserSuccess;else errorTemp ">
   <h1>Edit Profile</h1>
-  <img class="img-fluid rounded-circle img-n-fit" src="https://picsum.photos/200"/>
-  <button class="btn btn-warning btn1 text-white" type="button">Update Avatar</button>
+  <img class="img-fluid rounded-circle img-n-fit" [src]="base64Img(avatar)"/>
+  <!-- <button class="btn btn-warning btn1 text-white" id="updateAvater" (change)="attachedFile($event)" type="file">Update Avatar</button> -->
+  <div class="btn1">
+    <input type="file" class="custom-file-input" id="updateAvatar" name="updateAvatar" [(ngModel)]="uploadFile" (change)="attachedFile($event)" required #updateAvatar="ngModel">
+    <label class="btn btn-custom text-white" for="updateAvatar">Update Avatar</label>
+  </div>
   <form (ngSubmit)="onSubmit()">
     <div class="form-a-wrapper">
       <div>
@@ -33,6 +38,14 @@
   </div>
   <div>
     <button class="btn btn-primary" type="submit">Update</button>
-    <button class="btn btn-dark ml-3" type="button">Cancel</button>
+    <button (click)="cancelButton()" class="btn btn-dark ml-3" type="button">Cancel</button>
   </div>
   </form>
+
+  </div>
+
+
+<ng-template #errorTemp>
+  Contact site administrator!
+</ng-template>
+

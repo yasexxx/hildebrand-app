@@ -1,19 +1,38 @@
 
 
 .container {
-  margin: 1rem ;
+  margin: 1rem auto 4rem auto ;
   display: grid;
   grid-template-columns: 1fr;
   width: 500px;
 }
 
+.container h1  {
+  text-align: center;
+}
+
+div > h2 {
+  text-align: center;
+}
+
+.btn-custom {
+  background: #002447;
+}
+
+.btn-custom:hover {
+  background: #6047cf;
+}
+
 .btn1 {
+  text-align: center;
   width: 8rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
 }
 
 .img-n-fit {
+  display: flex;
   max-width: 10rem;
+  margin: 0 auto;
 }
 
 .form-a-wrapper {

@@ -41,7 +41,6 @@ export class AuthService implements OnDestroy {
   }
 
   register(user): Observable<any> {
-    console.log(user);
     return this.http.post(this._apiUrl+'/signup', {
       user
     }, {
@@ -50,7 +49,26 @@ export class AuthService implements OnDestroy {
   }
 
   updateUser(id, data): Observable<any> {
-    return this.http.post(`${this._apiUrl}/update-user/${id}`,data);
+    let modifyData = {
+      address: data.address,
+      email: data.email,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      phoneNumber: data.phoneNumber
+    }
+    return this.http.put(`${this._apiUrl}/update-user/${id}`,modifyData);
+  }
+
+  updateProfilePic(id, data): Observable<any> {
+    return this.http.put(`${this._apiUrl}/update-user/avatar/${id}`,data);
+  }
+
+  getUserApi(id): Observable<any> {
+    return this.http.get(`${this._apiUrl}/user/${id}`);
+  }
+
+  getAvatarApi(id): Observable<any> {
+    return this.http.get(`${this._apiUrl}/update-user/avatar/${id}`);
   }
 
   get loading$() { return this._loading$.asObservable(); }

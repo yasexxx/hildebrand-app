@@ -4,11 +4,11 @@
 </div>
 <div *ngIf="user" class="profile-content mx-auto mt-3">
 
-  <img class="img-fluid rounded-circle img-n-fit" [src]="user.picture"/>
-  <span>Name: {{user.name}}</span>
-  <span>Email: {{user.email}}</span>
-  <span>Address: {{user.address}}</span>
-  <span>Contact Number: {{user.contact}}</span>
+  <img class="img-fluid rounded-circle img-n-fit" [src]="base64Img(avatar)"/>
+  <span><strong>Name:</strong> {{user.name}}</span>
+  <span><strong>Email:</strong> {{user.email}}</span>
+  <span><strong>Address:</strong> {{user.address}}</span>
+  <span><strong>Contact Number:</strong> {{user.phoneNumber}}</span>
   <button (click)="updateUser()" class="btn btn-1 mb-5 ml-auto" type="button">Update</button>
 </div>
 </div>

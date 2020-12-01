@@ -17,6 +17,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     AppRoutingModule,
     MatBadgeModule,
     MatIconModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
     SimpleNotificationsModule.forRoot(),
     MainSharedModule.forRoot(),
 

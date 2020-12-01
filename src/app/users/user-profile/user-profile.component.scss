@@ -25,13 +25,15 @@
 .profile-content {
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
+  row-gap: 1rem;
+  min-height: 100vh;
+  padding-top: 4rem;
 }
-
 
 
 .img-n-fit {
   max-width: 10rem;
+  margin: 0 auto;
 
 }
 
@@ -51,6 +53,6 @@
 
 .profile-content span {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: x-large;
+  font-size: 0.9rem;
 }
 

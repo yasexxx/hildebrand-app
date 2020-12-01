@@ -28,7 +28,6 @@ export class UserOrderComponent implements OnInit ,OnDestroy{
     if (!!this.userId) {
       this.subscription$ = this.checkOutService.getOrderById(this.userId)
         .subscribe( res => {
-          console.log(res);
           this.orderArray = res;
         })
     }

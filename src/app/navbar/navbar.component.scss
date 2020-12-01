@@ -37,6 +37,22 @@
   font-size: 2rem; 
 }
 
+.search-result {
+  position: absolute;
+  z-index: 100;
+}
+
+.result-class {
+  background: rgb(255, 255, 255);
+}
+
+.item-result {
+  margin: 0 1rem;
+  width: 34.5vw;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+}
+
 .header-item-holder{
   margin: 1rem 2.5rem 0 0;
   color: rgb(49, 47, 47);

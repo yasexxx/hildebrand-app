@@ -6,12 +6,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-5 mt-4 mt-lg-0 search-a-bar">
-                                <form action="#">
+                                <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm)">
                                     <div class="form-group ">
                                         <div class="input-group">
-                                            <input type="search" class="form-control border-dark shadow-none" placeholder="Search..." required>
+                                            <input type="text" class="form-control border-dark shadow-none" name="searchInput" id="searchInput" formControlName="searchInput" placeholder="Search..." required>
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-dark"><i class="fa fa-search"></i></button>
+                                                <button type="submit" class="btn btn-outline-dark"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="search-result" *ngIf="activateDropdown">
+                                            <div class="result-class" *ngFor = "let item of searchResult | filter:keyword">
+                                                <div class="item-result">{{item.productName}}</div>
                                             </div>
                                         </div>
                                     </div>

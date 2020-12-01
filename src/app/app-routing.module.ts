@@ -6,14 +6,14 @@ import { RouterComponent } from "./router/router.component";
 import { WishlistComponent } from './core/wishlist/wishlist.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QuicklinkStrategy } from 'ngx-quicklink';
-import { AuthGuard, AuthGuardActivate } from './shared/auth.guard';
+import { AuthGuard, AuthGuardActivate, AuthGuardLoginSignUp } from './shared/auth.guard';
 
 const routes: Routes = [
   { path: '', component: RouterComponent,
     children: [
       { path: '', component: HomeComponent,},
-      { path: 'login', loadChildren: () => import('./navigation/login/login.module').then(m => m.LoginModule) },
-      { path: 'register', loadChildren: () => import('./navigation/signup/signup.module').then( m => m.SignUpModule) },
+      { path: 'login', loadChildren: () => import('./navigation/login/login.module').then(m => m.LoginModule), canLoad: [AuthGuardLoginSignUp] },
+      { path: 'register', loadChildren: () => import('./navigation/signup/signup.module').then( m => m.SignUpModule), canLoad: [AuthGuardLoginSignUp] },
       { path: 'supermarket', loadChildren: () => import('./navigation/supermarket/supermarket.module').then( m => m.SupermarketModule) },
       { path: 'restaurant', loadChildren:() => import('./navigation/restaurant/restaurant.module').then( m => m.RestaurantModule) },
       { path: 'cart', loadChildren:() => import('./core/shopping-cart/shopping-cart.module').then( m => m.ShoppingCartModule) },

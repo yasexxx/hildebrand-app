@@ -26,11 +26,37 @@ export class AuthGuard implements CanLoad {
             return true;
         } else if (url === 'wishlist' && !id){
             return true;
+        } else if (url === 'login' && !!id ) {
+            return false
         }
         this.router.navigate(['/login']);
         return isAdmin;
     }
 }
+
+
+@Injectable()
+export class AuthGuardLoginSignUp implements CanLoad {
+
+    constructor(private tokenStack: TokenStackService,
+                private router: Router ){}
+    canLoad(
+        route: Route
+    ): Observable<boolean> | Promise<boolean> | boolean {
+        const url  = route.path;
+        const user = this.tokenStack.getUser();
+        const id = user?.id;
+         if (url === 'login' && !!id ) {
+            this.router.navigate(['/']);
+            return false;
+        } else if (url === 'register' && !!id ){
+            this.router.navigate(['/']);
+            return false;
+    }
+    return !(!!id)
+}
+}
+
 
 @Injectable()
 export class AuthGuardActivate implements CanActivate {

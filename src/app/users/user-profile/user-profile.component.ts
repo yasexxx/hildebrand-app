@@ -1,37 +1,91 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TokenStackService } from './../../_services/token-stack.service';
+import { AuthService } from '../../_services/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
 
   user = {
     name: '',
     email: '',
     address: '',
-    contact: '',
-    picture: "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-  }
+    phoneNumber: '',
+  };
 
+  avatar = {
+    data: '',
+    mimetype: '',
+    url: 'https://ssl.gstatic.com/accounts/ui/avatar_2x.png'
+  };
+
+  userId: string;
+  userAsset;
   currentUser: any;
+  subscription$: Subscription;
+  subscription2$: Subscription;
 
   constructor(private tokenStack: TokenStackService,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.currentUser = this.tokenStack.getUser();
-    this.user.name = this.currentUser.firstname+' '+this.currentUser.lastname;
-    this.user.email = this.currentUser.email;
-    this.user.address = this.currentUser.address;
-    this.user.contact = this.currentUser.phonenumber;
+    this.userId = this.currentUser.id;
+    this.subscription$ = this.authService.getUserApi(this.userId)
+      .subscribe(
+        res => {
+          this.userAsset = res[0];
+          this.user.name = this.userAsset.firstname+' '+this.userAsset.lastname;
+          this.user.email = this.userAsset.email;
+          this.user.address = this.userAsset.address;
+          this.user.phoneNumber = this.userAsset.phoneNumber ? this.userAsset.phoneNumber: 'Not available';
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    this.subscription2$ = this.authService.getAvatarApi(this.userId)
+      .subscribe( res => {
+        const result = res[0];
+        this.avatar.data = result.data;
+        this.avatar.mimetype = result.mimetype;
+        this.avatar.url = result.url;
+      }, err => {
+        console.log(err);
+      })
     
+  }
+
+  ngOnDestroy(): void {
+    if(this.subscription$) {
+      this.subscription$.unsubscribe();
+    } if (this.subscription2$){
+      this.subscription2$.unsubscribe();
+    }
   }
 
   updateUser(){
     this.router.navigate(['user/profile', this.currentUser.id ]);
   }
 
+  base64Img(file){
+    const reg = /https/gi;
+    const imgData = file.data;
+    const imgUrl = file.url;
+    if (imgData.length > 50 ){
+      return 'data:'+file.mimetype+';base64,'+imgData;
+    } else {
+      if(imgUrl.search(reg) !== -1){
+        return imgUrl;
+      } else{
+        return 'https://ssl.gstatic.com/accounts/ui/avatar_2x.png';
+      }
+    }
+
+  }
 }

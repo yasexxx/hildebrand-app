@@ -20,7 +20,6 @@
 }
 
 
-
 .product-details {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
@@ -57,7 +56,7 @@
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.5rem;
   font-weight: bolder;
-  height: 50vh;
+  min-height: 100vh;
   text-align: center;
   background: white;
   padding-top: 18vh;

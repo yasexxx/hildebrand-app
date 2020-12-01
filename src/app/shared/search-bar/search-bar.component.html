@@ -1,7 +1,7 @@
 
 <hr style="margin: 1rem">
 <div class="search-wrapper">
-  <div class="query-search" *ngFor="let item of products">
+  <div class="query-search" *ngFor = "let item of itemResult | filter: filterKey">
     <div>Title: {{item.productName}}</div>
     <div>Price: {{item.price}}</div>
     <div>Description: {{item.description}}</div>

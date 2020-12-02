@@ -46,7 +46,6 @@ export class UserOrderViewComponent implements OnInit, OnDestroy {
           this.orderArray = res;
           this.orderItems = res[0].orderItems;
           this.validItem = true;
-          console.log(this.orderArray);
           
         }
       }, err => {

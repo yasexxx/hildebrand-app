@@ -9,13 +9,14 @@ import { RestaurantProductsComponent } from '../navigation/restaurant/restaurant
 
 import { ProductComponent } from '../product/product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ContentHeaderComponent } from './content-header/content-header.component';
 
 @NgModule({
     declarations: [
         SupermarketProductsComponent,
         RestaurantProductsComponent,
-        ProductComponent
+        ProductComponent,
+        ContentHeaderComponent
     ],
     imports: [ 
         CommonModule, MainSharedModule, NgbPaginationModule,MatButtonModule,
@@ -28,7 +29,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         ProductComponent,
         MainSharedModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ContentHeaderComponent
     ]
 })
 

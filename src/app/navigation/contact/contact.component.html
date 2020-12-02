@@ -1,0 +1,106 @@
+<app-content-header [headerTitle]="'Contact'"></app-content-header>
+    <div class="contact-content">
+      <div class="upper-content">
+        <div class="upper-1">
+          <i class="fa fa-mobile" aria-hidden="true"></i>
+          <div class="text-1">
+            Contact Us
+          </div>
+          <br>
+          <div class="text-1-lower" *ngFor="let contact of contactUsInfo">
+            <div class="title-1">
+              <strong>{{contact.title | titlecase}}:</strong>
+            </div>
+            <div>
+              {{contact.description}}
+            </div>
+          </div>
+        </div>
+        <div class="upper-1">
+          <i class="fa fa-location-arrow" aria-hidden="true"></i>
+          <div class="text-1">
+            Come see us
+          </div>
+          <br>
+          <div class="text-1-lower" *ngFor="let come of comeSeeUs">
+            <div class="title-1">
+              <strong>{{come.title | titlecase}}:</strong>
+            </div>
+            <div class="description-1">
+              {{come.description}}
+            </div>
+          </div>
+        </div>
+        <div class="upper-1">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <div class="text-1">
+            24/7 support
+          </div>
+          <div class="text-1-lower" *ngFor="let come of comeSeeUs">
+            <div class="title-1 mt-3">
+              <a [routerLink]="[ '/customer-service']">Open a support case.</a>
+            </div>
+          </div>
+          <div class="support-community">
+            <i class="fa fa-comments" aria-hidden="true"></i>
+            <p class="online-community">
+              <strong>The online Website Community</strong>
+            </p>
+            <a href="https://discord.com/guidelines" target="_blank" rel="noopener noreferrer">Join the conversation ></a>
+          </div>
+        </div>
+      </div>
+      <div class="lower-content">
+        <div class="lower-title">
+          Contact Us
+        </div>
+        <div class="lower-middle-description">
+          Fill out the form below and we'll get back to you shortly.
+        </div>
+        <div class="lower-fields">
+          <form>
+            <div class="row mb-4">
+              <div class="col-sm mb-4 mb-sm-0">
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col-sm">
+                <input type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-sm mb-4 mb-sm-0">
+                <input type="text" class="form-control" placeholder="Business email">
+              </div>
+              <div class="col-sm">
+                <input type="text" class="form-control" placeholder="Phone">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-sm mb-4 mb-sm-0">
+                <input type="text" class="form-control" placeholder="Company">
+              </div>
+              <div class="col-sm">
+                <input type="text" class="form-control" placeholder="Others">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-sm mb-4 mb-sm-0">
+                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Please enter your message..." rows="5"></textarea>
+              </div>
+            </div>
+            <button class="btn btn-send-msg">
+              {{'Send message'| uppercase}}
+            </button>
+            <div style="padding: 1rem;">
+              <br><br>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="lower-extension">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        <div class="lower-ext-header">
+          Most Outstanding Performance
+        </div>
+      </div>
+    </div>

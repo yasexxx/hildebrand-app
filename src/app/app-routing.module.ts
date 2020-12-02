@@ -20,8 +20,14 @@ const routes: Routes = [
       { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuardActivate] },
       { path: 'product/id/:id', loadChildren: () => import('./product/product.module').then( l => l.ProductModule)},
       { path: 'user', loadChildren: () => import('./users/users.module').then( m => m.UsersModule), canLoad: [AuthGuard]},
-      { path: 'check-out', loadChildren: () => import('./navigation/checkout/checkout.module').then(m => m.CheckoutModule) },
+      { path: 'check-out', loadChildren: () => import('./navigation/checkout/checkout.module').then(m => m.CheckoutModule), canLoad: [AuthGuard] },
       { path: 'search', loadChildren: () => import('./shared/search-bar/search-bar.module').then(m => m.SearchBarModule) },
+      { path: 'services', loadChildren: () => import('./navigation/services/services.module').then(m => m.ServicesModule) },
+      { path: 'contact', loadChildren: () => import('./navigation/contact/contact.module').then(m => m.ContactModule) },
+      { path: 'about', loadChildren: () => import('./navigation/about/about.module').then(m => m.AboutModule) },
+      { path: 'privacy-policy', loadChildren: () => import('./navigation/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
+      { path: 'terms', loadChildren: () => import('./navigation/terms-condition/terms-condition.module').then(m => m.TermsConditionModule) },
+      { path: 'customer-service', loadChildren: () => import('./navigation/customer-service/customer-service.module').then(m => m.CustomerServiceModule) },
       { path: 'home' , redirectTo: '', pathMatch: 'full', }
               ]
   },
@@ -31,7 +37,8 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: QuicklinkStrategy, initialNavigation: 'enabled' })],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: QuicklinkStrategy, scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

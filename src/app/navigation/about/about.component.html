@@ -1,0 +1,17 @@
+<app-content-header [headerTitle]="'About'"></app-content-header>
+    <div class="about-content">
+       <div class="top-about">
+          <div class="top-header font-weight-bold">
+             {{'Lorem ipsum dolor sit amet cons.'| uppercase}}
+         </div>
+         <div class="about-title-content">
+            {{'A new Generation E-commerce platform' | titlecase}}
+         </div>
+
+         <div class="about-body-content">
+            <p *ngFor="let paragraph of apiAboutContent">
+               {{paragraph.body}}
+            </p>
+         </div>
+       </div>
+    </div>

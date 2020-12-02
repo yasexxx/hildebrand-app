@@ -27,7 +27,9 @@ export class AuthGuard implements CanLoad {
         } else if (url === 'wishlist' && !id){
             return true;
         } else if (url === 'login' && !!id ) {
-            return false
+            return false;
+        } else if (url === 'check-out' && !!id) {
+            return true;
         }
         this.router.navigate(['/login']);
         return isAdmin;

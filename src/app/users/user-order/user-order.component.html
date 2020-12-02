@@ -26,9 +26,9 @@
                   {{product.name}}&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{product.price | currency: currencyUsed}}</strong>&nbsp;&nbsp;X&nbsp;&nbsp;<strong>{{product.quantity}}</strong>
                 </div></td>
                 <td><div [ngClass]="{'text-primary': item.type.processing, 'text-success': !(item.type.processing)}">{{item.type.processing ? 'Processing' : 'Process Complete'}}</div> <br><div [ngClass]="{'text-success': item.type.delivered, 'text-secondary': !(item.type.delivered)}">{{item.type.delivered ? 'Delivered' : 'Not yet delivered'}}</div></td>
-                <td>{{item.value.shippingAmount | currency: curencyUsed}}</td>
-                <td>{{item.value.totalAmount | currency: curencyUsed}}</td>
-                <td>{{item.value.totalAmount + item.value.shippingAmount | currency: curencyUsed}}</td>
+                <td>{{item.value.shippingAmount | currency: currencyUsed}}</td>
+                <td>{{item.value.totalAmount | currency: currencyUsed}}</td>
+                <td>{{item.value.totalAmount + item.value.shippingAmount | currency: currencyUsed}}</td>
                 <td>{{ item.createdAt | date }}</td>
                 <td><button (click)="orderView(item.orderId)" class="btn btn-primary">View</button></td>
               </tr>

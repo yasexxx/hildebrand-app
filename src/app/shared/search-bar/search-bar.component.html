@@ -1,10 +1,33 @@
 
 <hr style="margin: 1rem">
-<div class="search-wrapper">
-  <div class="query-search" *ngFor = "let item of itemResult | filter: filterKey">
-    <div>Title: {{item.productName}}</div>
+<div class="search-wrapper" *ngIf="validationNetwork">
+    <h2 class="search-title">Search Result: </h2>
+  <div class="search-found">
+    <strong>{{ itemResult | countFilterArray: filterKey }}</strong> matching result found on searching for <strong>'{{filterKey}}'</strong> key.
+
+    <div class="not-found-result" *ngIf="(itemResult | countFilterArray: filterKey) === 0">
+      Not found!
+    </div>
+  </div>
+  <div class="query-search" *ngFor = "let item of itemResult | searchFilterCustom: filterKey">
+    <div>Title: <strong>{{item.productName}}</strong></div>
     <div>Price: {{item.price}}</div>
     <div>Description: {{item.description}}</div>
-    <a [routerLink]="[ '/product/id', item.id ]" class="">View more...</a>
+    <a [routerLink]="[ '/product/id', item.id ]" class="view-more">View more...</a>
+  </div>
+</div>
+
+
+<div class="no-user" *ngIf="!validationNetwork">
+  <div class="no-content">
+    <div class="icon-warning">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    </div>
+    <div class="search-invalid">
+      Content not found!
+    </div>
+    <div class="search-invalid">
+      There was an error in accessing the page. Try again later.
+    </div>
   </div>
 </div>

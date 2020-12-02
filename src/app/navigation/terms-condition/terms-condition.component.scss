@@ -1,0 +1,47 @@
+
+
+.terms-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.terms-header {
+    display: flex;
+    padding: 1rem 0 0 1rem;
+}
+
+.terms-header a {
+    color: blue;
+}
+
+.terms-header a:hover {
+    text-decoration: underline;
+}
+
+.hr-space > hr {
+    height: 0.5rem;
+}
+
+.body-content {
+    padding: 0 1rem 0 1rem;
+}
+
+.basic-terms {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.basic-terms-title {
+    font-size: 1.4rem;
+    color: #0826ac;
+    padding-bottom: 1rem;
+}
+
+.conditions {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.conditions-title {
+    font-size: 1.4rem;
+    color: #0826ac;
+    padding-bottom: 1rem;
+}

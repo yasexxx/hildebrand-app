@@ -155,7 +155,6 @@ export class ProductService implements OnDestroy, OnInit {
                 this._total$.next(result.total);
             } );
         this._search$.next();
-        
     }
 
     get products$() {return this._products$.asObservable();}

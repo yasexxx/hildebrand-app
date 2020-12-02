@@ -3,6 +3,66 @@
     min-height: 100vh;
 }
 
+.search-title {
+    color: #0a0457;
+    padding-left: 2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.search-found {
+    padding-left: 4rem;;
+}
+
+.not-found-result {
+    padding-top: 30vh;
+    color: #0a0457;
+    text-align: center;
+    font-size: 4rem;
+}
+
 .query-search {
     margin: 3rem;
+}
+
+.no-user {
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    justify-content: center;
+}
+
+.no-content {
+    padding-top: 15vh;
+    font-size: 2rem;
+    text-align: center;
+    font-family: fantasy;
+}
+
+.search-invalid {
+    padding-bottom: 1rem;
+}
+
+.icon-warning {
+    color: rgb(255, 251, 0);
+    font-size: 15rem;
+}
+
+.view-more {
+    color: #0a0457;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 770px){
+
+    .no-content {
+        padding-top: 30vh;
+        font-size: 1.4rem;
+    }
+
+    .icon-warning {
+        font-size: 10rem;
+    }
 }

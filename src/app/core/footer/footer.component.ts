@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  siteTitle = 'Dei Joseeli';
+  constructor(@Inject(PLATFORM_ID) private platformId:string) { }
 
   ngOnInit(): void {
+  }
+
+  returnHome(){
+    if(isPlatformBrowser(this.platformId)){
+      window.scrollTo(0,0);
+    }
   }
 
 }

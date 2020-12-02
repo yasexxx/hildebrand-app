@@ -7,6 +7,7 @@ import { faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons/';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { NavService } from '../shared/nav.service';
+import { SearchBarComponent } from '../shared/search-bar/search-bar.component';
 import { CartService } from '../_services/cart.service';
 import { SearchService } from '../_services/search.service';
 import { TokenStackService } from './../_services/token-stack.service';
@@ -14,7 +15,10 @@ import { TokenStackService } from './../_services/token-stack.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  providers: [
+    SearchBarComponent
+  ]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
@@ -47,6 +51,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   
   keyword:string;
   searchResult = [];
+  onShow = true;
+  fakeKeyword = '';
 
   searchInput = new FormControl();
   activateDropdown = false;
@@ -67,26 +73,58 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if(event.status === 'VALID'){
       const searchFilter = event.value.searchInput;
       this.searchService.changeKeyword(searchFilter);
-      this.searchInput.setValue('');
       this.router.navigate(['/search']);
+      this.fakeKeyword = searchFilter;
+      if(!this.searchService.networkValidation){
+        this.searchService.changeNetworkValidation(true);
+        this.searchService.toSearchPage();
+      }
+      if (this.keyword === this.fakeKeyword){
+        this.onShow = false;
+      }
     }
   }
 
   searchChanges() {
     this.subscription4$ = this.searchInput.valueChanges.pipe(
-      debounceTime(800),
+      debounceTime(300),
       distinctUntilChanged()
     ).subscribe(
       res => {
         this.keyword = res;
         if (this.keyword === ''){
           this.activateDropdown = false;
+          this.onShow = true;
         } else {
           this.activateDropdown = true;
+          if (this.keyword === this.fakeKeyword){
+            this.onShow = false;
+          } else{
+            this.onShow = true;
+          }
         }
       }
     )
   }
+
+  navigateToView(id, name){
+    this.activateDropdown = false;
+    this.searchService.changeKeyword(name);
+    this.searchInput.setValue(name);
+    this.router.navigate(['/search']);
+    this.onShow = false;
+    this.fakeKeyword = name;
+    if(!this.searchService.networkValidation){
+      this.searchService.changeNetworkValidation(true);
+      this.searchService.toSearchPage();
+    }
+    if (this.keyword === this.fakeKeyword){
+      this.onShow = false;
+    } else{
+      this.onShow = true;
+    }
+  }
+
 
   initSearchApi(){
     this.subscription5$ = this.searchService.getSearchResult()
@@ -136,10 +174,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/admin', { skipLocationChange: true}).then( () =>
             this.router.navigate([''])
             );
-          }
-        }
-      );
-    }
+          }}
+      );}
   }
 
   navigateAdmin(): void{
@@ -192,6 +228,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.onShow = true;
     this.initSearchApi();
     this.searchChanges();
     this.cartService.initCart();

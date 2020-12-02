@@ -1,0 +1,179 @@
+$text-one: #205974;
+$text-default: #002447;
+
+
+.contact-content {
+    background: white;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 2fr 2fr 1fr;
+}
+
+.upper-content {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.upper-1 {
+    margin-top: 8rem;
+    text-align: center;
+}
+
+.upper-1 i{
+    font-size: 12rem;
+    color: $text-default;
+}
+
+.text-1 {
+    font-size: 3rem;
+    line-height: 2.5rem;
+    padding-top: 1rem;
+}
+
+.title-1 {
+    padding: 2rem 0 0 0;
+}
+
+.title-1 a {
+    color: #78aee4;
+}
+
+.title-1 a:hover {
+    text-decoration: underline;
+}
+
+.description-1 {
+    margin: 0 8rem;
+}
+
+.support-community i {
+    font-size: 5rem;
+}
+
+.support-community {
+    padding-top: 4rem;
+}
+
+.support-community a {
+    color: #78aee4;
+}
+
+.support-community a:hover {
+    text-decoration: underline;
+}
+
+.lower-content {
+    margin-top: 2rem;
+    text-align: center;
+    background: #5f61df;
+    color: white;
+}
+
+.lower-title {
+    padding-top: 8rem;
+    font-size: 3rem;
+    font-family: sans-serif;
+}
+
+.lower-middle-description {
+    padding: 2rem;
+}
+
+.lower-fields {
+    padding: 1rem 16rem;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-send-msg {
+    background: #eb6d24;
+    color: white;
+}
+
+.btn-send-msg:hover {
+    background: #e4864f;
+}
+
+.lower-extension {
+    text-align: center;
+    color: $text-default;
+}
+
+.lower-extension i{
+    font-size: 15rem;
+    padding-top: 3rem;
+}
+
+.lower-ext-header{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+@media (max-width: 992px){
+    .lower-fields {
+        padding: 1rem 8rem;
+    }
+}
+
+
+@media (max-width: 740px){
+
+    .contact-content {
+        grid-template-rows: auto;
+    }
+
+    .upper-content {
+        grid-template-columns: 1fr;
+    }
+
+    .lower-fields {
+        padding: 1rem;
+    }
+
+    .lower-extension {
+        padding-bottom: 3rem;
+    }
+}
+
+@media (max-width: 576px){
+    .lower-fields {
+        padding: 1rem 2rem;
+    }
+}
+
+@media (max-width: 405px){
+
+    .contact-content {
+        overflow-x: scroll;;
+    }
+
+    .upper-content {
+        margin: 0rem;
+    }
+
+    .text-1 {
+        font-size: 1.4rem;
+    }
+
+    .lower-extension i{
+        font-size: 8rem;
+    }
+
+    .lower-fields {
+        padding: 0.5rem;
+    }
+
+    .lower-title {
+        font-size: 1.5rem;
+    }
+    
+    .lower-middle-description {
+        padding-top: 1rem;
+    }
+    
+
+}

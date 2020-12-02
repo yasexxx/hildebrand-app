@@ -25,11 +25,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserOrderComponent } from './users/user-order/user-order.component';
 import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.component';
 import { SearchService } from './_services/search.service';
+import { FilterArrayPipe } from './pipe/count-pipe';
+import { CustomSearchFilterPipe } from './pipe/search-pipe';
 
 @NgModule({
     declarations: [
         FeaturedProductComponent,
-        HomeComponent
+        HomeComponent,
+        FilterArrayPipe,
+        CustomSearchFilterPipe
     ],
     imports: [
         CommonModule,
@@ -45,7 +49,9 @@ import { SearchService } from './_services/search.service';
         FeaturedProductComponent,
         HttpClientModule,
         QuicklinkModule,
-        HomeComponent
+        HomeComponent,
+        FilterArrayPipe,
+        CustomSearchFilterPipe
     ]
 })
 export class MainSharedModule {
@@ -59,7 +65,7 @@ export class MainSharedModule {
                 ProductServiceOperation,
                 LoaderService,
                 DecimalPipe ,
-                ProductService ,
+                ProductService,
                 OrderService,
                 CustomerService,
                 OnlineOrderService,

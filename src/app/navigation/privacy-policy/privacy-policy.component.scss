@@ -1,0 +1,47 @@
+
+
+.privacy-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.privacy-header {
+    display: flex;
+    padding: 1rem 0 0 1rem;
+}
+
+privacys-header a {
+    color: blue;
+}
+
+.privacy-header a:hover {
+    text-decoration: underline;
+}
+
+.hr-space > hr {
+    height: 0.5rem;
+}
+
+.body-content {
+    padding: 0 1rem 0 1rem;
+}
+
+.basic-privacy {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.basic-privacy-title {
+    font-size: 1.4rem;
+    color: #0826ac;
+    padding-bottom: 1rem;
+}
+
+.conditions {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.conditions-title {
+    font-size: 1.4rem;
+    color: #0826ac;
+    padding-bottom: 1rem;
+}

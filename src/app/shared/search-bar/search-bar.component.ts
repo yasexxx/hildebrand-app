@@ -17,9 +17,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   subscription$: Subscription;
   subscription2$: Subscription;
 
+  validationNetwork = false;
+  numberResult = 0;
   constructor(private searchService: SearchService) { }
   
   ngOnInit(): void {
+    this.validationNetwork = this.searchService.networkValidation;
     this.subscription$ = this.searchService.searchArrayAlt$
       .subscribe( arr => {
         this.itemResult = arr;
@@ -27,10 +30,9 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     this.subscription2$ = this.searchService.searchKeyword$
       .subscribe( str => {
         this.filterKey = str;
-        console.log(str);
-        
       });
   }
+
 
   ngOnDestroy(): void {
     if(this.subscription$) { this.subscription$.unsubscribe();}

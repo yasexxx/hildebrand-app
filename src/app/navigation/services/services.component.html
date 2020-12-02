@@ -1,0 +1,83 @@
+<app-content-header [headerTitle]="'Services'"></app-content-header>
+
+    <div class="services-content">
+        <div class="services-upper">
+            <div class="upper-left">
+                <div class="left-upper-part">
+                    Lorem ipsum dolor sit amet consectetur.
+                </div>
+                <div class="left-middle-part">
+                    Lorem ipsum dolor sit am.
+                </div>
+                <div class="left-lower-part">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea optio maxime doloribus eos, quidem harum?
+                </div>
+            </div>
+            <div class="upper-right">
+                <div class="right-upper-part">
+                    Offer for as low as $40.
+                </div>
+                <div class="right-lower-part">
+                    <button class="btn">
+                        {{'Order Now'| uppercase}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="services-middle">
+            <div class="service-icon-1">
+                <i class="fa fa-clipboard" aria-hidden="true"></i>
+                <div class="icon-title">Fast Payment</div>
+            </div>
+            <div class="service-icon-1">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <div class="icon-title">Customer Support</div>
+            </div>
+            <div class="service-icon-1">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                <div class="icon-title">Easy Processing</div>
+            </div>
+            <div class="service-icon-1">
+                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                <div class="icon-title">Satisfied Customer</div>
+            </div>
+        </div>
+        <div class="service-lower">
+            <div class="lower-left">
+                <img class="image-service" src="assets/images/service-img.jpg" alt="Customer Support">
+            </div>
+            <div class="lower-right">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis labore eius iste?
+            </div>
+        </div>
+
+        <div class="service-lower-2nd">
+            <div class="second-lower-title">
+                {{"Bring more power Lorem, ipsum dolor." | uppercase }}
+            </div>
+            <p class="second-lower-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam officiis quaerat error tempora fugiat omnis ad. Necessitatibus, voluptas dicta maxime rerum, ipsa provident hic iste totam aut optio molestiae animi dolore repudiandae culpa temporibus fugit libero tempore sit eos blanditiis velit magnam? Facere tenetur libero pariatur doloribus eligendi perferendis ducimus.
+            </p>
+            <p class="second-lower-content-next">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus odit quam ea accusantium veniam, earum adipisci quia excepturi esse molestiae magni aliquid pariatur! Aspernatur, inventore consequuntur! Ad nisi, amet alias, culpa corrupti error laudantium exercitationem quod atque incidunt, unde aliquam praesentium saepe blanditiis delectus. Doloremque temporibus recusandae commodi perferendis eos placeat explicabo expedita nulla harum repellendus, ipsam maxime saepe doloribus eligendi beatae nobis neque veritatis id itaque alias deserunt consequatur? Voluptatum mollitia officia fugit beatae porro expedita itaque placeat?
+            </p>
+
+            <p class="second-lower-content-next">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis accusantium reprehenderit placeat laboriosam at voluptatum maiores possimus illum eaque beatae suscipit distinctio sit explicabo, facere autem, eveniet harum repellendus incidunt. Eius culpa quos earum enim quo doloribus ipsam similique totam mollitia quia beatae natus esse exercitationem illum dolores fugit, expedita maxime delectus animi deleniti velit? Neque voluptates reiciendis corporis. Odit dolor obcaecati iusto itaque doloribus culpa rerum enim alias consectetur accusamus quis voluptate ducimus dolore quasi possimus sapiente, facilis similique non voluptates officia sunt! Recusandae error sapiente nemo atque a vero culpa provident minus quasi, delectus nobis eos sequi sed quae dolorem harum natus quis? Tempora a expedita sit veniam earum saepe consequatur ipsum unde ut sequi beatae mollitia, iure perferendis ipsam odit cum fugit magnam, modi officia aperiam eveniet?
+            </p>
+        </div>
+
+        <div class="service-lower-3rd">
+            <div *ngFor="let item1 of apiContent1">
+                <div class="third-lower-title-one">
+                    {{ item1.title | titlecase }}
+                </div>
+                <div class="third-lower-content-one">
+                    {{ item1.content | slice: 0 : 800 }}...
+                    <br>
+                    <a class="article-link" [routerLink]="[ '/article', item1.slug ]">Read more ---></a>
+                </div>
+            </div>
+        </div>
+
+    </div>

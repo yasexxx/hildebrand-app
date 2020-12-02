@@ -9,7 +9,7 @@
               <div class="row">
                   <div class="col-12">
                       <div class="footer-logo">
-                          <a href="index.html" class="font-weight-bold h3 footer-a-title">Dei-Organika</a>
+                          <a routerLink="/home" class="font-weight-bold h3 footer-a-title">{{siteTitle | titlecase}}</a>
                       </div>
                   </div>
                   <div class="col-12">
@@ -45,19 +45,19 @@
                   <div class="col-12">
                       <ul class="footer-nav list-unstyled">
                           <li class="mb-3">
-                              <a href="#">Home</a>
+                              <a routerLink="/" href="#">Home</a>
                           </li>
                           <li class="mb-3">
-                              <a href="#">Contact Us</a>
+                              <a routerLink="/contact" href="#">Contact Us</a>
                           </li>
                           <li class="mb-3">
-                              <a href="#">About Us</a>
+                              <a routerLink="../about" href="#">About Us</a>
                           </li>
                           <li class="mb-3">
-                              <a href="#">Privacy Policy</a>
+                              <a routerLink="/privacy-policy" href="#">Privacy Policy</a>
                           </li>
                           <li class="mb-3">
-                              <a href="#">Terms & Conditions</a>
+                              <a routerLink="/terms" href="#">Terms & Conditions</a>
                           </li>
                       </ul>
                   </div>
@@ -95,7 +95,7 @@
                       <h4>Newsletter</h4>
                   </div>
                   <div class="col-12">
-                      <form action="#">
+                      <form>
                           <div class="form-group">
                               <input type="text" class="form-control" placeholder="Enter your email..." required>
                           </div>

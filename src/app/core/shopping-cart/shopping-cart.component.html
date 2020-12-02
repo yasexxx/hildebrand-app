@@ -1,7 +1,4 @@
-<div class="bg-a-color">
-  <div class="shopping-header">
-    <h1>Shopping Cart</h1>
-  </div>
+<app-content-header [headerTitle]="'Shopping Cart'"></app-content-header>
   <div class="wrapper-content" *ngIf="(addedCart.length > 0); else emptyCart">
       <div class="ml-2 product-list-content">
         <hr/>
@@ -33,6 +30,5 @@
     </div>
 
   </ng-template>
-</div>
 
 

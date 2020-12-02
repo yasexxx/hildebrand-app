@@ -14,9 +14,9 @@
                                                 <button type="submit" class="btn btn-outline-dark"><i class="fa fa-search"></i></button>
                                             </div>
                                         </div>
-                                        <div class="search-result" *ngIf="activateDropdown">
-                                            <div class="result-class" *ngFor = "let item of searchResult | filter:keyword">
-                                                <div class="item-result">{{item.productName}}</div>
+                                        <div class="search-result" *ngIf="activateDropdown && onShow">
+                                            <div class="result-class" *ngFor = "let item of searchResult | searchFilterCustom:keyword">
+                                                <div (click)="navigateToView(item.id, item.productName)" role="button" class="item-result">{{item.productName}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -45,20 +45,23 @@
                                         <li (click)="collapsedActivate()" class="nav-item">
                                             <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
                                         </li>
-                                        <li (click)="collapsedActivate()" class="nav-item">
-                                            <a class="nav-link" routerLink="/supermarket">Supermarket</a>
-                                        </li>
-                                        <li (click)="collapsedActivate()" class="nav-item">
-                                            <a class="nav-link" routerLink="/restaurant">Restaurant</a>
-                                        </li>
                                         <li class="nav-item dropdown">
                                             <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block">
                                               <a role="button" class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Products</a>
                                               <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="drop-profile">
-                                                <a routerLink="/product"><button ngbDropdownItem>Single Product</button></a>
-                                                <a routerLink="/product"><button ngbDropdownItem>Product List</button></a>
+                                                <a routerLink="/supermarket"><button ngbDropdownItem>Supermarket</button></a>
+                                                <a routerLink="/restaurant"><button ngbDropdownItem>Restaurant</button></a>
                                               </div>
                                             </div>
+                                        </li>
+                                        <li (click)="collapsedActivate()" class="nav-item">
+                                            <a class="nav-link" routerLink="/services">Services</a>
+                                        </li>
+                                        <li (click)="collapsedActivate()" class="nav-item">
+                                            <a class="nav-link" routerLink="/contact">Contact</a>
+                                        </li>
+                                        <li (click)="collapsedActivate()" class="nav-item">
+                                            <a class="nav-link" routerLink="/about">About</a>
                                         </li>
                                     </ul>
 

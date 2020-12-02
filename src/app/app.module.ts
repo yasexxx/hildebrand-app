@@ -18,7 +18,7 @@ import { WishlistComponent } from './core/wishlist/wishlist.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -40,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatBadgeModule,
     MatIconModule,
     ReactiveFormsModule,
+    FormsModule,
     Ng2SearchPipeModule,
     SimpleNotificationsModule.forRoot(),
     MainSharedModule.forRoot(),

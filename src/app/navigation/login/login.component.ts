@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from './../../core/header/header.component';
 import { Observable, Subscription } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-
+import { SocialAuthService } from 'angularx-social-login';
+import { FacebookLoginProvider , GoogleLoginProvider } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +28,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   isLoggedFailed = false;
   errorMessage = '';
   roles: string[];
+  user: SocialUser;
 
+  loggedIn: boolean;
 
   isLoading: Observable<boolean> = this.authService.loading$;
 
@@ -35,6 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   subscription2$: Subscription;
 
   constructor(private authService: AuthService,
+              private oAuthService: SocialAuthService,
               private tokenStack: TokenStackService,
               private fb: FormBuilder,
               private router: Router,
@@ -42,6 +47,14 @@ export class LoginComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit(): void {
+    this.oAuthService.authState.subscribe(
+      user => {
+        this.user = user;
+        this.loggedIn = (user != null);
+        console.log(this.user);
+        
+      }
+    )
     if (isPlatformBrowser(this.platformId)){
       this.subscription$ = this.tokenStack.getToken()
       .subscribe( str => {
@@ -91,6 +104,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('**', { skipLocationChange: true}).then( () => {
       this.router.navigate(['']);
     });
+  }
+
+  signInWithGoogle(): void {
+    this.oAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFb(): void {
+    this.oAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
   get username() { return this.loginForm.get('username'); }

@@ -37,6 +37,25 @@ export class AuthService implements OnDestroy {
       );
   }
 
+  socialLogin(userInfo): Observable<any> {
+    return this.http.post(`${this._apiUrl}/oath/signin`, 
+    {
+      firstname: userInfo.firstName,
+      lastname: userInfo.lastName,
+      altId: userInfo.id,
+      token: {
+        auth: userInfo.authToken,
+        id: userInfo.idToken ? userInfo.idToken : ''
+      },
+      email: userInfo.email,
+      photoUrl: userInfo.photoUrl,
+      provider: userInfo.provider,
+      terms: true
+    }, {
+      headers: new HttpHeaders( {'Content-Type': 'application/json' })
+    });
+  }
+
   ngOnDestroy(): void {
   }
 

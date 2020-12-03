@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SocialLoginModule } from 'angularx-social-login';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     Ng2SearchPipeModule,
     SimpleNotificationsModule.forRoot(),
     MainSharedModule.forRoot(),
+    SocialLoginModule
 
   ],
   providers: [],

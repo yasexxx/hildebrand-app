@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "secure": "ng serve --ssl --ssl-key d:\\certificate\\localhost.key  --ssl-cert d:\\certificate\\localhost.crt"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ngrx/store": "^10.0.1",
     "angular2-notifications": "^9.0.0",
+    "angularx-social-login": "^3.5.2",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
     "font-awesome": "^4.7.0",

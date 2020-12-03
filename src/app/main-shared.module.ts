@@ -27,6 +27,8 @@ import { ShoppingCartComponent } from './core/shopping-cart/shopping-cart.compon
 import { SearchService } from './_services/search.service';
 import { FilterArrayPipe } from './pipe/count-pipe';
 import { CustomSearchFilterPipe } from './pipe/search-pipe';
+import { SocialAuthServiceConfig , GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+
 
 @NgModule({
     declarations: [
@@ -59,6 +61,24 @@ export class MainSharedModule {
         return {
             ngModule: MainSharedModule,
             providers: [
+                {
+                    provide: 'SocialAuthServiceConfig',
+                    useValue: {
+                        autoLogin: false,
+                        providers: [
+                            {
+                                id: GoogleLoginProvider.PROVIDER_ID,
+                                provider: new GoogleLoginProvider(
+                                    '595229418045-ur6bjoq049qkhink03t6ku6gp1709mut.apps.googleusercontent.com'
+                                )
+                            },
+                            {
+                                id: FacebookLoginProvider.PROVIDER_ID,
+                                provider: new FacebookLoginProvider('1732092800309947')
+                            }
+                        ]
+                    } as SocialAuthServiceConfig
+                },
                 { provide: 'BASE_URL', useFactory: getBaseUrl },
                 { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
                 { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

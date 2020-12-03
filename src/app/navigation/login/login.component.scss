@@ -8,7 +8,7 @@
 
 .card-a-center {
   margin: 5rem auto;
-  width: 25em;
+  width: 32em;
 }
 
 .card-header {
@@ -31,4 +31,84 @@
 .spin-1 > div {
   width: 6rem;
   height: 6rem;
+}
+
+.not-login {
+  display: flex;
+  column-gap: 0.3rem;
+}
+
+.not-login a{
+  color: blue;
+}
+
+
+.not-login a:hover{
+  color: rgb(79, 79, 216);
+  text-decoration: underline;
+}
+
+
+
+.btn-login{
+  width: 10rem;
+}
+
+.social-login {
+  display: flex;
+}
+
+.btn-1 {
+  text-align: center;
+  border-radius: 2px;
+  border: 1px solid;
+  vertical-align: middle;
+  cursor: pointer;
+  font-size: 0.8rem;
+  width: 100%;
+  letter-spacing: .3px;
+  height: 40px;
+}
+
+.btn-google {
+  border-color: #c4c4c4;
+  background: white;
+  color: #484848;
+  margin-bottom: 10px;
+  opacity: 1 !important;
+  position: relative;
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.btn-facebook {
+  border-color: #3D5A98;
+  border-bottom-color: #263a63;
+  background-color: #3B5998;
+  color: #fff !important;
+  opacity: 1 !important;
+  position: relative;
+  &:hover {
+    background-color: #4568b2;
+  }
+}
+
+.facebook-f {
+  width: 10px;
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+.google-g {
+  position: absolute;
+  width: 15px;
+  left: 10px;
+  top: 12px;
+}
+
+.login-with {
+  text-align: center;
+  padding-bottom: 1rem;
 }

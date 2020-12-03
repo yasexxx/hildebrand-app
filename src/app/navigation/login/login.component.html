@@ -28,10 +28,28 @@
           <div *ngIf="isLoggedFailed" class="alert alert-danger">
             {{errorMessage}}
           </div>
-            <button type="submit" class="btn btn-dark btn-block my-4 col-lg-3 ml-auto">
+            <div class="not-login">
+              No account yet? <a [routerLink]="[ '/register']">Click here.</a>
+            </div>
+            <button type="submit" class="btn-1 btn-dark btn-block btn-login my-4 ml-auto">
               Login
             </button>
         </form>
+        <hr>
+        <div class="login-with">
+          Login with
+        </div>
+        <div class="social-login">
+          <button (click)="signInWithGoogle()" class="btn-1 btn-google">
+            <img class="google-g" src="/assets/images/google-g.png">
+            <span>Google</span>
+          </button>
+          <div style="padding:0.5rem">&nbsp;</div>
+          <button (click)="signInWithFb()" class="btn-1 btn-facebook">
+            <img class="facebook-f" src="/assets/images/facebook-f.png">
+            <span>Facebook</span>
+          </button>
+        </div>
       </div>
   </div>
   </div>

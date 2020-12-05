@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   subscription2$: Subscription;
 
+  subscription3$: Subscription;
+
+  subscription4$: Subscription;
+
   constructor(private authService: AuthService,
               private oAuthService: SocialAuthService,
               private tokenStack: TokenStackService,
@@ -47,12 +51,13 @@ export class LoginComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit(): void {
-    this.oAuthService.authState.subscribe(
+    this.subscription3$ = this.oAuthService.authState.subscribe(
       user => {
         this.user = user;
         this.loggedIn = (user != null);
-        console.log(this.user);
-        
+        if (this.loggedIn){
+          this.checkOauthApi(this.user);
+        }
       }
     )
     if (isPlatformBrowser(this.platformId)){
@@ -68,7 +73,24 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription$) {this.subscription$.unsubscribe(); }
     if (this.subscription2$) { this.subscription2$.unsubscribe(); }
+    if (this.subscription3$) { this.subscription3$.unsubscribe(); }
+    if (this.subscription4$) { this.subscription4$.unsubscribe(); }
     this.authService.ngOnDestroy();
+  }
+
+
+  checkOauthApi(user): void {
+    this.subscription4$ = this.authService.socialLogin(user)
+      .subscribe( res => {
+        this.tokenStack.saveToken(res.accessToken);
+        this.tokenStack.saveUser(res);
+        this.isLoggedFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStack.getUser().roles;
+        this.reloadPage();
+      }, err => {
+        console.log(err);
+      })
   }
 
 

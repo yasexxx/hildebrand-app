@@ -74,7 +74,7 @@ export class MainSharedModule {
                             },
                             {
                                 id: FacebookLoginProvider.PROVIDER_ID,
-                                provider: new FacebookLoginProvider('1732092800309947')
+                                provider: new FacebookLoginProvider('736676563625206')
                             }
                         ]
                     } as SocialAuthServiceConfig

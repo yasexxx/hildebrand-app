@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { Injectable } from '@angular/core';
+import { SocialAuthService } from 'angularx-social-login';
 import {  BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, tap } from 'rxjs/operators';
 
@@ -16,6 +17,7 @@ export class TokenStackService {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId,
+    private oauthService: SocialAuthService
   ) {
    }
 
@@ -27,6 +29,12 @@ export class TokenStackService {
         tap( () => {
           window.sessionStorage.clear();
           window.localStorage.clear();
+          this.oauthService.signOut()
+            .then( res => {
+              res //log
+            }).catch(err => {
+              err //log
+            })
             }),
         delay(1000),
         tap( () => this._loadingLogOut$.next(false))

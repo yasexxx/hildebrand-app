@@ -45,7 +45,7 @@ export class AuthService implements OnDestroy {
       altId: userInfo.id,
       token: {
         auth: userInfo.authToken,
-        id: userInfo.idToken ? userInfo.idToken : ''
+        id: userInfo.idToken ? userInfo.idToken : '',
       },
       email: userInfo.email,
       photoUrl: userInfo.photoUrl,

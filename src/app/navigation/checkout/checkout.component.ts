@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ShoppingCartComponent } from '../../core/shopping-cart/shopping-cart.component';
 import { NavService } from '../../shared/nav.service';
 import { CartService } from '../../_services/cart.service';
@@ -87,7 +87,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   isSuccessful = false;
   errorMessage = '';
-  isLoading: Subject<boolean> = this.loadService.isLoading;
   subscription$ : Subscription;
   userId: string;
   cartItems = [];
@@ -176,10 +175,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 this.navService.changeCart(0);
                 this.isSuccessful = true;
               }, err => {
-                console.log(err);
+                err;
               })
           }, err => {
-            console.log(err);
+            err;
             this.isSuccessful = false;
             this.subscription3$ = this.tokenService.logOut()
                   .subscribe( log => {

@@ -28,14 +28,20 @@ import { SearchService } from './_services/search.service';
 import { FilterArrayPipe } from './pipe/count-pipe';
 import { CustomSearchFilterPipe } from './pipe/search-pipe';
 import { SocialAuthServiceConfig , GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
-
+import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { ProgressLoaderComponent } from './shared/progress-loader/progress-loader.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { RefreshTokenInterceptor } from './_helpers/refresh-token.interceptor';
 
 @NgModule({
     declarations: [
         FeaturedProductComponent,
         HomeComponent,
         FilterArrayPipe,
-        CustomSearchFilterPipe
+        CustomSearchFilterPipe,
+        LoaderComponent,
+        ProgressLoaderComponent
     ],
     imports: [
         CommonModule,
@@ -43,7 +49,9 @@ import { SocialAuthServiceConfig , GoogleLoginProvider, FacebookLoginProvider } 
         QuicklinkModule,
         HttpClientModule,
         NgbCarouselModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        LazyLoadImageModule,
+        MatProgressBarModule
     ],
     exports: [
         NgbNavModule,
@@ -53,7 +61,10 @@ import { SocialAuthServiceConfig , GoogleLoginProvider, FacebookLoginProvider } 
         QuicklinkModule,
         HomeComponent,
         FilterArrayPipe,
-        CustomSearchFilterPipe
+        CustomSearchFilterPipe,
+        LazyLoadImageModule,
+        LoaderComponent,
+        ProgressLoaderComponent
     ]
 })
 export class MainSharedModule {
@@ -79,6 +90,8 @@ export class MainSharedModule {
                         ]
                     } as SocialAuthServiceConfig
                 },
+                { provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptor, multi: true },
+                { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks },
                 { provide: 'BASE_URL', useFactory: getBaseUrl },
                 { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
                 { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

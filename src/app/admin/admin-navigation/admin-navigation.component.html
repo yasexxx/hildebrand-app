@@ -27,9 +27,12 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>{{headerAdmin | titlecase}}</span>
+        <span class="admin-header-title">{{headerAdmin | titlecase}}</span>
       </mat-toolbar>
-      <router-outlet></router-outlet>
+      <div class="admin-content">
+        <app-progress-loader></app-progress-loader>
+        <router-outlet></router-outlet>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
   

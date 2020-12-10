@@ -1,54 +1,73 @@
+<div class="responsive-component">
 
-<div class="wrapper-products">
-    
-
-    <div class="mx-4">
-      <ngb-tabset type="pills">
-
-        <ngb-tab>
-          <ng-template ngbTabTitle><strong class="h4">HOME</strong></ng-template>
-          <ng-template ngbTabContent>
-            <div class="my-4">
-              <app-home></app-home>
-            </div>
-          </ng-template>
-        </ngb-tab>
-
-        <ngb-tab>
-          <ng-template ngbTabTitle><strong class="h4">RESTAURANT</strong></ng-template>
-          <ng-template ngbTabContent>
-            <div class="my-4">
-              <app-restaurant></app-restaurant>
-            </div>
-          </ng-template>
-        </ngb-tab>
-
-        <ngb-tab>
-          <ng-template ngbTabTitle><strong class="h4">SUPERMARKET</strong></ng-template>
-          <ng-template ngbTabContent>
-            <div class="my-4">
-              <app-supermarket></app-supermarket>
-            </div>
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
-
+  <div class="d-flex product-option">
+    <hr>
+    <div class="btn-1">
+      <h2 class="opt-text">Options:</h2>
+      <a routerLink="/admin/create-carousel">
+        <button class="btn btn-outline-dark">Create Carousel</button>
+      </a>
+  
+      <a routerLink="/admin/create">
+        <button class="btn btn-outline-success">Create Products</button>
+      </a>
+  
+      <a routerLink="/admin/edit">
+        <button class="btn btn-outline-primary">Edit Products</button>
+      </a>
     </div>
-
-
-      <div class="d-flex">
-        <hr>
-        <div class="btn-1">
-          <h2 class="opt-text">Options:</h2>
-          <a routerLink="/admin/create">
-            <button class="btn btn-outline-success">Create Products</button>
-          </a>
-          <a routerLink="/admin/edit">
-            <button class="btn btn-outline-primary">Edit Products</button>
-          </a>
-        </div>
-        <hr>
+    <hr>
+  </div>
+  
+  
+  <div class="hr-top-header">&nbsp;</div>
+  
+  <hr>
+  
+  <div class="page-view-layout">
+    <h1>PAGE VIEW</h1>
+  </div>
+  
+  <hr>
+  
+  <div class="wrapper-products">
+      
+  
+      <div class="mx-4">
+        <ngb-tabset type="pills">
+  
+          <ngb-tab>
+            <ng-template ngbTabTitle><strong class="h4">HOME</strong></ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-4">
+                <app-home></app-home>
+              </div>
+            </ng-template>
+          </ngb-tab>
+  
+          <ngb-tab>
+            <ng-template ngbTabTitle><strong class="h4">RESTAURANT</strong></ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-4">
+                <app-restaurant></app-restaurant>
+              </div>
+            </ng-template>
+          </ngb-tab>
+  
+          <ngb-tab>
+            <ng-template ngbTabTitle><strong class="h4">SUPERMARKET</strong></ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-4">
+                <app-supermarket></app-supermarket>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+  
       </div>
+  
+        <br/>
       <br/>
-    <br/>
+  </div>
+  
 </div>

@@ -132,7 +132,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.searchResult = res;
         this.searchService.changeArray(this.searchResult);
       }, err => {
-        console.log(err);
+        err;
       })
   }
 
@@ -171,9 +171,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.subscription2$ = this.tokenStack.logOut().subscribe(
         data => {
           if (data){
-            this.router.navigateByUrl('/admin', { skipLocationChange: true}).then( () =>
-            this.router.navigate([''])
-            );
+            this.cartService.clearCartLoc();
           }}
       );}
   }
@@ -202,7 +200,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       value => {
         this.cart = value;
       }, err => {
-        console.log(err);
+        err;
       }
 
     );
@@ -221,7 +219,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
           }
         },
          err => {
-           console.log('error: ', err);
+           err;
          }
       );
     }

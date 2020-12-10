@@ -31,7 +31,7 @@ export class SupermarketComponent implements OnInit {
         this.allProducts = newData;
       },
       err => {
-        console.log(err);
+        err;
       }
     );
     this.subscription2$ = this.productService.getSupermarketGrocery()
@@ -49,7 +49,7 @@ export class SupermarketComponent implements OnInit {
         this.vegetableProducts = newData;
       },
       err => { 
-        console.log(err);
+        err;
       }
     );
 
@@ -60,7 +60,7 @@ export class SupermarketComponent implements OnInit {
         this.cannedGoodsProducts = newData;
       },
       err => { 
-        console.log(err);
+        err;
       }
     );
   }

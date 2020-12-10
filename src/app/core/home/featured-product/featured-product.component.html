@@ -1,11 +1,9 @@
-<div *ngIf="featuredProduct$" class="container-img">
-    <div *ngFor="let product of featuredProduct$" class="img-adjust card">
-        <a [href]="convert2Base64(product)">
-          <img class="img-a-display" [src]="convert2Base64(product)" alt="image-1">
+<div class="container-img">
+    <div *ngFor="let product of featuredProduct$; index as i; trackBy:trackerImg" class="img-adjust card">
+        <a>
+          <img [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" class="img-a-display" [alt]="'image-'+i">
           </a>
       <br><p (click)="singleProduct(product.id)" role="button">{{product.productName}}</p>
-      <!-- <br><p class="old-prod" *ngIf="image.price.old!==false;else theOther"></p>
-          <ng-template #theOther><p>&nbsp;</p></ng-template> -->
       <p class="text-a-align">{{product.price |currency:"PHP":"symbol"}}</p>
       <button (click)="addCart(product,1,userId)" class="btn btn-outline-dark mb-3" type="button"><i class="fa fa-cart-plus mr-2"></i>Add to cart</button>
       </div>

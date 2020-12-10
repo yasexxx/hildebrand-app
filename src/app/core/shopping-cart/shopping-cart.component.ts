@@ -68,7 +68,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.initCartApi();
     },
     err => {
-      console.log(err);
+      err;
       this.initCartApi();
     });
   }
@@ -111,7 +111,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
         }
         this.initCartApi();
       }, err => {
-        console.log(err);
         this.initCartApi();
       });
     }
@@ -145,7 +144,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
         .subscribe( res => {
           this.ngOnInit();
         }, err => {
-          console.log(err);
+          err;
         })
     } else {
       this.cartService.deleteItem(name);

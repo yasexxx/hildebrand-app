@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { UserLinksComponent } from './core/user-links/user-links.component';
 import { HeaderComponent } from './core/header/header.component';
 
 import { LoadedDirective } from './directives/image/img.directives';
@@ -20,7 +19,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule } from 'angularx-social-login';
-
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +27,10 @@ import { SocialLoginModule } from 'angularx-social-login';
     NavbarComponent,
     LoadedDirective,
     FooterComponent,
-    UserLinksComponent,
     HeaderComponent,
     RouterComponent,
-    WishlistComponent
+    WishlistComponent,
+    PageNotFoundComponent
 
   ],
   imports: [
@@ -46,7 +45,6 @@ import { SocialLoginModule } from 'angularx-social-login';
     SimpleNotificationsModule.forRoot(),
     MainSharedModule.forRoot(),
     SocialLoginModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

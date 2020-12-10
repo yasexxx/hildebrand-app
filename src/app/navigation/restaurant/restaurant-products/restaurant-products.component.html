@@ -4,8 +4,8 @@
         <a ngbNavLink>All</a>
         <ng-template ngbNavContent>
           <div class="img-supermarket">
-            <div class="card" *ngFor="let product of allProducts$; index as i">
-              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+            <div class="card" *ngFor="let product of allProducts$; index as i; trackBy:trackerImg">
+              <img [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
               <h2 class="name-img">{{product.productName}}</h2>
               <div class="hide-price-hover">
                 ${{product.price}}
@@ -30,8 +30,8 @@
         <a ngbNavLink>Foods</a>
         <ng-template ngbNavContent>
           <div class="img-supermarket">
-            <div class="card" *ngFor="let product of foodProducts$; index as i">
-              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+            <div class="card" *ngFor="let product of foodProducts$; index as i ; trackBy:trackerImg">
+              <img [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
               <h2 class="name-img">{{product.productName}}</h2>
               <div class="hide-price-hover">
                 ${{product.price}}
@@ -57,8 +57,8 @@
         <a ngbNavLink>Drinks</a>
         <ng-template ngbNavContent>
           <div class="img-supermarket">
-            <div class="card" *ngFor="let product of drinkProducts$; index as i">
-              <img [src]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+            <div class="card" *ngFor="let product of drinkProducts$; index as i; trackBy:trackerImg">
+              <img [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
               <h2 class="name-img">{{product.productName}}</h2>
               <div class="hide-price-hover">
                 ${{product.price}}

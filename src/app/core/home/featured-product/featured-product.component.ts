@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, Input, OnDestroy, inject, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
+import { LoaderService } from '../../../_services/loader.service';
 import { TokenStackService } from '../../../_services/token-stack.service';
 import { CartService } from './../../../_services/cart.service';
 @Component({
@@ -17,11 +18,13 @@ export class FeaturedProductComponent implements OnInit, OnDestroy {
               private toastService: NotificationsService,
               private router: Router,
               private tokenService: TokenStackService,
-              @Inject(PLATFORM_ID) private platformId: string) {
+              @Inject(PLATFORM_ID) private platformId: string,
+              private loadService: LoaderService) {
   }
 
 
   ngOnInit(): void {
+    this.loadService.show();
     const user = this.tokenService.getUser();
     if (!!user){
       this.userId = user.id;
@@ -61,9 +64,11 @@ export class FeaturedProductComponent implements OnInit, OnDestroy {
   singleProduct(id:string) {
     if (isPlatformBrowser(this.platformId)){
       this.router.navigate(['/product/id', id]);
-      window.scrollTo(0, 0);
     }
-    
+  }
+
+  trackerImg(index, item){
+    return item.productName;
   }
 
 

@@ -1,4 +1,3 @@
-
 <div *ngIf="isContentRender">
 
   <!-- Carousel Home -->
@@ -21,7 +20,7 @@
 
 <!-- Home Product Layout -->
 
-<div class="bg-a-color">
+<div *ngIf="featuredProduct?.length > 0" class="bg-a-color">
   
 <h2>Featured Products</h2>
 <app-featured-product [featuredProduct$]="featuredProduct"></app-featured-product>
@@ -47,7 +46,7 @@
 
 </div>
 
-
+<app-loader [loading]="!(featuredProduct?.length > 0)"></app-loader>
 
 <!-- Top of footer Display -->
 <div class="col bg-light d-sm-block d-none">

@@ -49,7 +49,6 @@ export class UserOrderViewComponent implements OnInit, OnDestroy {
           
         }
       }, err => {
-        console.log(err);
         this.validItem = false;
         
       })

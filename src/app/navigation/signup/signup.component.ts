@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../_services/loader.service';
-import { Subject, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 
 
 
@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   isSuccessful = false;
   isRegisterFailed = false;
   errorMessage = '';
-  isLoading: Subject<boolean> = this.loadService.isLoading;
+  isLoading: boolean;
   subscription$ : Subscription;
 
   constructor(private authService: AuthService,
@@ -98,6 +98,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    this.isLoading = true;
     const phone$ = this.phoneNumber.value;
     const formData = {
       username: this.username.value,
@@ -111,12 +112,13 @@ export class SignupComponent implements OnInit, OnDestroy {
     };
     this.subscription$ = this.authService.register(formData).subscribe(
       data => {
-        console.log(data);
         this.isSuccessful = true;
         this.isRegisterFailed = false;
+        this.isLoading = false;
       },
       err => {
         this.isRegisterFailed = true
+        this.isLoading = false;
         if(!!err.error.message){
           this.errorMessage = err.error.message;
           this.errorMessage = JSON.stringify(this.errorMessage);

@@ -40,7 +40,6 @@ export class FormCarouselComponent implements OnInit, OnDestroy{
 
   onSubmit() :void {
     const formData = new FormData();
-    console.log(!!false);
     formData.append('file', this.imageUpload);
     formData.append('name', this.product.name);
     formData.append('miniDescription', this.product.description);
@@ -49,18 +48,21 @@ export class FormCarouselComponent implements OnInit, OnDestroy{
       this._subscription$ = this.carouselService.createCarousel(formData).subscribe(
         (res) => { this.isSubmitted = true;
             this.chooseFile = 'Choose file';
-        }
-        ,
+        },
         (err) => console.log(err)
       );
       }
     }
 
-  submittedBtn() : void {
+  addNewCarousel() : void {
     this.isSubmitted = false;
     this.router.navigateByUrl('/', { skipLocationChange: true}).then( () => {
-      this.router.navigate(['admin/create']);
+      this.router.navigate(['admin/create-carousel']);
     });
+  }
+
+  navigateEdit(): void {
+    this.router.navigate(['/admin/edit']);
   }
 
 }

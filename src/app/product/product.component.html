@@ -4,7 +4,7 @@
       </div>
     <div *ngIf="product"  class="wrapper-product">
         <div class="img-1">
-            <img class="img-inside" [src]="convertTypeImage(product)" [alt]="product.name" style="width: 20rem">
+            <img class="img-inside" [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convertTypeImage(product)" [alt]="product.productName" style="width: 20rem">
         </div>
         <div class="details row-offset-3">
             <h1 class="product-name">{{product.productName}}</h1>
@@ -24,13 +24,12 @@
             </div>
             
             <br>
-            <div class="spinner-1">
-                <ngx-number-spinner class="input-spin" [value]="0" [min]="0"></ngx-number-spinner>
-
+            <div class="spinner-1 mb-3">
+                <ngx-number-spinner [value]="1" [min]="1" [max]="15" (change)="changeCart($event)"></ngx-number-spinner>
             </div>
             <p class="p-1-0">{{product.availableProduct}} kg available</p>
             <br>
-            <button (click)="addCart(product, 1, userId)" class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
+            <button (click)="addCart(product, cartChangeValue, userId)" class="btn btn-outline-success rounded-pill btn-addcart">Add to cart</button>
         </div>
     </div>
 </div>

@@ -1,13 +1,12 @@
 import { CarouselService } from './../../_services/carousel.service';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { ProductServiceOperation } from './../../_services/product.services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faMoneyBill } from '@fortawesome/free-solid-svg-icons/';
 import { UserService } from './../../_services/user.service';
 import { HeaderComponent } from './../header/header.component';
-import { CartService } from '../../_services/cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
-
+import { LoaderService } from '../../_services/loader.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -40,10 +39,12 @@ export class HomeComponent implements OnInit, OnDestroy {
               private carouselService: CarouselService,
               private shoppingComponent: ShoppingCartComponent,
               private header: HeaderComponent,
-              private productService: ProductServiceOperation ) {}
+              public loadService: LoaderService,
+              private productService: ProductServiceOperation) {}
 
 
   ngOnInit(): void {
+    this.loadService.show();
     this.subscription4$ = this.carouselService.getAll()
     .subscribe(
       data => {
@@ -56,7 +57,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         const newData = data.filter( li => li.isPublished === true  )
         const modifiedData = this.arrangeBy4(newData);
         this.featuredProduct = modifiedData;
-      }
+        if (this.featuredProduct.length > 0){
+          this.loadService.hide();
+        }
+      },err => {
+        this.loadService.hide();}
     );
     this.subscription2$ = this.productService.getTopProduct()
     .subscribe(
@@ -83,7 +88,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         },
         err => {
-          console.log(err);
           this.isContentRender = false;
           
         }
@@ -94,6 +98,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   typeOf(value:any) {
     return typeof value;
   };
+
+
+  of(value){
+    return of(value);
+  }
 
 
   arrangeBy4(data) {

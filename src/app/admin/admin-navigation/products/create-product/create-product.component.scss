@@ -28,6 +28,18 @@
   height: 10rem;
 }
 
+.submitted-product-true {
+  display: flex;
+  flex-direction: column;
+  padding: 10rem 20rem;
+}
+
+@media (max-width: 1080px){
+  .submitted-product-true {
+    padding: 10rem 10rem;
+  }
+}
+
 @media (max-width:680px) {
   .container-a-create {
     width: 100%;
@@ -37,5 +49,11 @@
     grid-template-columns: 1fr 1fr;
     padding-left: 30vw;
 
+  }
+}
+
+@media (max-width: 530px){
+  .submitted-product-true {
+    padding: 10rem 2rem;
   }
 }

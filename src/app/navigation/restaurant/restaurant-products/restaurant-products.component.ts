@@ -71,4 +71,8 @@ export class RestaurantProductsComponent implements OnInit, OnDestroy {
     }
   }
 
+  trackerImg(index, item){
+    return item.productName;
+  }
+
 }

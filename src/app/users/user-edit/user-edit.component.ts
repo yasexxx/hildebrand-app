@@ -58,7 +58,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
           this.username = responseObj.username;
           this.userId = responseObj._id;
         }, err => {
-          console.log(err);
+          err;
           this.isUserSuccess = false;
           this.router.navigate(['/404'], { queryParams: { user: id, register_error: '404'}});
         }
@@ -71,7 +71,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
             this.avatar.url = responseObj2.url;
             this.avatar.mimetype = responseObj2.mimetype;
           }, err => {
-            console.log(err);
+            err;
           }
         )
   }
@@ -98,7 +98,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
             window.scrollTo(0,0);
           }
         }, err => {
-          console.log(err);
+          err;
         }
       );
   }
@@ -115,7 +115,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
           .subscribe( res => {
             this.ngOnInit();
           }, err => {
-            console.log(err);
+            err;
           })
         }
     }

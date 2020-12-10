@@ -16,7 +16,7 @@ export class CartService implements OnDestroy {
   totalAmount = 0;
   subscription1$: Subscription;
 
-  private CART_KEY = 'cart-local';
+  private CART_KEY = 'lccp';
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -150,8 +150,6 @@ export class CartService implements OnDestroy {
       this.count = count;
     }
       this.navService.changeCart(this.count);
-    // console.log(this.cartStorage);
-    // this.saveCart(this.cartStorage);
     }
     else {
       this.navService.changeCart(0);

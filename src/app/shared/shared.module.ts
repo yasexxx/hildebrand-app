@@ -10,6 +10,8 @@ import { RestaurantProductsComponent } from '../navigation/restaurant/restaurant
 import { ProductComponent } from '../product/product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentHeaderComponent } from './content-header/content-header.component';
+import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
+
 
 @NgModule({
     declarations: [
@@ -21,7 +23,7 @@ import { ContentHeaderComponent } from './content-header/content-header.componen
     imports: [ 
         CommonModule, MainSharedModule, NgbPaginationModule,MatButtonModule,
         MatIconModule,FormsModule ,
-        ReactiveFormsModule, NgbRatingModule
+        ReactiveFormsModule, NgbRatingModule, NgxNumberSpinnerModule
     ],
     exports: [
         SupermarketProductsComponent,

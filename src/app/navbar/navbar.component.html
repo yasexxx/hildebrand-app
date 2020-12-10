@@ -49,8 +49,8 @@
                                             <div ngbDropdown (mouseover)="mouseOver()" (mouseout)="mouseOut()" [open]="isHover" class="d-inline-block">
                                               <a role="button" class="nav-link dropdown-toggle" id="dropdownBasic1" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">Products</a>
                                               <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="drop-profile">
-                                                <a routerLink="/supermarket"><button ngbDropdownItem>Supermarket</button></a>
-                                                <a routerLink="/restaurant"><button ngbDropdownItem>Restaurant</button></a>
+                                                <a routerLink="/supermarket"><button (click)="collapsedActivate()" ngbDropdownItem>Supermarket</button></a>
+                                                <a routerLink="/restaurant"><button (click)="collapsedActivate()" ngbDropdownItem>Restaurant</button></a>
                                               </div>
                                             </div>
                                         </li>

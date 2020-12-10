@@ -1,5 +1,5 @@
 <div class="container-a-restaurant">
-    <div class="bg-a-img">
+    <div class="bg-a-img" [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="'assets/images/bg/_restaurant.jpg'">
       <h1>Restaurant</h1>
     </div>
    <app-restaurant-products [allProducts$]="allRestaurantProducts"

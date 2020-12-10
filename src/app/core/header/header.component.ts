@@ -47,8 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           }
         },
          err => {
-           console.log('error: ',err);
-           
+           err;
          }
       );
     }
@@ -94,9 +93,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.subscription2$ = this.tokenStack.logOut().subscribe(
         data => {
           if(data){
-            this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
-            this.router.navigate([''])
-            );
           this.cartService.clearCartLoc();
           }
         }

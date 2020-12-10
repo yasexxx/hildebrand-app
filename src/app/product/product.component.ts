@@ -40,6 +40,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   currentProduct = null;
   userId: string;
+
+  cartChangeValue = 1;
   
 
   constructor(private route: ActivatedRoute,
@@ -74,7 +76,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     .subscribe( data => {
       this.product = data;
     }, err => {
-      console.log(err);
+      err;
     });
   }
 
@@ -91,7 +93,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     if( imgData !== undefined){
       return 'data:'+imageStr.imageFile.mimetype+';base64,'+imgData.toString('base64');
     }
-    return;
   }
   
 
@@ -121,6 +122,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.timeout = setTimeout( () => {
       this.router.navigate(['admin/edit']);
     }, 500);
+  }
+
+  changeCart(event){
+    this.cartChangeValue = event;
   }
 
 }

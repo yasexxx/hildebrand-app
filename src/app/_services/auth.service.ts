@@ -32,7 +32,7 @@ export class AuthService implements OnDestroy {
           return of(err);
          }),
       debounceTime(200),
-      delay(1000),
+      delay(300),
       tap( () => this._loading$.next(false)),
       );
   }
@@ -88,6 +88,13 @@ export class AuthService implements OnDestroy {
 
   getAvatarApi(id): Observable<any> {
     return this.http.get(`${this._apiUrl}/update-user/avatar/${id}`);
+  }
+
+  refreshToken(token, userId, tokenId): Observable<any> {
+    return this.http.post(`${this._apiUrl}/refresh-token`,
+     {  token: token, userId: userId, tokenId: tokenId},
+     { headers: new HttpHeaders( {'Content-Type': 'application/json' })
+    });
   }
 
   get loading$() { return this._loading$.asObservable(); }

@@ -36,7 +36,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         this.allRestaurantProducts = newData;
       },
       err => {
-        console.log(err);
+        err;
       }
     );
     this.subscription2$ = this.productServices.getRestaurantFood()
@@ -54,7 +54,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         this.drinkProducts = newData;
       },
       err => { 
-        console.log(err);
+        err;
       }
     );
 
@@ -65,7 +65,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         this.dessertProducts = newData;
       },
       err => { 
-        console.log(err);
+        err;
       }
     );
   }

@@ -1,4 +1,3 @@
-import { AdminSharedModule } from './admin-shared/admin.shared.module';
 import { SharedModule } from './../shared/shared.module';
 
 import { NgModule } from '@angular/core';
@@ -14,6 +13,8 @@ import { ProductEditComponent } from './admin-navigation/product-edit/product-ed
 import { MatListModule } from '@angular/material/list';
 import { FormCarouselComponent } from './admin-navigation/form-carousel/form-carousel.component';
 import { FormEditCarouselComponent } from './admin-navigation/form-edit-carousel/form-edit-carousel.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
   @NgModule({
   declarations: [
@@ -27,7 +28,6 @@ import { FormEditCarouselComponent } from './admin-navigation/form-edit-carousel
     ProductEditComponent,
     FormCarouselComponent,
     FormEditCarouselComponent
-    
   ],
   imports: [
     CommonModule,
@@ -35,12 +35,11 @@ import { FormEditCarouselComponent } from './admin-navigation/form-edit-carousel
     MatToolbarModule,
     MatSidenavModule,
     SharedModule,
-    AdminSharedModule,
+    MatIconModule,
     MatListModule,
+    MatButtonModule
   ],
-  exports: [],
-  
-  providers: []
+  exports: []
 
 })
 export class AdminModule { }

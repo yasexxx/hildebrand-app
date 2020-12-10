@@ -69,4 +69,8 @@ export class SupermarketProductsComponent implements OnInit, OnDestroy {
     }
   }
 
+  trackerImg(index, item){
+    return item.productName;
+  }
+
 }

@@ -166,6 +166,14 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
     this.router.navigate(['admin/edit-carousel/'+id]);
   }
 
+  navigateToCarousel():void {
+    this.router.navigate(['/admin/create-carousel']);
+  }
+
+  navigateToBack():void {
+    this.router.navigate(['/admin/products']);
+  }
+
 
 
 }

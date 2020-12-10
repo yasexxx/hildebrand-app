@@ -40,7 +40,7 @@ export class SearchService {
     }
 
     toSearchPage(){
-        this.router.navigateByUrl('**', { skipLocationChange: true}).then( () =>
+        this.router.navigateByUrl('/admin', { skipLocationChange: true}).then( () =>
             this.router.navigate(['/search'])
             );
     }

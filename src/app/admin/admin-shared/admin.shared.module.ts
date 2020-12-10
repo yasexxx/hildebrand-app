@@ -6,7 +6,6 @@ import { SalesTrafficChartComponent } from '../admin-dashboard/charts/sales-traf
 import { AnnualSalesChartComponent } from '../admin-dashboard/charts/annual-sales-chart/annual-sales-chart.component';
 import { StoreSessionsChartComponent } from '../admin-dashboard/charts/store-sessions-chart/store-sessions-chart.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { SalesService } from '../../services/product-sales.service';
 import { CustomerService } from '../../services/customer.service';

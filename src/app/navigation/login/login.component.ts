@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.roles = this.tokenStack.getUser().roles;
         this.reloadPage();
       }, err => {
-        console.log(err);
+        err;
       })
   }
 
@@ -106,17 +106,13 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.roles = this.tokenStack.getUser().roles;
             this.reloadPage();
           } else {
-          this.isLoggedFailed = true;
-          console.log(data);
-          if (!!data.error.message){
-            this.errorMessage = data.error.message;
-          } else{
-            this.errorMessage = data.statusText;
-          }
+            this.errorMessage = 'Login invalid! Please try again.';
+            this.isLoggedFailed = true;
           }
         },
         err => {
-          console.log('error: ', err);
+          this.errorMessage = 'Login failed! Try again.'
+          this.isLoggedFailed = true;
         }
       );
     }

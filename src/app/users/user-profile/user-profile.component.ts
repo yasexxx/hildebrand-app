@@ -46,7 +46,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
           this.user.phoneNumber = this.userAsset.phoneNumber ? this.userAsset.phoneNumber: 'Not available';
         },
         err => {
-          console.log(err);
+          err;
         }
       );
     this.subscription2$ = this.authService.getAvatarApi(this.userId)
@@ -56,9 +56,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         this.avatar.mimetype = result.mimetype;
         this.avatar.url = result.url;
       }, err => {
-        console.log(err);
+        err;
       })
-    
   }
 
   ngOnDestroy(): void {

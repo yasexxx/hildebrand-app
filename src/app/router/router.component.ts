@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoaderService } from '../_services/loader.service';
+import { slideInAnimation } from '../animation';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-router',
@@ -8,6 +10,10 @@ import { LoaderService } from '../_services/loader.service';
     <style>
       .hr-style{
         padding: 4.5rem 0;
+      }
+
+      .set-height-1 {
+        min-height: 100vh;
       }
 
       @media (max-width:992px){
@@ -35,9 +41,14 @@ import { LoaderService } from '../_services/loader.service';
                   <app-progress-loader></app-progress-loader>
                 </div>
                 <hr class="hr-style"/>
-                <router-outlet></router-outlet>
+                <div class="set-height-1" [@routeAnimations]="animateRoute(outlet)">
+                  <router-outlet #outlet="outlet"></router-outlet>
+                </div>
                 <app-footer></app-footer>
-                `
+                `,
+    animations: [
+      slideInAnimation
+    ]
 })
 export class RouterComponent implements OnInit {
 
@@ -46,6 +57,10 @@ export class RouterComponent implements OnInit {
   constructor(public loaderService: LoaderService) { }
 
   ngOnInit(): void {
+  }
+
+  animateRoute(outlet: RouterOutlet){
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
 }

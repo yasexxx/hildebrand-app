@@ -1,6 +1,6 @@
 import { ProductInfo } from './update-product.service';
 import { Injectable, Inject} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
     providedIn: 'root'
   }
 )
+
+
 export class ProductServiceOperation {
     private baseUrl: string;
 
@@ -18,6 +20,8 @@ export class ProductServiceOperation {
     ){
         this.baseUrl = baseUrl+'/api/v1/en-PH/products';
     }
+
+    
 
     getAll(): Observable<any> {
         return this.http.get(this.baseUrl).pipe(

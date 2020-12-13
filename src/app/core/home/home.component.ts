@@ -7,6 +7,7 @@ import { UserService } from './../../_services/user.service';
 import { HeaderComponent } from './../header/header.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { LoaderService } from '../../_services/loader.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +15,7 @@ import { LoaderService } from '../../_services/loader.service';
   providers: [
     HeaderComponent,
     ShoppingCartComponent
-  ]
+  ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   slideImages: any[] = null;

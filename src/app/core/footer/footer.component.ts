@@ -8,7 +8,7 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  siteTitle = 'Dei Joseeli';
+  siteTitle = 'hildebrand';
   constructor(@Inject(PLATFORM_ID) private platformId:string) { }
 
   ngOnInit(): void {

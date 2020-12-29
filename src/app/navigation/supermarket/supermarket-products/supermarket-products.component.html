@@ -5,7 +5,7 @@
       <ng-template ngbNavContent>
         <div class="img-supermarket">
           <div class="card" *ngFor="let product of allProducts$; index as i; trackBy: trackerImg">
-            <img loading="lazy" [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+            <img [defaultImage]="'assets/images/blurred.webp'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
             <h2 class="name-img">{{product.productName}}</h2>
             <div class="hide-price-hover">
               ${{product.price}}
@@ -31,7 +31,7 @@
       <ng-template ngbNavContent>
         <div class="img-supermarket">
           <div class="card" *ngFor="let product of groceryProducts$; index as i; trackBy: trackerImg">
-            <img loading="lazy" [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+            <img [defaultImage]="'assets/images/blurred.webp'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
             <h2 class="name-img">{{product.productName}}</h2>
             <div class="hide-price-hover">
               ${{product.price}}
@@ -58,7 +58,7 @@
       <ng-template ngbNavContent>
         <div class="img-supermarket">
           <div class="card" *ngFor="let product of vegetableProducts$; index as i; trackBy: trackerImg">
-            <img loading="lazy" [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
+            <img [defaultImage]="'assets/images/blurred.webp'" [lazyLoad]="convert2Base64(product)" [alt]="product.description" class="img-sup">
             <h2 class="name-img">{{product.productName}}</h2>
             <div class="hide-price-hover">
               ${{product.price}}

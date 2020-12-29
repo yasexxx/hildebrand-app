@@ -10,7 +10,7 @@ import { Order } from './order';
 })
 
 export class OnlineOrderService {
-  private salesUrl = './../../assets/json/order.json';
+  private salesUrl = '/hildebrand-app/assets/json/order.json';
 
   constructor(private http: HttpClient) {
   }

@@ -49,7 +49,7 @@ function matches (sales: MonthlySales, term: string, pipe: PipeTransform){
 })
 
 export class SalesService {
-  private salesUrl = './../../assets/json/sales.json';
+  private salesUrl = '/hildebrand-app/assets/json/sales.json';
 
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();

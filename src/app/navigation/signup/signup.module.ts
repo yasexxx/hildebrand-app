@@ -4,6 +4,7 @@ import { SignupComponent } from './signup.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './../../shared/shared.module';
+import { MainSharedModule } from '../../main-shared.module';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from './../../shared/shared.module';
         SignUpRoutingModule,
         SharedModule,
         NgxIntlTelInputModule,
+        MainSharedModule
     ],
     exports: []
 })

@@ -1,7 +1,7 @@
 <div class="container-img">
     <div *ngFor="let product of featuredProduct$; index as i; trackBy:trackerImg" class="img-adjust card">
         <a>
-          <img [defaultImage]="'assets/images/blurred.jpg'" [lazyLoad]="convert2Base64(product)" class="img-a-display" [alt]="'image-'+i">
+          <img [defaultImage]="'assets/images/blurred.webp'" [lazyLoad]="convert2Base64(product)" class="img-a-display" [alt]="'image-'+i">
           </a>
       <br><p (click)="singleProduct(product.id)" role="button">{{product.productName}}</p>
       <p class="text-a-align">{{product.price |currency:"PHP":"symbol"}}</p>

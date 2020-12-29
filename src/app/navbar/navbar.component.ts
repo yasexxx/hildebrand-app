@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoading: Observable<boolean> = this.tokenStack.loadingLogOut$;
 
-  title = 'dei joseeli';
+  title = 'Hildebrand';
   moneyBillWaveAlt = faMoneyBillWaveAlt;
   collapsed = true;
   isHover = false;

@@ -1,43 +1,42 @@
 <div *ngIf="isContentRender">
 
   <!-- Carousel Home -->
-<div *ngIf="!!slideImages">
-  <ngb-carousel class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
-    <ng-template ngbSlide *ngFor="let img of slideImages; index as i">
+<div>
+  <ngb-carousel *ngIf="(!!slideImages)" class="carousel-a-bar" #carousel [keyboard]="true" [interval]="3000" [pauseOnHover]="pauseOnHover">
+    <ng-template ngbSlide *ngFor="let img of slideImages; index as i; trackBy: trackerCarousel">
       <div class="carousel-caption">
         <strong class="h2 text-dark">{{img.name}}</strong>
       </div>
-      <a href="#{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
         <div class="picsum-img-wrapper">
-          <img class="carousel-a-bar" [src]="convert2Base64(img)" alt="{{img.miniDescription}}">
-  
+          <img class="carousel-a-bar" [defaultImage]="'assets/images/blurred.webp'" [lazyLoad]="convert2Base64(img)" alt="{{img.miniDescription}}">
         </div>
-      </a>
     </ng-template>
   </ngb-carousel>
+
+
 </div>
 
 
 <!-- Home Product Layout -->
 
-<div *ngIf="featuredProduct?.length > 0" class="bg-a-color">
+<div *ngIf="(featuredProduct?.length > 0) || (topProduct?.length > 0) || (latestProduct?.length > 0)" class="bg-a-color">
   
-<h2>Featured Products</h2>
+<h2 *ngIf="featuredProduct?.length > 0">Featured Products</h2>
 <app-featured-product [featuredProduct$]="featuredProduct"></app-featured-product>
 
 
-<div class="col-12">
+<div class="col-12" *ngIf="(latestProduct?.length > 0) && (featuredProduct?.length > 0)">
     <hr>
 </div>
 
-<h2>Latest Products</h2>
+<h2 *ngIf="latestProduct?.length > 0">Latest Products</h2>
 <app-featured-product [featuredProduct$]="latestProduct"></app-featured-product>
 
-<div class="col-12">
+<div class="col-12" *ngIf="(topProduct?.length > 0) && (featuredProduct?.length > 0)">
     <hr>
 </div>
 
-<h2>Top Products</h2>
+<h2 *ngIf="topProduct?.length > 0">Top Products</h2>
 <app-featured-product [featuredProduct$]="topProduct"></app-featured-product>
  
 <br/>
@@ -46,7 +45,7 @@
 
 </div>
 
-<app-loader [loading]="!(featuredProduct?.length > 0)"></app-loader>
+<app-loader [loading]="!(featuredProduct?.length > 0) || !(topProduct?.length > 0) || !(latestProduct?.length > 0)"></app-loader>
 
 <!-- Top of footer Display -->
 <div class="col bg-light d-sm-block d-none">

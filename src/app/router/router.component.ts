@@ -18,20 +18,16 @@ import { RouterOutlet } from '@angular/router';
 
       @media (max-width:992px){
         .hr-style{
-          padding: 7.5rem 0;
+          padding: 5rem 0;
         }
       }
 
       @media (max-width:768px){
         .hr-style{
-          padding: 6.3rem 0;
+          padding: 3.5rem 0;
         }
       }
 
-      @media (max-width:266px){
-        .hr-style{
-          padding: 6.8rem 0;
-        }
       }
     </style>
       <!-- Routing Navigation : App header ,navbar, & footer -->

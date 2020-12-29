@@ -7,6 +7,7 @@ import { UserService } from './../../_services/user.service';
 import { HeaderComponent } from './../header/header.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { LoaderService } from '../../_services/loader.service';
+import { shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -41,58 +42,70 @@ export class HomeComponent implements OnInit, OnDestroy {
               private shoppingComponent: ShoppingCartComponent,
               private header: HeaderComponent,
               public loadService: LoaderService,
-              private productService: ProductServiceOperation) {}
+              private productService: ProductServiceOperation) {
+                this.subscription4$ = this.carouselService.getAll().pipe(
+                  shareReplay(1)
+                )
+                .subscribe(
+                  data => {
+                    this.slideImages = data;
+                  }
+                )
+                this.subscription$ = this.productService.getFeaturedProduct().pipe(
+                  shareReplay(1)
+                )
+                .subscribe( 
+                  data => {
+                    const newData = data.filter( li => li.isPublished === true  )
+                    const modifiedData = this.arrangeBy4(newData);
+                    this.featuredProduct = modifiedData;
+                    if (this.featuredProduct.length > 0){
+                      this.loadService.hide();
+                    }
+                  },err => {
+                    this.loadService.hide();}
+                );
+                this.subscription2$ = this.productService.getTopProduct().pipe(
+                  shareReplay(1)
+                )
+                .subscribe(
+                  data => {
+                    const newData = data.filter( li => li.isPublished === true  )
+                    const modifiedData = this.arrangeBy4(newData);
+                    this.topProduct = modifiedData;
+                  },
+                  err => {
+                    console.log(err);
+                  }
+                );
+                this.subscription3$ = this.productService.getLatestProduct().pipe(
+                  shareReplay(1)
+                )
+                .subscribe(
+                  data => {
+                    const newData = data.filter( li => li.isPublished === true  )
+                    const modifiedData = this.arrangeBy4(newData);
+                    this.latestProduct = modifiedData;
+                    this.loadService.hide();
+                  }
+                );
+                this.header.ngOnInit();
+                  
+                  this.userService.getPublicContent().subscribe(
+                    data => {
+                      if(data){
+                        this.isContentRender = true;
+                      }
+                    },
+                    err => {
+                      this.isContentRender = false;
+                    }
+                  );
+              }
 
 
   ngOnInit(): void {
     this.loadService.show();
-    this.subscription4$ = this.carouselService.getAll()
-    .subscribe(
-      data => {
-        this.slideImages = data;
-      }
-    )
-    this.subscription$ = this.productService.getFeaturedProduct()
-    .subscribe( 
-      data => {
-        const newData = data.filter( li => li.isPublished === true  )
-        const modifiedData = this.arrangeBy4(newData);
-        this.featuredProduct = modifiedData;
-        if (this.featuredProduct.length > 0){
-          this.loadService.hide();
-        }
-      },err => {
-        this.loadService.hide();}
-    );
-    this.subscription2$ = this.productService.getTopProduct()
-    .subscribe(
-      data => {
-        const newData = data.filter( li => li.isPublished === true  )
-        const modifiedData = this.arrangeBy4(newData);
-        this.topProduct = modifiedData;
-      }
-    );
-    this.subscription3$ = this.productService.getLatestProduct()
-    .subscribe(
-      data => {
-        const newData = data.filter( li => li.isPublished === true  )
-        const modifiedData = this.arrangeBy4(newData);
-        this.latestProduct = modifiedData;
-      }
-    );
-    this.header.ngOnInit();
-      
-      this.userService.getPublicContent().subscribe(
-        data => {
-          if(data){
-            this.isContentRender = true;
-          }
-        },
-        err => {
-          this.isContentRender = false;
-          
-        }
-      );
     this.shoppingComponent.ngOnInit();
   }
 
@@ -123,6 +136,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   convert2Base64(imageStr){
     return 'data:'+imageStr.mimetype+';base64,'+imageStr.data.toString('base64');
+  }
+
+  trackerCarousel(index, item){
+    return item.name;
   }
 
 }

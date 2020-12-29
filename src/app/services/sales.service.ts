@@ -10,7 +10,7 @@ import { MonthlySales } from './monthly-sales';
 })
 
 export class SalesService {
-  private salesUrl = './../../assets/json/sales.json';
+  private salesUrl = '/hildebrand-app/assets/json/sales.json';
 
   constructor(private http: HttpClient) {
   }

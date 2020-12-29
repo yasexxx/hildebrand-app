@@ -1,6 +1,6 @@
 
 <!-- Using Reactive form approach -->
-<div @flyInOut class="container-a-login">
+<div class="container-a-login">
   <br/>
   <div class="card card-a-center">
     <div class="card-header">
@@ -41,12 +41,12 @@
         </div>
         <div class="social-login">
           <button (click)="signInWithGoogle()" class="btn-1 btn-google">
-            <img class="google-g" src="/assets/images/google-g.png">
+            <img class="google-g" [src]="'assets/images/google-g.webp'">
             <span>Google</span>
           </button>
-          <div style="padding:0.5rem">&nbsp;</div>
+          <div class="p-0 p-sm-2">&nbsp;</div>
           <button (click)="signInWithFb()" class="btn-1 btn-facebook">
-            <img class="facebook-f" src="/assets/images/facebook-f.png">
+            <img class="facebook-f" [src]="'assets/images/facebook-f.webp'">
             <span>Facebook</span>
           </button>
         </div>

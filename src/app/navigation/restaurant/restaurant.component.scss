@@ -1,15 +1,15 @@
 
 .container-a-restaurant {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
+    display: flex;
+    flex-direction: column;
     background: #a8a7a7;
+    min-height: 120vh;
   }
 
   .bg-a-img {
     background-size: cover;
     background-position: center;
-
+    height: 15rem;
   }
 
   .bg-a-img h1 {

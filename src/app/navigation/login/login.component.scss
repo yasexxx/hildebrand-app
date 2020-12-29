@@ -1,9 +1,10 @@
 
 
 .container-a-login {
-  background: url(./../../../assets/images/bg/_login.jpg);
+  background: url(/assets/images/login.webp);
   background-size: cover;
   background-position-y: 1;
+  min-height: 120vh;
 }
 
 .card-a-center {
@@ -111,4 +112,16 @@
 .login-with {
   text-align: center;
   padding-bottom: 1rem;
+}
+
+@media (max-width: 486px){
+  .card-a-center{
+    width: 80vw;
+  }
+}
+
+@media (max-width: 380px){
+  .social-login{
+    flex-direction: column;
+  }
 }
